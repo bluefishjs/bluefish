@@ -91,7 +91,7 @@ export const splitAlignment = (
   return [verticalAlignment, horizontalAlignment];
 };
 
-type AlignProps = PropsWithChildren<{
+export type AlignProps = PropsWithChildren<{
   id: Id;
   x?: number;
   y?: number;
