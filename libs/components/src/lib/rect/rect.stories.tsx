@@ -5,6 +5,14 @@ import { Bluefish } from '@bluefishjs/core';
 const meta: Meta<typeof Rect> = {
   component: Rect,
   title: 'Rect',
+  argTypes: {
+    id: { control: 'text' },
+    x: { control: { type: 'range', min: 0, max: 300, step: 1 } },
+    y: { control: { type: 'range', min: 0, max: 300, step: 1 } },
+    width: { control: { type: 'range', min: 0, max: 300, step: 1 } },
+    height: { control: { type: 'range', min: 0, max: 300, step: 1 } },
+    fill: { control: 'color' },
+  },
 };
 export default meta;
 
