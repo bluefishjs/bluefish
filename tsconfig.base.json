@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@bluefishjs/bluefish": ["libs/bluefish/src/index.ts"],
+      "@bluefishjs/components": ["libs/components/src/index.ts"],
       "@bluefishjs/core": ["libs/core/src/index.ts"]
     }
   },

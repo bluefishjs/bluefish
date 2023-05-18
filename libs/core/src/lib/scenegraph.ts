@@ -26,11 +26,11 @@ export type TransformOwners = {
   };
 };
 
-function mergeObjects(
-  obj1: Record<string, any>,
-  obj2: Record<string, any>
-): Record<string, any> {
-  const result: any = { ...obj1 };
+function mergeObjects<T, U>(
+  obj1: Record<string, T>,
+  obj2: Record<string, U>
+): Record<string, T | U> {
+  const result: Record<string, T | U> = { ...obj1 };
 
   for (const key in obj2) {
     if (Object.prototype.hasOwnProperty.call(obj2, key)) {
@@ -703,8 +703,15 @@ export const useScenegraph = (): [
     id: string
   ) => ScenegraphNode & { type: 'node' }
 ] => {
-  const [scenegraph, { setBBox, getBBox, setSmartBBox, getNode }] =
-    useContext(BBoxContext)!;
+  const context = useContext(BBoxContext);
+
+  if (context === null) {
+    throw new Error(
+      'useScenegraph must be used within a top-level Bluefish component.'
+    );
+  }
+
+  const [scenegraph, { setBBox, getBBox, setSmartBBox, getNode }] = context;
   return [scenegraph, setBBox, getBBox, setSmartBBox, getNode];
 };
 

@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Scenegraph, ScenegraphNode, getNode } from '../scenegraph';
+import { Scenegraph, ScenegraphNode, getNode } from '@bluefishjs/core';
 import Tree, { RawNodeDatum } from 'react-d3-tree';
 import {
   getAncestorChain,
   getLCAChain,
   getLCAChainSuffixes,
   getTransformDiff,
-} from '../lcaUtil';
-import { useForceUpdate } from '../reactSolidState';
+} from '@bluefishjs/core';
+import { useForceUpdate } from '@bluefishjs/core';
 
 // https://css-tricks.com/using-requestanimationframe-with-react-hooks/
 const useAnimationFrame = (

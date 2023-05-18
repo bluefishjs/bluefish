@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Core from './core';
+import Bluefish from './bluefish';
 
-describe('Core', () => {
+describe('Bluefish', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Core />);
+    const { baseElement } = render(<Bluefish />);
     expect(baseElement).toBeTruthy();
   });
 });
