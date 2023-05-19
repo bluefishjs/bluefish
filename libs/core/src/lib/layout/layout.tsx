@@ -54,12 +54,6 @@ export const Layout: React.FC<LayoutProps> = withSolid((props) => {
 
     // TODO: probably have to cleanup ownership here...
   }, [layout, id, scenegraph, setBBox, createNode, childIds, parentId]);
-  // createEffect(() => {
-  //   const { bbox, transform } = layout(childIds);
-  //   setBBox(id, bbox, id, transform);
-
-  //   // TODO: probably have to cleanup ownership here...
-  // });
 
   const Paint = paint;
 
