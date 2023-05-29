@@ -2,7 +2,7 @@
 import styles from './app.module.css';
 
 export function App() {
-  return <div>Foo</div>;
+  return <div></div>;
 }
 
 export default App;
