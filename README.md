@@ -19,3 +19,21 @@ Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and 
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
+
+## Generating New Packages
+https://nx.dev/packages/react/generators
+
+## Directory Structure
+`apps` - applications
+`libs` - libraries
+
+### `apps`
+`components-e2e` - end-to-end tests for components (unused)
+`docs` - Bluefish documentation (unused)
+`docs-e2e` - end-to-end-tests for documentation (unused)
+`playground` - playground for testing new components. changes are gitignored (not yet implemented)
+
+### `libs`
+`bluefish` - complete package (unused)
+`components` - standard library of Bluefish components
+`core` - essential parts of Bluefish that define the scenegraph
