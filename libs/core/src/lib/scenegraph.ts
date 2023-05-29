@@ -426,16 +426,6 @@ export const createScenegraph = (): BBoxStore => {
         return node;
       }
 
-      // if left and translate.x are both undefined, then set left to the input value and set
-      // translate.x to 0.
-      // if left is defined, and translate.x is undefined, then set translate.x to the difference
-      // between the input value and left.
-      // if both are defined, then check ownership. If there's an ownership conflict, then
-      // console.error and return
-      // if left and translate.x are both owned by us, then set left to the input value and set
-      // translate.x to 0.
-      // if left is owned by someone else, and translate.x is owned by us, then set translate.x
-
       if (
         bbox.left !== undefined &&
         node.transformOwners.translate.x !== undefined &&
@@ -467,8 +457,6 @@ export const createScenegraph = (): BBoxStore => {
         );
         return node;
       }
-      // TODO: there are a bunch of other cases to consider, but I don't think they'll come up just
-      // yet so we'll skip them...
 
       const proposedBBox: BBox = {};
       const proposedTransform: Transform = {

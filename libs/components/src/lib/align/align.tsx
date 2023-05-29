@@ -355,15 +355,17 @@ export function Align(props: AlignProps) {
       bbox: BBox;
       transform: Transform;
       children: React.ReactNode;
-    }) => (
-      <g
-        transform={`translate(${transform.translate.x ?? 0}, ${
-          transform.translate.y ?? 0
-        })`}
-      >
-        {children}
-      </g>
-    ),
+    }) => {
+      return (
+        <g
+          transform={`translate(${transform.translate.x ?? 0}, ${
+            transform.translate.y ?? 0
+          })`}
+        >
+          {children}
+        </g>
+      );
+    },
     []
   );
 

@@ -3,6 +3,7 @@ import React, {
   useContext,
   PropsWithChildren,
   useMemo,
+  useState,
 } from 'react';
 import {
   BBox,
@@ -28,12 +29,13 @@ export type LayoutProps = PropsWithChildren<{
 }>;
 
 export const Layout: React.FC<LayoutProps> = withSolid((props) => {
+  const [isFirstRender, setIsFirstRender] = useState(true);
+
   const { id, layout, paint, children } = props;
 
   const parentId = useContext(ParentIDContext);
 
-  const [scenegraph, { setBBox, createNode, getCurrentBBox }] =
-    useContext(BBoxContext)!;
+  const [scenegraph, { setBBox, createNode }] = useContext(BBoxContext)!;
 
   const childIds = useMemo(
     () =>
@@ -49,11 +51,25 @@ export const Layout: React.FC<LayoutProps> = withSolid((props) => {
   }
 
   useEffect(() => {
+    // TODO: this is a hack b/c otherwise layout doesn't work on first render
+    if (isFirstRender) {
+      setIsFirstRender(false);
+    }
+
     const { bbox, transform } = layout(childIds);
     setBBox(id, bbox, id, transform);
 
     // TODO: probably have to cleanup ownership here...
-  }, [layout, id, scenegraph, setBBox, createNode, childIds, parentId]);
+  }, [
+    layout,
+    id,
+    scenegraph,
+    setBBox,
+    createNode,
+    childIds,
+    parentId,
+    isFirstRender,
+  ]);
 
   const Paint = paint;
 
@@ -66,8 +82,9 @@ export const Layout: React.FC<LayoutProps> = withSolid((props) => {
       height: 0,
     };
 
-  const currentTransform = () =>
-    scenegraph[id]?.transform ?? { translate: { x: 0, y: 0 } };
+  const currentTransform = () => {
+    return scenegraph[id]?.transform ?? { translate: { x: 0, y: 0 } };
+  };
 
   return function LayoutWrapper() {
     return (

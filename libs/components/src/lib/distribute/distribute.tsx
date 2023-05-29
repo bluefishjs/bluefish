@@ -274,16 +274,6 @@ export function Distribute(props: DistributeProps) {
               );
 
         // subtract off spacing and the sizes of the first fixedElement elements
-        // console.log(
-        //   "startingX",
-        //   startingX,
-        //   JSON.parse(JSON.stringify(childBBoxes[fixedId])),
-        //   JSON.parse(
-        //     JSON.stringify(
-        //       Object.values(childNodes).map((node) => node.bboxOwners)
-        //     )
-        //   )
-        // );
         let x = startingX;
         for (const id of childIds) {
           if (id !== fixedId) {
