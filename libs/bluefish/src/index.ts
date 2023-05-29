@@ -1,1 +1,2 @@
-export * from './lib/bluefish';
+export * from '@bluefishjs/core';
+export * from '@bluefishjs/components';

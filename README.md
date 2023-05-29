@@ -31,9 +31,10 @@ https://nx.dev/packages/react/generators
 `components-e2e` - end-to-end tests for components (unused)
 `docs` - Bluefish documentation (unused)
 `docs-e2e` - end-to-end-tests for documentation (unused)
-`playground` - playground for testing new components. changes are gitignored (not yet implemented)
+`playground` - playground for testing new components. To ignore changes while working, run `git
+update-index --skip-worktree apps/playground/src/app/*`.
 
 ### `libs`
-`bluefish` - complete package (unused)
+`bluefish` - complete package
 `components` - standard library of Bluefish components
 `core` - essential parts of Bluefish that define the scenegraph
