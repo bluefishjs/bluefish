@@ -1,8 +1,16 @@
-import { Align, Distribute, Group, Rect, Ref, Row } from '@bluefishjs/bluefish';
+import {
+  Align,
+  Distribute,
+  Group,
+  Rect,
+  Ref,
+  Text,
+} from '@bluefishjs/bluefish';
 import { useId } from 'react';
 
 export type VariableProps = {
-  data: any;
+  name: string;
+  value: string;
   id?: string;
 };
 
@@ -23,7 +31,14 @@ export function Variable(props: VariableProps) {
           fill={'black'}
         /> */}
       <Align x={0} y={0} id={`alignRow${id}`} alignment="centerVertically">
-        <Rect id={`name${id}`} width={10} height={10} fill="magenta" />
+        {/* <Rect id={`name${id}`} width={10} height={10} fill="magenta" /> */}
+        <Text
+          id={`name${id}`}
+          contents={props.name}
+          fontSize={'24px'}
+          fontFamily={fontFamily}
+          fill={'black'}
+        />
         <Rect id={`box${id}`} height={40} width={40} fill={'#e2ebf6'} />
       </Align>
       <Distribute id={`distribute${id}`} direction="horizontal" spacing={5}>
@@ -65,7 +80,14 @@ export function Variable(props: VariableProps) {
       </Align>
       <Align id={`align3${id}`} alignment="center">
         {/* <Ref id="ref5" refId="valueName" /> */}
-        <Rect id={`valueName${id}`} width={10} height={10} fill="green" />
+        {/* <Rect id={`valueName${id}`} width={10} height={10} fill="green" /> */}
+        <Text
+          id={`valueName${id}`}
+          contents={props.value}
+          fontFamily={fontFamily}
+          fontSize={'24px'}
+          fill={'black'}
+        />
         <Ref id={`ref6${id}`} refId={`box${id}`} />
       </Align>
     </Group>

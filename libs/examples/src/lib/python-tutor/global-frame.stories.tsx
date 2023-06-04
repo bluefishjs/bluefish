@@ -14,7 +14,11 @@ export default meta;
 
 export const Primary = {
   args: {
-    variables: [1, 2, 3],
+    variables: [
+      { name: 'x', value: '5' },
+      { name: 'y', value: '7' },
+      { name: 'z', value: '12' },
+    ],
   },
   render: (args: GlobalFrameProps) => (
     <Bluefish id="bluefish" width={500} height={500}>

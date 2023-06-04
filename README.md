@@ -24,7 +24,9 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 https://nx.dev/packages/react/generators
 
 storybook generation:
+**TODO: which one is it???**
 `nx g @nx/react:storybook-configuration <lib> --tsConfiguration=true`
+`nx g @nx/react:stories --project=components --tsConfiguration=true`
 
 ## Directory Structure
 `apps` - applications

@@ -3,7 +3,7 @@ import { useId } from 'react';
 import Variable from './variable';
 
 export type GlobalFrameProps = {
-  variables: any[];
+  variables: { name: string; value: string }[];
 };
 
 export function GlobalFrame({ variables }: GlobalFrameProps) {
@@ -34,7 +34,11 @@ export function GlobalFrame({ variables }: GlobalFrameProps) {
         <Ref id={`ref3${id}`} refId={`global frame ${id}`} />
         <Align id={`frameVariables${id}`} alignment="right">
           {variables.map((variable, i) => (
-            <Variable id={`variable${i}${id}`} data={variable} />
+            <Variable
+              id={`variable${i}${id}`}
+              name={variable.name}
+              value={variable.value}
+            />
           ))}
         </Align>
         <Distribute id={`distribute2${id}`} direction="vertical" spacing={10}>

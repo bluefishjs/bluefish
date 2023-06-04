@@ -1,3 +1,4 @@
+export * from './lib/text/text';
 export * from './lib/row/row';
 export * from './lib/rect/rect';
 export * from './lib/group/group';
