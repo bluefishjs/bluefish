@@ -1,7 +1,14 @@
 import styles from './plot.module.css';
 
+export type PlotContextValue<T> = {
+  data?: T;
+  schema: { [key in keyof T]: any };
+  // dimensions: Dimensions;
+  scales: { [key in string /* Scale */]: any };
+};
+
 /* eslint-disable-next-line */
-export interface PlotProps {}
+export type PlotProps = {};
 
 export function Plot(props: PlotProps) {
   return (

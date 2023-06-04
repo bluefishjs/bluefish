@@ -18,6 +18,7 @@
       "@bluefishjs/bluefish": ["libs/bluefish/src/index.ts"],
       "@bluefishjs/components": ["libs/components/src/index.ts"],
       "@bluefishjs/core": ["libs/core/src/index.ts"],
+      "@bluefishjs/examples": ["libs/examples/src/index.ts"],
       "@bluefishjs/plot": ["libs/plot/src/index.ts"]
     }
   },

@@ -23,6 +23,9 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 ## Generating New Packages
 https://nx.dev/packages/react/generators
 
+storybook generation:
+`nx g @nx/react:storybook-configuration <lib> --tsConfiguration=true`
+
 ## Directory Structure
 `apps` - applications
 `libs` - libraries
@@ -38,3 +41,21 @@ update-index --skip-worktree apps/playground/src/app/*`.
 `bluefish` - complete package
 `components` - standard library of Bluefish components
 `core` - essential parts of Bluefish that define the scenegraph
+
+## Running Storybook
+
+From the root directory, run `nx storybook <project>`.
+
+# NOTE
+
+You must add this to vite config for storybook to get relative imports.
+```
+resolve: {
+    alias: {
+      '@bluefishjs/bluefish': path.resolve(
+        __dirname,
+        '../bluefish/src/index.ts'
+      ),
+    },
+  },
+```

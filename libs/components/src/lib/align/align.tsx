@@ -172,8 +172,19 @@ export function Align(props: AlignProps) {
               .y !== id && value !== undefined
         );
 
+      // TODO: we should probably make it so that the default value depends on the x & y props
       const verticalValue =
         verticalValueArr.length === 0 ? 0 : (verticalValueArr[0][1] as number);
+      // let verticalValue: number;
+      // if (verticalValueArr.length === 0) {
+      //   // get the first alignment, and use the first bbox to set the default value based on the y
+      //   // prop
+      //   const firstAlignment = alignments[0];
+      //   const firstBBox = getBBox(childIds[0]);
+
+      // } else {
+      //   verticalValue = verticalValueArr[0][1] as number;
+      // }
       // TODO: we maybe have the invariant that value is always defined when the placeable is owned...
 
       const horizontalValueArr = horizontalPlaceables
@@ -268,48 +279,36 @@ export function Align(props: AlignProps) {
         }
       }
 
-      const left = _.some(
-        childIds.map((childId) => getBBox(childId).left),
-        _.isUndefined
-      )
+      const bboxes = {
+        left: childIds.map((childId) => getBBox(childId).left),
+        top: childIds.map((childId) => getBBox(childId).top),
+        width: childIds.map((childId) => getBBox(childId).width),
+        height: childIds.map((childId) => getBBox(childId).height),
+      };
+
+      const left = bboxes.left.includes(undefined)
         ? undefined
-        : _.min(childIds.map((childId) => getBBox(childId).left));
+        : Math.min(...(bboxes.left as number[]));
 
       const right =
-        _.some(
-          childIds.map((childId) => getBBox(childId).left),
-          _.isUndefined
-        ) ||
-        _.some(
-          childIds.map((childId) => getBBox(childId).width),
-          _.isUndefined
-        )
+        bboxes.left.includes(undefined) || bboxes.width.includes(undefined)
           ? undefined
-          : _.max(
-              childIds.map(
-                (childId) => getBBox(childId).left! + getBBox(childId).width!
+          : Math.max(
+              ...(bboxes.left as number[]).map(
+                (left, i) => left + (bboxes.width as number[])[i]
               )
             );
 
-      const top = _.some(
-        childIds.map((childId) => getBBox(childId).top),
-        _.isUndefined
-      )
+      const top = bboxes.top.includes(undefined)
         ? undefined
-        : _.min(childIds.map((childId) => getBBox(childId).top));
+        : Math.min(...(bboxes.top as number[]));
+
       const bottom =
-        _.some(
-          childIds.map((childId) => getBBox(childId).top),
-          _.isUndefined
-        ) ||
-        _.some(
-          childIds.map((childId) => getBBox(childId).height),
-          _.isUndefined
-        )
+        bboxes.top.includes(undefined) || bboxes.height.includes(undefined)
           ? undefined
-          : _.max(
-              childIds.map(
-                (childId) => getBBox(childId).top! + getBBox(childId).height!
+          : Math.max(
+              ...(bboxes.top as number[]).map(
+                (top, i) => top + (bboxes.height as number[])[i]
               )
             );
 
