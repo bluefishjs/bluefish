@@ -6,6 +6,9 @@ export const getAncestorChain = (
 ): string[] => {
   const chain = [];
   let node = scenegraph[id];
+  if (node === undefined) {
+    throw new Error(`node ${id} doesn't exist`);
+  }
   while (node.parent !== null) {
     chain.push(node.parent);
     node = scenegraph[node.parent];
