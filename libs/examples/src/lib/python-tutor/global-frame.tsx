@@ -35,6 +35,7 @@ export function GlobalFrame({ variables }: GlobalFrameProps) {
         <Align id={`frameVariables${id}`} alignment="right">
           {variables.map((variable, i) => (
             <Variable
+              key={i}
               id={`variable${i}${id}`}
               name={variable.name}
               value={variable.value}
@@ -43,7 +44,7 @@ export function GlobalFrame({ variables }: GlobalFrameProps) {
         </Align>
         <Distribute id={`distribute2${id}`} direction="vertical" spacing={10}>
           {variables.map((variable, i: number) => (
-            <Ref id={`ref4${i}${id}`} refId={`variable${i}${id}`} />
+            <Ref key={i} id={`ref4${i}${id}`} refId={`variable${i}${id}`} />
           ))}
         </Distribute>
       </Distribute>

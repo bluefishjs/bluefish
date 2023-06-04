@@ -157,10 +157,12 @@ export function Align(props: AlignProps) {
             return [placeable, top + height / 2];
           } else if (verticalAlignment === 'bottom') {
             // return getBBox(placeable!).bottom;
-            return [
-              placeable,
-              getBBox(placeable!).top! + getBBox(placeable!).height!,
-            ];
+            const top = getBBox(placeable!).top;
+            const height = getBBox(placeable!).height;
+            if (top === undefined || height === undefined) {
+              return [placeable, undefined];
+            }
+            return [placeable, top + height];
           } else {
             return [placeable, undefined];
           }
@@ -200,11 +202,12 @@ export function Align(props: AlignProps) {
             }
             return [placeable, left + width / 2];
           } else if (horizontalAlignment === 'right') {
-            // return getBBox(placeable!).right;
-            return [
-              placeable,
-              getBBox(placeable!).left! + getBBox(placeable!).width!,
-            ];
+            const left = getBBox(placeable!).left;
+            const width = getBBox(placeable!).width;
+            if (left === undefined || width === undefined) {
+              return [placeable, undefined];
+            }
+            return [placeable, left + width];
           } else {
             return [placeable, undefined];
           }
