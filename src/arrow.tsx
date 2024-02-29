@@ -65,11 +65,24 @@ export const Arrow = withBluefish(
         props
       );
 
-      // just take the combined bbox of the two children
-      const left = maybeMin([fromBBox.left, toBBox.left]);
-      const top = maybeMin([fromBBox.top, toBBox.top]);
-      const right = maybeMax([fromBBox.right, toBBox.right]);
-      const bottom = maybeMax([fromBBox.bottom, toBBox.bottom]);
+      const sx = arrow[0];
+      const sy = arrow[1];
+      const cx = arrow[2];
+      const cy = arrow[3];
+      const ex = arrow[4];
+      const ey = arrow[5];
+      const ae = arrow[6];
+      const as = arrow[7];
+      const ec = arrow[8];
+
+      // NOTE: this is just an approximation of the arrow's bounding box. Computing the real bounding
+      // box can either be done closed form
+      // (https://stackoverflow.com/questions/2587751/an-algorithm-to-find-bounding-box-of-closed-bezier-curves)
+      // or by sampling points (https://github.com/tldraw/tldraw/blob/f7ae99dd1fc906089834c96055b83ad5871eba21/packages/editor/src/lib/editor/shapes/shared/arrow/curved-arrow.ts#L420)
+      const left = maybeMin([sx, ex]);
+      const top = maybeMin([sy, ey]);
+      const right = maybeMax([sx, ex]);
+      const bottom = maybeMax([sy, ey]);
       const width = maybeSub(right, left);
       const height = maybeSub(bottom, top);
 
@@ -81,17 +94,7 @@ export const Arrow = withBluefish(
           },
         },
         bbox: { left, top, right, bottom, width, height },
-        customData: {
-          sx: arrow[0],
-          sy: arrow[1],
-          cx: arrow[2],
-          cy: arrow[3],
-          ex: arrow[4],
-          ey: arrow[5],
-          ae: arrow[6],
-          as: arrow[7],
-          ec: arrow[8],
-        },
+        customData: { sx, sy, cx, cy, ex, ey, ae, as, ec },
       };
     };
 

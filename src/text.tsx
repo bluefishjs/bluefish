@@ -88,36 +88,44 @@ export const Text = withBluefish(
       };
     };
 
-    const paint = (paintProps: { bbox: BBox; transform: Transform }) => {
-      return (
-        <g
-          ref={props.innerRef}
-          transform={`translate(${paintProps.transform.translate.x}, ${paintProps.transform.translate.y})`}
-          style={SVG_STYLE}
-        >
-          {wordsByLines().length > 0 ? (
-            <text
-              ref={props.innerTextRef}
-              transform={transform()}
-              {...textProps}
-            >
-              <For each={wordsByLines()}>
-                {(line, index) => (
-                  <tspan
-                    x={props.x}
-                    dy={index() === 0 ? startDy() : props["line-height"]}
-                    cap-height={props["cap-height"]}
-                  >
-                    {line.words.join(" ")}
-                  </tspan>
-                )}
-              </For>
-            </text>
-          ) : null}
-        </g>
-      );
+  const paint = (paintProps: { bbox: BBox; transform: Transform }) => {
+    const horizontalAnchorOffset = () => {
+      if (props["text-anchor"] === "start") {
+        return 0;
+      } else if (props["text-anchor"] === "middle") {
+        return paintProps.bbox.width! / 2;
+      } else if (props["text-anchor"] === "end") {
+        return paintProps.bbox.width;
+      }
     };
 
+    return (
+      <g
+        ref={props.innerRef}
+        transform={`translate(${
+          (paintProps.transform.translate.x ?? 0) +
+          (horizontalAnchorOffset() ?? 0)
+        }, ${paintProps.transform.translate.y})`}
+        style={SVG_STYLE}
+      >
+        {wordsByLines().length > 0 ? (
+          <text ref={props.innerTextRef} transform={transform()} {...textProps}>
+            <For each={wordsByLines()}>
+              {(line, index) => (
+                <tspan
+                  x={props.x}
+                  dy={index() === 0 ? startDy() : props["line-height"]}
+                  cap-height={props["cap-height"]}
+                >
+                  {line.words.join(" ")}
+                </tspan>
+              )}
+            </For>
+          </text>
+        ) : null}
+      </g>
+    );
+  };
     return <Layout name={props.name} layout={layout} paint={paint} />;
   },
   { displayName: "Text" }
