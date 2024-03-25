@@ -16,6 +16,7 @@ import { Rect as RectJSX } from "./rect";
 import { Ref as RefJSX } from "./ref";
 import { StackH as StackHJSX } from "./stackh";
 import { Text as TextJSX } from "./text";
+import { Path as PathJSX } from "./path";
 import { withBluefish as withBluefishJSX } from "./withBluefish";
 
 export function component<P>(
@@ -51,6 +52,7 @@ export const Rect = component(RectJSX);
 export const Ref = component(RefJSX);
 export const StackH = component(StackHJSX);
 export const Text = component(TextJSX);
+export const Path = component(PathJSX);
 export function withBluefish(WrappedComponent: Component) {
   return component(withBluefishJSX(WrappedComponent));
 }

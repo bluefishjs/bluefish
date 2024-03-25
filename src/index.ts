@@ -50,6 +50,9 @@ export type { StackHProps } from "./stackh";
 export { Text } from "./text";
 export type { TextProps } from "./text/types";
 
+export { Path } from "./path";
+export type { PathProps } from "./path";
+
 export { withBluefish } from "./withBluefish";
 export type { WithBluefishProps } from "./withBluefish";
 
