@@ -5,6 +5,8 @@
     "docs:preview": "vitepress preview ."
   },
   "dependencies": {
-    "vitepress": "^1.2.2"
+    "markdown-it-container": "^4.0.0",
+    "vitepress": "^1.2.2",
+    "vitepress-plugin-sandpack": "^1.1.4"
   }
 }
