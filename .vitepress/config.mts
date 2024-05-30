@@ -4,8 +4,8 @@ import { renderSandbox } from "vitepress-plugin-sandpack";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Bluefish Docs",
-  description: "Diagramming Library Documentation",
+  title: "Bluefish",
+  description: "A diagramming library for the web",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -23,7 +23,7 @@ export default defineConfig({
       },
     ],
 
-    socialLinks: [{ icon: "github", link: "https://github.com/vuejs/vitepress" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/bluefishjs/bluefish" }],
   },
   markdown: {
     config(md) {
