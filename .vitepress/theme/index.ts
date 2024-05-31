@@ -1,5 +1,5 @@
 import DefaultTheme from "vitepress/theme";
-import { Sandbox } from "vitepress-plugin-sandpack";
+import { Sandbox } from "../../Sandbox";
 import "vitepress-plugin-sandpack/dist/style.css";
 
 export default {

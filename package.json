@@ -5,8 +5,14 @@
     "docs:preview": "vitepress preview ."
   },
   "dependencies": {
+    "@vue/babel-plugin-jsx": "^1.2.2",
+    "@vue/babel-preset-jsx": "^1.4.0",
     "markdown-it-container": "^4.0.0",
     "vitepress": "^1.2.2",
-    "vitepress-plugin-sandpack": "^1.1.4"
+    "vitepress-plugin-sandpack": "^1.1.4",
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "@vue/tsconfig": "^0.5.1"
   }
 }
