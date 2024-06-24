@@ -1,6 +1,8 @@
 import DefaultTheme from "vitepress/theme";
 import { Sandbox } from "../../Sandbox";
-import "vitepress-plugin-sandpack/dist/style.css";
+// re-enable for some other styling options for the sandbox
+// import "vitepress-plugin-sandpack/dist/style.css";
+import "./tailwind.css";
 
 export default {
   ...DefaultTheme,

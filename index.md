@@ -6,38 +6,91 @@ hero:
   name: "Bluefish"
   text: "Because your diagrams are worth it"
   tagline: "The missing diagramming framework"
+  image: "./bluefish-logo.svg"
   actions:
     - theme: brand
       text: Get started
       link: /get-started
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: What Is Bluefish?
+      link: /what-is-bluefish
+    - theme: alt
+      text: Examples
+      link: /examples
 features:
   - title: "Build Reactive Diagrams"
     details: Created interactive and animated diagrams with popular reactive UI primitives
-  - title: Use Powerful Custom Layouts
+  - title: "Use Powerful Custom Layouts"
     details: Bluefish provides graph and arrow layouts out of the box, with the ability to add your own
   # - title: "Compose Diagrams with <i>Relations</i>"
   #   details: Combine elements using alignment, arrows, containment and more!
-  - title: "Create Composably with Relations"
+  - title: "Compose with Relations"
     details: Build complex diagrams from simpler building blocks like alignment, spacing, and arrows
 ---
 
 <br />
 
-<!-- https://css-tricks.com/full-width-containers-limited-width-parents/ -->
-<div style="border-radius: 10px; overflow: hidden; width: 80vw; position: relative; left: 50%; right: 50%; margin-left: -40vw; margin-right: -40vw; border: none; height: 100vh">
-<iframe
-  width="100%"
-  height="100%"
-  frameBorder="0"
-  allow="clipboard-write"
-  src="https://playground.solidjs.com/anonymous/1294d728-8f3f-4d98-b507-155be3679134"
-/>
+<div class="flex flex-col space-y-4">
+  <div class="grid grid-cols-3 gap-4">
+    <div class="col-span-1">
+      <div class="flex flex-col space-y-2">
+        <img src="https://placehold.co/200x200" alt="Placeholder Image" />
+        <p>Insertion Sort</p>
+      </div>
+    </div>
+    <div class="col-span-2">
+      <div class="flex flex-col space-y-2">
+        <img src="https://placehold.co/400x200" alt="Placeholder Image" />
+        <p>A Transaction in the DFSCQ File System</p>
+      </div>
+    </div>
+    <div class="col-span-2">
+      <div class="flex flex-col space-y-2">
+        <img src="https://placehold.co/400x100" alt="Placeholder Image" />
+        <p>Python Tutor</p>
+      </div>
+    </div>
+    <div class="col-span-1 row-span-2">
+      <div class="flex flex-col space-y-2">
+        <img src="https://placehold.co/200x200" alt="Placeholder Image" />
+        <p>Pulley Diagram</p>
+      </div>
+    </div>
+    <div class="col-span-2">
+      <div class="flex flex-col space-y-2">
+        <img src="https://placehold.co/400x100" alt="Placeholder Image" />
+        <p>Baking Recipe</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <div class="col-span-1">
+      <div class="flex flex-col space-y-2">
+        <img src="https://placehold.co/200x100" alt="Placeholder Image" />
+        <p>Quantum Circuit Equivalence</p>
+      </div>
+    </div>
+    <div class="col-span-1 row-span-2">
+      <div class="flex flex-col space-y-2">
+        <img src="https://placehold.co/200x200" alt="Placeholder Image" />
+        <p>Ohm Parse Tree</p>
+      </div>
+    </div>
+    <div class="col-span-1">
+      <div class="flex flex-col space-y-2">
+        <img src="https://placehold.co/200x100" alt="Placeholder Image" />
+        <p>Three-Point Set Topologies</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- ::: sandbox
+<br />
+
+# Try Bluefish in your browser
+
+::: sandbox
 
 ```tsx ./App.tsx [active]
 // prettier-ignore
@@ -78,4 +131,4 @@ const App = () => {
 export default App;
 ```
 
-::: -->
+:::

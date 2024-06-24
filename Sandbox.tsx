@@ -1,45 +1,40 @@
-import { h, defineComponent } from "vue";
-import { Sandbox as DefaultSandbox, sandboxProps } from "vitepress-plugin-sandpack";
-
-export const indexjs = `import { render } from "solid-js/web";
-import App from "./App";
-
-render(App, document.getElementById("app"));`;
-
-export const indexhtml = `<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Solid Demo</title>
-	<meta charset="UTF-8" />
-</head>
-
-<body>
-	<div id="app"></div>
-
-	<script src="index.js">
-	</script>
-</body>
-
-</html>`;
+import { h, defineComponent, ref, watch, onBeforeMount } from "vue";
+// import { Sandbox as DefaultSandbox, sandboxProps } from "vitepress-plugin-sandpack";
+import { Sandpack, type SandpackFiles } from "sandpack-vue3";
+import { getSandpackFiles } from "./sandboxUtil";
 
 export const Sandbox = defineComponent({
   name: "Sandbox",
-  props: sandboxProps,
+  props: {
+    codeOptions: {
+      type: String,
+      required: true,
+    },
+  },
   setup(props, { slots }) {
-    return () => (
-      <DefaultSandbox
-        {...props}
-        template="vite-solid"
-        coderHeight={500}
-        customSetup={{
-          deps: {
-            "@bluefish-js/solid": "latest",
-          },
-        }}
-      >
-        {slots.default?.()}
-      </DefaultSandbox>
-    );
+    const files = ref<SandpackFiles>({});
+
+    const resolveFiles = async () => {
+      files.value = await getSandpackFiles(props, slots);
+    };
+
+    watch(props, resolveFiles);
+
+    onBeforeMount(resolveFiles);
+
+    return () => {
+      return (
+        <Sandpack
+          {...props}
+          files={files.value}
+          template="vite-solid"
+          customSetup={{
+            dependencies: {
+              "@bluefish-js/solid": "latest",
+            },
+          }}
+        />
+      );
+    };
   },
 });
