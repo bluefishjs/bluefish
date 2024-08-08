@@ -4,15 +4,16 @@ layout: home
 
 hero:
   name: "Bluefish"
-  text: "Because your diagrams are worth it"
-  tagline: "The missing diagramming framework"
+  text: "The missing diagramming framework"
+  tagline: "Because your diagrams are worth it"
   image: "./bluefish-logo.svg"
+  # image: https://github.com/bluefishjs/bluefish/assets/21694516/063a0056-3386-430d-a18b-cfbecf500c0b
   actions:
     - theme: brand
       text: Get started
-      link: /get-started
+      link: /learn/get-started
     - theme: alt
-      text: What Is Bluefish?
+      text: What is Bluefish?
       link: /what-is-bluefish
     - theme: alt
       text: Examples
