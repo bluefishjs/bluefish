@@ -12,6 +12,8 @@ export const Sandbox = defineComponent({
     },
   },
   setup(props, { slots }) {
+    console.log('codeOptions', props.codeOptions, decodeURIComponent(props.codeOptions));
+    console.log('slots', slots);
     const files = ref<SandpackFiles>({});
 
     const resolveFiles = async () => {
