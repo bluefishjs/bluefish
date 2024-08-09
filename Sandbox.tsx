@@ -1,6 +1,6 @@
 import { h, defineComponent, ref, watch, onBeforeMount } from "vue";
 // import { Sandbox as DefaultSandbox, sandboxProps } from "vitepress-plugin-sandpack";
-import { Sandpack, type SandpackFiles } from "sandpack-vue3";
+import { Sandpack, SandpackProvider, SandpackCodeEditor, SandpackPreview, type SandpackFiles } from "sandpack-vue3";
 import { getSandpackFiles } from "./sandboxUtil";
 
 export const Sandbox = defineComponent({
@@ -24,7 +24,7 @@ export const Sandbox = defineComponent({
 
     return () => {
       return (
-        <Sandpack
+        <SandpackProvider
           {...props}
           files={files.value}
           template="vite-solid"
@@ -33,7 +33,12 @@ export const Sandbox = defineComponent({
               "@bluefish-js/solid": "latest",
             },
           }}
-        />
+        >
+          <div style={{ border: "solid cornflowerblue 2px", borderRadius: "10px", padding: "10px" }}>
+            <SandpackCodeEditor showLineNumbers style={{ height: "300px" }} />
+            <SandpackPreview style={{ height: "300px" }} />
+          </div>
+        </SandpackProvider>
       );
     };
   },

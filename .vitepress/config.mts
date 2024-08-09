@@ -7,6 +7,7 @@ export default defineConfig({
   title: "Bluefish",
   description: "A diagramming library for the web",
   themeConfig: {
+    logo: "./bluefish-logo.png",
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
@@ -28,6 +29,7 @@ export default defineConfig({
           items: [
             { text: "1. The Basics", link: "/learn/tutorial-1-intro" },
             { text: "2. The Power of Relations", link: "/learn/tutorial-2-relations" },
+            { text: "3. Bluefish and Solid", link: "/learn/tutorial-3-framework" },
           ],
         },
       ],
@@ -79,6 +81,7 @@ export default defineConfig({
     socialLinks: [{ icon: "github", link: "https://github.com/bluefishjs/bluefish" }],
   },
   markdown: {
+    lineNumbers: true,
     config(md) {
       md
         // the second parameter is html tag name

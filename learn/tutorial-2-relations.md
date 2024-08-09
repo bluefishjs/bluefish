@@ -1,171 +1,214 @@
-# Tutorial: The Power of Relations
+# Tutorial Part 2: The Power of Relations
 
-You'll make this diagram of the four terrestrial planets:
+In the last tutorial, we got a brief introduction to Bluefish: its marks, relations, and declarative
+references. In this tutorial, we'll see just how expressive relations can be. We'll progressively
+modify the label in the last tutorial until we've gone from this:
 
-**TODO: insert preview!!!!**
+::: sandbox
 
-This tutorial doesn't assume you know
-anything about Bluefish or UI frameworks. Along the way we'll encounter JSX syntax, marks,
-relations, and declarative references.
+```tsx ./App.tsx [active]
+import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
 
-## Tutorial setup
-
-Fork this live code editor.
-
-## A look at the starter code
-
-### JSX notation
-
-### The `Bluefish` container
-
-### The `Circle` mark
-
-## Create a row using the `StackH` relation
-
-## Nest `StackH` in a `Background` relation
-
-## Overlap relations with `Ref`
-
-## Getting Started with Bluefish
-
-Let's start by looking at a simple example:
-
-```jsx
-<Bluefish>
-  <Background background={() => ...}>
-    <StackH spacing={50}>
-      <Circle r={15} fill={"#EBE3CF"} ... />
-      <Circle r={36} fill={"#DC933C"} ... />
-      <Circle r={38} fill={"#179DD7"} ... />
-      <Circle r={21} fill={"#F1CF8E"} ... />
-    </StackH>
-  </Background>
-</Bluefish>
+export default function App() {
+  return (
+    <Bluefish>
+      <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+        <StackH spacing={50}>
+          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
+          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
+          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
+          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
+        </StackH>
+      </Background>
+      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
+        <StackV spacing={30}>
+          <Text>Mercury</Text>
+          <Ref select="mercury" />
+        </StackV>
+      </Background>
+    </Bluefish>
+  );
+};
 ```
 
-This code creates a simple diagram of four circles in a horizontal stack, contained within a background. Let's break it down step by step:
+:::
 
-1. The `<Bluefish>` tag wraps our entire diagram specification.
-2. Inside, we have a `<Background>` relation that sets a background for our diagram.
-3. The `<StackH>` relation arranges its children horizontally with a spacing of 50 units.
-4. Inside the `<StackH>`, we have four `<Circle>` marks representing planets.
+to this:
 
-## Adding Complexity
+::: sandbox
 
-Now, let's add some complexity to our diagram by labeling one of the planets:
+```tsx ./App.tsx [active]
+import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
 
-```jsx
-<Bluefish>
-  <Background background={() => ...}>
-    <StackH spacing={50}>
-      <Circle name="mercury" r={15} fill={"#EBE3CF"} ... />
-      <Circle r={36} fill={"#DC933C"} ... />
-      <Circle r={38} fill={"#179DD7"} ... />
-      <Circle r={21} fill={"#F1CF8E"} ... />
-    </StackH>
-  </Background>
-  <StackV spacing={30}>
-    <Text>Mercury</Text>
-    <Ref select="mercury" />
-  </StackV>
-</Bluefish>
+export default function App() {
+  return (
+    <Bluefish>
+      <Background name="planets" padding={80} background={() => <Rect fill="#859fc9" />}>
+        <StackH spacing={50}>
+          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
+          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
+          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
+          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
+        </StackH>
+      </Background>
+      <Distribute direction="vertical" spacing={30}>
+        <Ref select="planets" />
+        <Text name="label">Mercury</Text>
+      </Distribute>
+      <Align alignment="centerX">
+        <Ref select="mercury" />
+        <Ref select="label" />
+      </Align>
+      <Arrow>
+        <Ref select="label" />
+        <Ref select="mercury" />
+      </Arrow>
+    </Bluefish>
+  );
+};
 ```
 
-Here's what's new:
+:::
 
-1. We've given the first `<Circle>` a `name` attribute of "mercury".
-2. We've added a new `<StackV>` relation outside of the `<Background>`.
-3. Inside the `<StackV>`, we have a `<Text>` element for the label, and a `<Ref>` element that references the "mercury" circle.
+Along the way we'll encounter some other Bluefish relations: `Arrow`, `Align`, and `Distribute`.
+We'll also gain some more experience using `name` and `Ref`.
 
-This demonstrates a key feature of Bluefish: the ability for elements to participate in multiple relations simultaneously. The "mercury" circle is part of both the horizontal stack of planets and the vertical stack with its label.
+## Flip label direction
 
-## Relations in Bluefish
+One thing we can do without changing our spec very much is move the label below the planet by
+simplifying reversing the order of `StackV`'s children:
 
-In Bluefish, relations are the building blocks of diagrams. They're similar to components in UI frameworks, but with two key differences:
-
-1. Relations can share children with other relations.
-2. Relations don't need to fully specify their children's layout.
-
-This flexibility allows for more expressive and intuitive diagram specifications.
-
-## Trading Locality for Expressiveness
-
-Bluefish allows you to smoothly trade locality for expressiveness in your diagram specifications. Let's see how we can make our specification more flexible:
-
-```jsx
-<Bluefish>
-  <Background background={() => ...}>
-    <StackH spacing={50}>
-      <Circle name="mercury" r={15} fill={"#EBE3CF"} ... />
-      <Circle r={36} fill={"#DC933C"} ... />
-      <Circle r={38} fill={"#179DD7"} ... />
-      <Circle r={21} fill={"#F1CF8E"} ... />
-    </StackH>
-  </Background>
-  <Text name="label">Mercury</Text>
-  <Background>
-    <Ref select="label" />
-    <Ref select="mercury" />
-  </Background>
-</Bluefish>
+```tsx ./App.tsx [active]
+// ...
+      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
+        <StackV spacing={30}>
+          <Text>Mercury</Text> // [!code --]
+          <Ref select="mercury" /> // [!code --]
+          <Ref select="mercury" /> // [!code ++]
+          <Text>Mercury</Text> // [!code ++]
+        </StackV>
+      </Background>
+// ...
 ```
 
-In this version:
+![label under planet](/learn/assets/label-under-planet.png)
 
-1. We've moved the `<Text>` element out of the `<StackV>` and given it a name.
-2. We've replaced the `<StackV>` with a new `<Background>` that references both the label and the "mercury" circle.
+## Change `Background` to `Arrow`
 
-This more diffuse specification allows for easier atomic edits. For example, we could easily change the `<Background>` to an `<Arrow>` to connect the label to the planet instead:
+We can also change how we connect the label to the planet. Instead of using a `Background`, we can
+use an `Arrow` relation instead:
 
-```jsx
-<Arrow>
-  <Ref select="label" />
+```tsx
+// ...
+      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}> // [!code --]
+        <StackV spacing={30}>
+          <Ref select="mercury" />
+          <Text>Mercury</Text> // [!code --]
+          <Text name="label">Mercury</Text> // [!code ++]
+        </StackV>
+        <Arrow> // [!code ++]
+          <Ref select="label"> // [!code ++]
+          <Ref select="mercury" /> // [!code ++]
+        </Arrow> // [!code ++]
+      </Background> // [!code --]
+// ...
+```
+
+![label arrow](/learn/assets/label-arrow.png)
+
+We named the Mercury label, deleted the `Background`, and added an `Arrow` relation whose children
+point at `StackV`'s children.
+
+::: info CHALLENGE
+Can figure out how to get back to the previous version of the diagram with `Background` by only changing two lines of code?
+:::
+
+## Distribute the label from the planets
+
+Right now the label is inside the planets `Background`, but what if we want to place it outside? We
+could change the `StackV` spacing until it's large enough, but we would have to manually update it
+whenever we changed the `Background` or the sizes of the planets. Instead, we'll offset the label
+from the planets `Background` directly.
+
+To do this, we first have to split `StackV` into its two constituent parts: vertical `Distribute`
+and horizontal `Align`:
+
+```tsx
+<StackV spacing={30}> // [!code --]
+<Distribute direction="vertical" spacing={30}> // [!code ++]
   <Ref select="mercury" />
-</Arrow>
-```
-
-## Further Decomposition
-
-We can make our specification even more flexible by breaking down composite relations into their constituent parts:
-
-```jsx
-<Bluefish>
-  <Background background={() => ...}>
-    <StackH spacing={50}>
-      <Circle name="mercury" r={15} fill={"#EBE3CF"} ... />
-      <Circle r={36} fill={"#DC933C"} ... />
-      <Circle r={38} fill={"#179DD7"} ... />
-      <Circle r={21} fill={"#F1CF8E"} ... />
-    </StackH>
-  </Background>
   <Text name="label">Mercury</Text>
-  <Align alignment="centerX">
-    <Ref select="label" />
-    <Ref select="mercury" />
-  </Align>
-  <Distribute direction="vertical">
-    <Ref select="label" />
-    <Background name="planets">
-      <Ref select="mercury" />
-    </Background>
-  </Distribute>
-</Bluefish>
+</StackV> // [!code --]
+</Distribute> // [!code ++]
+<Align alignment="centerX"> // [!code ++]
+  <Ref select="mercury" /> // [!code ++]
+  <Ref select="label" /> // [!code ++]
+</Align> // [!code ++]
 ```
 
-In this final version:
+This refactor doesn't change the diagram at all, but it *does* let us retarget the `Distribute` so
+we n offset it from the `Background` instead of the Mercury `Circle`. To do this, we'll first label
+the planets `Background`:
 
-1. We've replaced the `<Background>` around the label and planet with separate `<Align>` and `<Distribute>` relations.
-2. We've added a new `<Background>` around just the "mercury" planet and given it a name.
-3. The `<Distribute>` relation now spaces the label relative to the entire planets background.
+```tsx
+<Background padding={80} background={() => <Rect fill="#859fc9" />}> // [!code --]
+<Background name="planets" padding={80} background={() => <Rect fill="#859fc9" />}> // [!code ++]
+```
 
-This decomposition allows for even more flexible editing of the diagram's layout.
+Then we'll change the selection in the `Distribute`:
 
-## What's Next?
+```tsx
+<Distribute direction="vertical" spacing={30}>
+  <Ref select="mercury" /> // [!code --]
+  <Ref select="planets" /> // [!code ++]
+  <Text name="label">Mercury</Text>
+</Distribute>
+```
 
-This introduction has covered the core concepts of Bluefish: relations, references, and trading locality for expressiveness. From here, you might want to explore:
+![mercury label outside background](/learn/assets/mercury-label-outside-background.png)
 
-- The full API reference for Bluefish's standard library of marks and relations
-- How to create custom marks and relations
-- More complex examples in the Bluefish gallery
+## Wrapping up
 
-Happy diagramming with Bluefish!
+Huzzah! We modified the label in our planets diagram. Along the way we used `Arrow`, `Align`, and
+`Distribute`, three important Bluefish relations. We've also gained more experience naming elements
+and selecting them with `Ref`. Your final code should look like this:
+
+::: sandbox
+
+```tsx ./App.tsx [active]
+import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+
+export default function App() {
+  return (
+    <Bluefish>
+      <Background name="planets" padding={80} background={() => <Rect fill="#859fc9" />}>
+        <StackH spacing={50}>
+          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
+          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
+          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
+          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
+        </StackH>
+      </Background>
+      <Distribute direction="vertical" spacing={30}>
+        <Ref select="planets" />
+        <Text name="label">Mercury</Text>
+      </Distribute>
+      <Align alignment="centerX">
+        <Ref select="mercury" />
+        <Ref select="label" />
+      </Align>
+      <Arrow>
+        <Ref select="label" />
+        <Ref select="mercury" />
+      </Arrow>
+    </Bluefish>
+  );
+};
+```
+
+:::
+
+## What's next
+
+In the next tutorial we'll see how to take advantage of SolidJS, Bluefish's host framework, to make
+our diagram data-driven and reactive and our spec a little easier to read and modify.

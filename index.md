@@ -6,7 +6,7 @@ hero:
   name: "Bluefish"
   text: "The missing diagramming framework"
   tagline: "Because your diagrams are worth it"
-  image: "./bluefish-logo.svg"
+  image: "./bluefish-logo.png"
   # image: https://github.com/bluefishjs/bluefish/assets/21694516/063a0056-3386-430d-a18b-cfbecf500c0b
   actions:
     - theme: brand
@@ -19,14 +19,12 @@ hero:
       text: Examples
       link: /examples
 features:
+  - title: "Compose with Relations"
+    details: Build complex diagrams from simpler building blocks like alignment, spacing, and arrows
   - title: "Build Reactive Diagrams"
     details: Created interactive and animated diagrams with popular reactive UI primitives
   - title: "Use Powerful Custom Layouts"
     details: Bluefish provides graph and arrow layouts out of the box, with the ability to add your own
-  # - title: "Compose Diagrams with <i>Relations</i>"
-  #   details: Combine elements using alignment, arrows, containment and more!
-  - title: "Compose with Relations"
-    details: Build complex diagrams from simpler building blocks like alignment, spacing, and arrows
 ---
 
 <br />
@@ -94,15 +92,12 @@ features:
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-// prettier-ignore
 import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
 
 const App = () => {
   return (
     <Bluefish>
-      {/* Bluefish is a diagramming library for SolidJS */}
-      {/* You can specify UI-like components such as Row and Background */}
-      <Background padding={20}>
+      <Background padding={80} background={() => <Rect fill="#859fc9" />}>
         <StackH spacing={50}>
           <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
           <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
@@ -110,21 +105,12 @@ const App = () => {
           <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
         </StackH>
       </Background>
-      {/* But you can also use *relations* like Align and Distribute */}
-      <Align alignment="centerX">
-        <Text name="label">Mercury</Text>
-        {/* Bluefish lets you refer to previous components using a special `Ref` component. */}
-        <Ref select="mercury" />
-      </Align>
-      <Distribute direction="vertical" spacing={60}>
-        <Ref select="label" />
-        <Ref select="mercury" />
-      </Distribute>
-      {/* In addition to performing layout, Bluefish relations can also draw objects. */}
-      <Arrow>
-        <Ref select="label" />
-        <Ref select="mercury" />
-      </Arrow>
+      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
+        <StackV spacing={30}>
+          <Text>Mercury</Text>
+          <Ref select="mercury" />
+        </StackV>
+      </Background>
     </Bluefish>
   );
 };
