@@ -8,7 +8,7 @@ export default defineConfig({
   description: "A diagramming library for the web",
   base: "/bluefish-docs/",
   themeConfig: {
-    logo: "/assets/bluefish-logo.png",
+    logo: "/bluefish-logo.png",
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
