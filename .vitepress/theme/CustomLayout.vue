@@ -1,4 +1,3 @@
-<!--.vitepress/theme/MyLayout.vue-->
 <script setup>
 import DefaultTheme from 'vitepress/theme'
 import { Sandbox } from "../../Sandbox";
