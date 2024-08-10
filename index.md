@@ -6,7 +6,7 @@ hero:
   name: "Bluefish"
   text: "The missing diagramming framework"
   tagline: "Because your diagrams are worth it"
-  image: "/bluefish-logo.png"
+  # image: "/bluefish-logo.png"
   # image: https://github.com/bluefishjs/bluefish/assets/21694516/063a0056-3386-430d-a18b-cfbecf500c0b
   actions:
     - theme: brand

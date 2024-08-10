@@ -1,6 +1,7 @@
 <script setup>
 import DefaultTheme from 'vitepress/theme'
 import { Sandbox } from "../../Sandbox";
+import './tailwind.css'
 
 const { Layout } = DefaultTheme
 
@@ -33,13 +34,29 @@ export default function App() {
 <template>
   <Layout>
     <template #home-hero-image>
-      <div style="width: 60%; margin-left: -55%;">
+      <div id="sandbox-container">
         <Sandbox :codeOptions="encodedOptions">
           <div>
-          <pre>{{ code }}</pre>
+            <pre>{{ code }}</pre>
           </div>
         </Sandbox>
       </div>
     </template>
   </Layout>
 </template>
+
+<style>
+#sandbox-container {
+  width: 60%;
+  margin-left: -55%;
+}
+
+@media (max-width: 959px) {
+  #sandbox-container {
+    display: none;
+  }
+  .VPHero .image {
+    display: none;
+  }
+}
+</style>
