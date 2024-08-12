@@ -6,7 +6,7 @@ import { renderSandbox } from "vitepress-plugin-sandpack";
 export default defineConfig({
   title: "Bluefish",
   description: "A diagramming library for the web",
-  base: "/bluefish-docs/",
+  // base: "/bluefish-docs/",
   themeConfig: {
     logo: "/bluefish-logo.png",
     // https://vitepress.dev/reference/default-theme-config
