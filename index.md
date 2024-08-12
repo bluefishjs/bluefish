@@ -14,7 +14,7 @@ hero:
       link: /learn/get-started
     - theme: alt
       text: What is Bluefish?
-      link: /what-is-bluefish
+      link: /learn/what-is-bluefish
     - theme: alt
       text: Examples
       link: /examples

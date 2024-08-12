@@ -208,7 +208,7 @@ export default function App() {
 
 :::
 
-## What's next
+<!-- ## What's next
 
 In the next tutorial we'll see how to take advantage of SolidJS, Bluefish's host framework, to make
-our diagram data-driven and reactive and our spec a little easier to read and modify.
+our diagram data-driven and reactive and our spec a little easier to read and modify. -->
