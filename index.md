@@ -17,7 +17,7 @@ hero:
       link: /learn/what-is-bluefish
     - theme: alt
       text: Examples
-      link: /examples
+      link: /examples/index.md
 features:
   - title: "Compose with Relations"
     details: Build complex diagrams from simpler building blocks like alignment, spacing, and arrows
@@ -27,7 +27,7 @@ features:
     details: Bluefish provides graph and arrow layouts out of the box, with the ability to add your own
 ---
 
-[![Bluefish diagrams](/docs-teaser.png)](/examples)
+[![Bluefish diagrams](/docs-teaser.png)](/examples/index.md)
 
 
 <!-- <br />
