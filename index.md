@@ -27,7 +27,10 @@ features:
     details: Bluefish provides graph and arrow layouts out of the box, with the ability to add your own
 ---
 
-<br />
+[![Bluefish diagrams](/docs-teaser.png)](/examples)
+
+
+<!-- <br />
 
 <div class="flex flex-col space-y-4">
   <div class="grid grid-cols-3 gap-4">
@@ -85,4 +88,4 @@ features:
   </div>
 </div>
 
-<br />
+<br /> -->
