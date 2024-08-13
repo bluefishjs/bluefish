@@ -4,6 +4,8 @@ outline: deep
 
 Bluefish has three kinds of primitives: marks, relations, and special.
 
+![API Reference](/api-reference/assets/api-camera-ready.png)
+
 # Marks
 
 A **mark** is a basic visual element. Bluefish's marks are mostly thin wrappers around SVG
