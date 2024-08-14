@@ -40,7 +40,14 @@ relations, and declarative references.
 ## Tutorial setup
 
 Click "Open Sandbox" in the bottom right corner to open the editor in a new tab using the website
-CodeSandbox.
+CodeSandbox. If that doesn't work, simply open this tutorial in a new tab and work in this editor.
+
+::: info
+You may see an error like
+> Cannot find module 'solid-js/jsx-runtime' or its corresponding type declarations.
+
+This is ok and won't affect your ability to follow the tutorial.
+:::
 
 ::: sandbox
 
@@ -367,5 +374,5 @@ and `StackV`.
 When you're ready, there are few paths forward from here:
 
 - Learn more about relations in [part 2](/learn/tutorial-2-relations.md) of this tutorial.
-- Explore our examples. **TODO: link!!!**
+- Explore our [examples](/examples/).
 - Read the Bluefish [API reference](/api-reference/).
