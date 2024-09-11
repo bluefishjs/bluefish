@@ -7,6 +7,11 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "docs:build": {
+      "dependsOn": ["^docs:build"],
+      "inputs": ["$TURBO_DEFAULT$"],
+      "outputs": [".vitepress/dist/**"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
