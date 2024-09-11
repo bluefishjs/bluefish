@@ -6,7 +6,7 @@ on:
   # using the `master` branch as the default branch.
   push:
     paths:
-      - "apps/docs/**"
+      - "docs/**"
     branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -44,11 +44,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build with VitePress
-        run: pnpm docs:build
+        run: pnpm turbo docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .vitepress/dist
+          path: docs/.vitepress/dist
 
   # Deployment job
   deploy:

@@ -2,9 +2,13 @@ name: "Chromatic"
 
 on:
   push:
+    paths:
+      - "packages/**"
     branches:
       - main
   pull_request:
+    paths:
+      - "packages/**"
     types: [opened, synchronize, reopened]
 
 jobs:
