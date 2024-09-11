@@ -22,6 +22,26 @@
     "docs:dev": {
       "cache": false,
       "persistent": true
+    },
+    "storybook": {
+      "cache": false,
+      "persistent": true
+    },
+    "storybook-docs": {
+      "cache": false,
+      "persistent": true
+    },
+    "build-storybook": {
+      "dependsOn": ["^build-storybook"],
+      "inputs": ["$TURBO_DEFAULT$"],
+      "outputs": ["storybook-static/**"]
+    },
+    "test-storybook": {
+      "dependsOn": ["build-storybook"]
+    },
+    "chromatic": {
+      "dependsOn": ["build-storybook"],
+      "inputs": ["$TURBO_DEFAULT$"]
     }
   }
 }
