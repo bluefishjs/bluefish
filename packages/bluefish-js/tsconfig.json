@@ -1,0 +1,19 @@
+{
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": ["vite/client"],
+    "emitDeclarationOnly": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "declarationMap": true
+  }
+}
