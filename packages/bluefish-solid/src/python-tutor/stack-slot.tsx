@@ -1,11 +1,11 @@
-import Group from "../../src/group";
-import Rect from "../../src/rect";
-import Align from "../../src/align";
-import Distribute from "../../src/distribute";
-import Ref from "../../src/ref";
-import Text from "../../src/text";
+import Group from "../group";
+import Rect from "../rect";
+import Align from "../align";
+import Distribute from "../distribute";
+import Ref from "../ref";
+import Text from "../text";
 import { createUniqueId } from "solid-js";
-import { Id } from "../../src/scenegraph";
+import { Id } from "../scenegraph";
 import { Pointer } from "./types";
 import withBluefish from "../withBluefish";
 import { createName } from "../createName";

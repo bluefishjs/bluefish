@@ -1,5 +1,5 @@
 import memoize from "lodash/memoize";
-import { TextProps } from "../text/types";
+import { TextProps } from "./types";
 
 const MEASUREMENT_ELEMENT_ID = "__react_svg_text_measurement_id";
 

@@ -10,7 +10,7 @@ import Ref from "../ref.jsx";
 import { StackH } from "../stackh.jsx";
 import { StackV } from "../stackv.jsx";
 import withBluefish from "../withBluefish.jsx";
-import { Path } from "./path.js";
+import { Path } from "./path.jsx";
 import Text from "../text.jsx";
 
 const TOPOLOGY_COLOR = [

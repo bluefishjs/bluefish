@@ -1,4 +1,4 @@
-import { Path } from "./path.js";
+import { Path } from "./path.jsx";
 import { Line } from "../line.jsx";
 import Background from "../background.jsx";
 import Bluefish from "../bluefish.jsx";

@@ -5,13 +5,13 @@ import { createName } from "../createName";
 import Distribute from "../distribute";
 import { StackV } from "../stackv";
 import withBluefish from "../withBluefish";
-import { Align } from "../../src/align";
-import { Group } from "../../src/group";
-import { Rect } from "../../src/rect";
-import { Ref } from "../../src/ref";
-import { Id } from "../../src/scenegraph";
-import { Text } from "../../src/text";
-import { Selection } from "../../src/ref";
+import { Align } from "../align";
+import { Group } from "../group";
+import { Rect } from "../rect";
+import { Ref } from "../ref";
+import { Id } from "../scenegraph";
+import { Text } from "../text";
+import { Selection } from "../ref";
 import { LayoutFunction } from "./layoutfunction";
 
 const Pad = withBluefish(
