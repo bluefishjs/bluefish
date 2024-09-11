@@ -2,6 +2,12 @@
 outline: deep
 ---
 
+:::warning
+
+This page is under construction.
+
+:::
+
 Take a look at our examples! They're all based on real diagrams.
 
 - [Insertion Sort](/examples/insertion-sort)

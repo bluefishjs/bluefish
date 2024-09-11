@@ -27,9 +27,10 @@ export const Sandbox = defineComponent({
         <SandpackProvider
           {...props}
           files={files.value}
-          template="vite-solid"
+          template="vanilla-ts"
           customSetup={{
             dependencies: {
+              "solid-js": "latest",
               "@bluefish-js/solid": "latest",
             },
           }}

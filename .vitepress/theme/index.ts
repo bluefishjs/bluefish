@@ -22,5 +22,5 @@ export default {
     DefaultTheme.enhanceApp(ctx);
     +ctx.app.component("Sandbox", Sandbox);
   },
-  Layout: CustomLayout,
+  // Layout: CustomLayout,
 };
