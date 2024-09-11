@@ -35,7 +35,7 @@ We have REPLs to get you started for in many different environments and framewor
 
 :::
 
-## Try Bluefish now
+## Vanilla JS
 
 Here's a starter REPL: https://playground.solidjs.com/anonymous/d19113c2-dab6-4867-9d2b-4c14040757b9
 
