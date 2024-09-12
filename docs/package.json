@@ -9,6 +9,7 @@
   "dependencies": {
     "@vue/babel-plugin-jsx": "^1.2.2",
     "@vue/babel-preset-jsx": "^1.4.0",
+    "@wdns/vue-code-block": "^2.3.3",
     "autoprefixer": "^10.4.19",
     "markdown-it-container": "^4.0.0",
     "postcss": "^8.4.38",
