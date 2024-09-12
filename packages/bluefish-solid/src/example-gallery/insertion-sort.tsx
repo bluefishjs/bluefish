@@ -16,7 +16,7 @@ import Text from "../text";
 import Align from "../align";
 
 // so that colors in this diagram match the colors of the original diagram
-const color = (t) => {
+const color = (t: number) => {
   const T = 0.1 + 0.8 * (1 - t);
   const s = Math.max(0, Math.min(1, T)); // clamp to [0,1]
 
@@ -27,12 +27,12 @@ const color = (t) => {
   return `rgba(${r * 255}, ${g * 255}, ${b * 255}, .75)`;
 };
 
-function findPosToInsert(sorted, item) {
+function findPosToInsert<T>(sorted: T[], item: T) {
   const findIndex = sorted.findIndex((v) => v >= item);
   if (findIndex === -1) return sorted.length;
   else return findIndex;
 }
-function insertAtPos(array, pos, item) {
+function insertAtPos<T>(array: T[], pos: number, item: T) {
   const result = [...array];
   result.splice(pos, 0, item); // modifies result in-place
   return result;
@@ -41,7 +41,7 @@ function insertAtPos(array, pos, item) {
 // at each stage of the algorithm, the iterable returned by
 // this function yields the array at that stage and the move
 // the algorithm is about to perform.
-function* insertionSort(unsorted: any, sorted: any[] = []): any {
+function* insertionSort<T>(unsorted: T[], sorted: T[] = []): Generator<{ ar: T[]; move: [number, number] }> {
   if (unsorted.length === 0) {
     yield { ar: sorted, move: [sorted.length, sorted.length] };
     return sorted;
@@ -61,7 +61,7 @@ function* insertionSort(unsorted: any, sorted: any[] = []): any {
   yield* insertionSort(newUnsorted, newSorted);
 }
 
-const LabelText = withBluefish((props) => (
+const LabelText = withBluefish((props: any) => (
   <Text
     font-family="serif"
     font-style="italic"
@@ -73,7 +73,7 @@ const LabelText = withBluefish((props) => (
   </Text>
 ));
 
-const ArrayEntryText = withBluefish((props) => (
+const ArrayEntryText = withBluefish((props: any) => (
   <Text
     font-family="serif"
     font-weight={300}
@@ -84,7 +84,7 @@ const ArrayEntryText = withBluefish((props) => (
   </Text>
 ));
 
-const ArrayEntry = withBluefish((props) => (
+const ArrayEntry = withBluefish((props: any) => (
   <Background background={() => <Rect fill={props.color} rx={8} />}>
     <Align alignment="center">
       <Circle r={13} fill="rgba(255,255,255,0.6)" />
@@ -93,34 +93,22 @@ const ArrayEntry = withBluefish((props) => (
   </Background>
 ));
 
-const ArrayOutline = withBluefish((props) => (
-  <Background
-    background={() => (
-      <Rect fill="none" stroke="black" stroke-width={2} rx={8} />
-    )}
-  >
+const ArrayOutline = withBluefish((props: any) => (
+  <Background background={() => <Rect fill="none" stroke="black" stroke-width={2} rx={8} />}>
     {props.children}
   </Background>
 ));
 
-const DashedBorder = withBluefish((props) => (
+const DashedBorder = withBluefish((props: any) => (
   <Background
     padding={8}
-    background={() => (
-      <Rect
-        fill="none"
-        stroke="teal"
-        stroke-width={4}
-        rx={12}
-        stroke-dasharray="12"
-      />
-    )}
+    background={() => <Rect fill="none" stroke="teal" stroke-width={4} rx={12} stroke-dasharray="12" />}
   >
     {props.children}
   </Background>
 ));
 
-const InsertionSortStep = withBluefish((props) => {
+const InsertionSortStep = withBluefish((props: any) => {
   const {
     ar,
     move: [from, to],
@@ -135,12 +123,7 @@ const InsertionSortStep = withBluefish((props) => {
         <StackH spacing={3}>
           <For each={ar}>
             {(entry, i) => (
-              <ArrayEntry
-                highlight={i() === stage + 1}
-                name={entryNames[i()]}
-                data={entry}
-                color={color(stage / 7)}
-              />
+              <ArrayEntry highlight={i() === stage + 1} name={entryNames[i()]} data={entry} color={color(stage / 7)} />
             )}
           </For>
         </StackH>
@@ -173,13 +156,7 @@ const InsertionSortDiagram = withBluefish((props) => {
     <Group>
       <StackV spacing={15}>
         <For each={insertionSortIterationData}>
-          {(iterationData, i) => (
-            <InsertionSortStep
-              name={i()}
-              stage={i()}
-              iterationData={iterationData}
-            />
-          )}
+          {(iterationData, i) => <InsertionSortStep name={i()} stage={i()} iterationData={iterationData} />}
         </For>
       </StackV>
       <For each={insertionSortIterationData}>

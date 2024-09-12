@@ -22,6 +22,7 @@ export default defineConfig(({ command }) => ({
       name: "bluefish",
       fileName: "index",
     },
+    emptyOutDir: false,
     target: "esnext",
     rollupOptions: {
       external: ["solid-js", "solid-js/web", "solid-js/store"],

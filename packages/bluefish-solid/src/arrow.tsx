@@ -88,14 +88,8 @@ export const Arrow = withBluefish(
       };
     };
 
-    const paint = (paintProps: {
-      bbox: BBox;
-      transform: Transform;
-      children: JSX.Element;
-      customData?: any;
-    }) => {
-      const endAngleAsDegrees = () =>
-        paintProps.customData.ae * (180 / Math.PI);
+    const paint = (paintProps: { bbox: BBox; transform: Transform; children: JSX.Element; customData?: any }) => {
+      const endAngleAsDegrees = () => paintProps.customData.ae * (180 / Math.PI);
       const arrowHeadPoints = () => {
         const points = [
           [0, -2],
@@ -110,20 +104,13 @@ export const Arrow = withBluefish(
         });
 
         // stringify the points
-        return points
-          .map((point) => point.map((coord) => coord.toString()).join(","))
-          .join(" ");
+        return points.map((point) => point.map((coord) => coord.toString()).join(",")).join(" ");
       };
 
       return (
-        <Show
-          when={paintProps.customData}
-          fallback={<g>{paintProps.children}</g>}
-        >
+        <Show when={paintProps.customData} fallback={<g>{paintProps.children}</g>}>
           <g
-            transform={`translate(${paintProps.transform.translate.x ?? 0}, ${
-              paintProps.transform.translate.y ?? 0
-            })`}
+            transform={`translate(${paintProps.transform.translate.x ?? 0}, ${paintProps.transform.translate.y ?? 0})`}
           >
             <Show when={props.start} fallback={<></>}>
               <circle

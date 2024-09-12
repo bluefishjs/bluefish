@@ -16,10 +16,7 @@
     }
   },
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "vite build"
   },
   "license": "MIT",
   "devDependencies": {

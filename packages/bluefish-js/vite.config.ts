@@ -1,20 +1,18 @@
-import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
-// import devtools from 'solid-devtools/vite';
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
-  plugins: [
-    /* 
-    Uncomment the following line to enable solid-devtools.
-    For more info see https://github.com/thetarnav/solid-devtools/tree/main/packages/extension#readme
-    */
-    // devtools(),
-    solidPlugin(),
-  ],
   server: {
     port: 3000,
   },
   build: {
-    target: 'esnext',
+    emptyOutDir: false,
+    target: "esnext",
+    lib: {
+      entry: resolve(__dirname, "src/index.ts"),
+      formats: ["es", "cjs", "umd"],
+      name: "bluefish",
+      fileName: "index",
+    },
   },
 });

@@ -18,7 +18,7 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
-    "build": "vite build && npx tsc --skipLibCheck -p ./tsconfig.build.json",
+    "build": "vite build",
     "tsc": "npx tsc --skipLibCheck -p ./tsconfig.build.json",
     "serve": "vite preview",
     "storybook": "storybook dev -p 6006",
