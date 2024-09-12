@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj;
 
 const CustomComponent = withBluefish(() => {
-  return <Rect width={100} height={20} />;
+  return <Rect width={100} height={30} />;
 });
 
 export const App: Story = {
