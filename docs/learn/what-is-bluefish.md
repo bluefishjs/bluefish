@@ -70,19 +70,16 @@ const members = [
 ];
 </script>
 
-# What is Bluefish?
+# What Is Bluefish?
 
-Bluefish is a diagramming framework for the web. In contrast to previous frameworks, which focus on
-low-level or high-level abstractions, Bluefish draws inspiration from UI component frameworks like React that
-let users define and use their own custom abstractions (i.e. components).
+Bluefish is a diagramming framework for the web. It relaxes the UI component model popularized by
+React. The main primitive of Bluefish is the _relation_. Just as components are the
+building blocks of user interfaces, relations are the building blocks of diagrams. Unlike
+components, relations can share children with other relations, and they don't need to fully specify
+their childrens' layouts.
 
-The main primitive of Bluefish is the _relation_. Just as components are the building blocks of user
-interfaces, relations are the building blocks of diagrams. Unlike components, relations can share
-children with other relations, and they don't need to fully specify their childrens' layouts.
-
-Bluefish
-is based on work from the [MIT Visualization Group](https://vis.csail.mit.edu/) and the [Software
-Design Group](https://sdg.csail.mit.edu/). You can read more
+Bluefish is based on work from the [MIT Visualization Group](https://vis.csail.mit.edu/) and the [Software
+is based on work from the [MIT Visualization Group](https://vis.csail.mit.edu/) and the [Software Design Group](https://sdg.csail.mit.edu/). You can read more
 about the theory, design, and implementation of Bluefish in our [research
 paper](https://arxiv.org/abs/2307.00146).
 

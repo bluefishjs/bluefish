@@ -23,8 +23,8 @@ export default defineConfig({
 
     sidebar: {
       "/learn": [
-        { text: "Get started", link: "/learn/get-started" },
-        { text: "What is Bluefish?", link: "/learn/what-is-bluefish" },
+        { text: "Get Started", link: "/learn/get-started" },
+        { text: "What Is Bluefish?", link: "/learn/what-is-bluefish" },
         {
           text: "Tutorial",
           items: [
