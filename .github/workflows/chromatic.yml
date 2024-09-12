@@ -29,4 +29,5 @@ jobs:
         uses: chromaui/action@v1
         with:
           projectToken: chpt_3acaaa8c4de82c4
+          workingDir: packages/bluefish-solid
           exitZeroOnChanges: true
