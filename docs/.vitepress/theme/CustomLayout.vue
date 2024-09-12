@@ -114,6 +114,11 @@ const activeTab = ref("vanillaTsCode");
       ></iframe>
     </template> -->
     <!-- </template> -->
+    <template #home-hero-before>
+      <div class="construction">
+        <h1><strong>Warning: This website is under construction! Many pages are incomplete.</strong></h1>
+      </div>
+    </template>
     <template #home-features-before>
       <div class="two-column-layout">
         <div class="column tab-group">
@@ -151,6 +156,15 @@ const activeTab = ref("vanillaTsCode");
 </template>
 
 <style scoped>
+.construction {
+  background-color: #ffffcc;
+  padding: 20px;
+  border: 1px solid #ffff00;
+  border-radius: 5px;
+  text-align: center;
+  color: #422006;
+}
+
 .two-column-layout {
   display: flex;
   flex-direction: column;
