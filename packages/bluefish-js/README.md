@@ -6,3 +6,9 @@
   </a>
   <h3>Create beautiful, customizable diagrams in JavaScript.</h3>
 </div>
+
+## Installation
+
+```bash
+npm install bluefish-js
+```
