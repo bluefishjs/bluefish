@@ -60,3 +60,5 @@ export const Path = component(PathJSX);
 export function withBluefish(WrappedComponent: Component) {
   return component(withBluefishJSX(WrappedComponent));
 }
+
+export { render } from "solid-js/web";
