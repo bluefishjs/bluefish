@@ -1,12 +1,5 @@
-import { WithBluefishProps } from "./withBluefish";
 export { Align } from "./align";
-export type {
-  AlignProps,
-  Alignment1D,
-  Alignment2D,
-  AlignmentHorizontal,
-  AlignmentVertical,
-} from "./align";
+export type { AlignProps, Alignment1D, Alignment2D, AlignmentHorizontal, AlignmentVertical } from "./align";
 
 export { Arrow } from "./arrow";
 export type { ArrowProps } from "./arrow";
@@ -56,12 +49,7 @@ export type { PathProps } from "./path";
 export { withBluefish } from "./withBluefish";
 export type { WithBluefishProps } from "./withBluefish";
 
-export {
-  createScenegraph,
-  useScenegraph,
-  UNSAFE_useScenegraph,
-  ScenegraphContext,
-} from "./scenegraph";
+export { createScenegraph, useScenegraph, UNSAFE_useScenegraph, ScenegraphContext } from "./scenegraph";
 export type {
   Id,
   BBox,
@@ -75,5 +63,3 @@ export type {
 } from "./scenegraph";
 export { createName, ScopeContext, ParentScopeIdContext } from "./createName";
 export type { Name, Scope } from "./createName";
-
-export * as Hyperscript from "./hyperscript";
