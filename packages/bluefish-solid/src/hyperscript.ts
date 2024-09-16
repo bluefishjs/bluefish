@@ -20,18 +20,10 @@ import { Path as PathJSX } from "./path";
 import { withBluefish as withBluefishJSX } from "./withBluefish";
 
 // @ts-expect-error idk why this doesn't typecheck, but I copied it from elsewhere
-export function component<P>(
-  fn: Component<P>
-): (props: P, children: JSX.Element[]) => JSX.Element;
-export function component<P>(
-  fn: Component<P>
-): (props: P, ...children: JSX.Element[]) => JSX.Element;
-export function component<P>(
-  fn: Component<P>
-): (children: JSX.Element[]) => JSX.Element;
-export function component<P>(
-  fn: Component<P>
-): (...children: JSX.Element[]) => JSX.Element;
+export function component<P>(fn: Component<P>): (props: P, children: JSX.Element[]) => JSX.Element;
+export function component<P>(fn: Component<P>): (props: P, ...children: JSX.Element[]) => JSX.Element;
+export function component<P>(fn: Component<P>): (children: JSX.Element[]) => JSX.Element;
+export function component<P>(fn: Component<P>): (...children: JSX.Element[]) => JSX.Element;
 export function component<P>(fn: Component<P>) {
   return (...args: any[]) => {
     return h(fn, ...args);

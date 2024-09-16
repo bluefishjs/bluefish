@@ -1,4 +1,4 @@
-# Getting started
+# Get Started
 
 ## Install
 
@@ -58,4 +58,4 @@ We have REPLs to get you started in some common environments and frameworks:
 - [Observable](https://observablehq.com/@joshpoll/bluefish-in-observable)
 - [Svelte](https://svelte.dev/repl/1fa5bf8713ac4fc2a991560e50564932?version=4.2.1)
 - anywidget **TODO**
-- SolidJS **TODO**
+- [SolidJS](https://playground.solidjs.com/anonymous/b5ec4207-c725-4bce-9bc8-18e639067514)

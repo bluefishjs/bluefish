@@ -17,10 +17,10 @@ export default function App() {
       {/* You can specify UI-like components such as Background and StackH */}
       <Background padding={20}>
         <StackH spacing={50}>
-          <Circle name="mercury" r={15} fill="#EBE3CF" strokeWidth={3} stroke="black" />
-          <Circle r={36} fill="#DC933C" strokeWidth={3} stroke="black" />
-          <Circle r={38} fill="#179DD7" strokeWidth={3} stroke="black" />
-          <Circle r={21} fill="#F1CF8E" strokeWidth={3} stroke="black" />
+          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
+          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
+          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
+          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
         </StackH>
       </Background>
       {/* But you can also use *relations* like Align and Distribute */}

@@ -12,7 +12,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
-      { text: "Learn", link: "/learn/get-started" },
+      { text: "Get Started", link: "/learn/get-started" },
+      { text: "Learn", link: "/learn/tutorial-1-intro" },
       { text: "Examples", link: "/examples" },
       { text: "API Reference", link: "/api-reference" },
     ],
@@ -33,16 +34,6 @@ export default defineConfig({
             { text: "3. Bluefish and Solid", link: "/learn/tutorial-3-framework" },
           ],
         },
-      ],
-      "/examples": [
-        { text: "Insertion Sort", link: "/examples/insertion-sort" },
-        { text: "A Transaction in the DFSCQ File System", link: "/examples/dfscq" },
-        { text: "Python Tutor", link: "/examples/python-tutor" },
-        { text: "Baking Recipe", link: "/examples/baking-recipe" },
-        { text: "Pulleys", link: "/examples/pulleys" },
-        { text: "Quantum Circuit Equivalence", link: "/examples/quantum-circuit" },
-        { text: "Three-Point Set Topologies", link: "/examples/three-point-topologies" },
-        { text: "Ohm Parse Tree", link: "/examples/ohm-parse-tree" },
       ],
       "/api-reference": [
         {
