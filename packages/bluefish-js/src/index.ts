@@ -9,7 +9,6 @@ import {
   Match as MatchJSX,
 } from "solid-js";
 import h from "solid-js/h";
-import { MountableElement, render as solidRender } from "solid-js/web";
 
 import {
   Align as AlignJSX,
@@ -150,9 +149,14 @@ export function withBluefish(WrappedComponent: Component) {
 
 export const Bluefish = component(BluefishJSX);
 
-export const render = (code: () => Child | Child[], element: MountableElement) => {
-  return solidRender(() => Bluefish({}, code() as Child[]) as unknown as JSX.Element, element);
-};
+// NB: I thought about folding Bluefish into the render function, but this prevents people from
+// wrapping Bluefish code in other Solid hyperscript components. We want to keep our options open
+// for that for the time-being.
+// export const render = (code: () => Child | Child[], element: MountableElement) => {
+//   return solidRender(() => Bluefish({}, code() as Child[]) as unknown as JSX.Element, element);
+// };
+
+export { render } from "solid-js/web";
 
 export const Align = component(AlignJSX);
 // NB: type annotation required b/c of transitive perfect-arrows dependency
