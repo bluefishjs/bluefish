@@ -9,6 +9,7 @@ import {
   Match as MatchJSX,
 } from "solid-js";
 import h from "solid-js/h";
+import { MountableElement, render as solidRender } from "solid-js/web";
 
 import {
   Align as AlignJSX,
@@ -29,6 +30,8 @@ import {
   Path as PathJSX,
   withBluefish as withBluefishJSX,
   ArrowProps,
+  BackgroundProps,
+  WithBluefishProps,
 } from "bluefish-solid";
 
 export type ExpandableNode = Node & {
@@ -105,16 +108,37 @@ export function Match<T, TRenderFunction extends (item: NonNullable<T> | Accesso
   return h(MatchJSX, props, props.children);
 }
 
-/* rendering components */
-export { render } from "solid-js/web";
-
 /* bluefish components */
 export type HyperScriptComponent<P> = {
-  (props: P, children: Child[]): HyperScriptReturn;
-  (props: P, ...children: Child[]): HyperScriptReturn;
+  (props: P, children: Child | Child[]): HyperScriptReturn;
+  // (props: P, ...children: Child[]): HyperScriptReturn;
+  (children: Child | Child[]): HyperScriptReturn;
+  // (...children: Child[]): HyperScriptReturn;
+  // (children: Child[]): HyperScriptReturn;
+};
+
+export type HyperScriptComponentOneChild<P> = {
+  (props: P, children: Child): HyperScriptReturn;
+  (children: Child): HyperScriptReturn;
+};
+
+export type HyperScriptComponentNoChildren<P> = {
+  (props?: P): HyperScriptReturn;
 };
 
 export function component<P>(fn: Component<P>): HyperScriptComponent<P> {
+  return (...args: any[]) => {
+    return h(fn, ...args);
+  };
+}
+
+export function componentOneChild<P>(fn: Component<P>): HyperScriptComponentOneChild<P> {
+  return (...args: any[]) => {
+    return h(fn, ...args);
+  };
+}
+
+export function componentNoChildren<P>(fn: Component<P>): HyperScriptComponentNoChildren<P> {
   return (...args: any[]) => {
     return h(fn, ...args);
   };
@@ -124,20 +148,32 @@ export function withBluefish(WrappedComponent: Component) {
   return component(withBluefishJSX(WrappedComponent));
 }
 
+export const Bluefish = component(BluefishJSX);
+
+export const render = (code: () => Child | Child[], element: MountableElement) => {
+  return solidRender(() => Bluefish({}, code() as Child[]) as unknown as JSX.Element, element);
+};
+
 export const Align = component(AlignJSX);
 // NB: type annotation required b/c of transitive perfect-arrows dependency
 export const Arrow = component<ArrowProps>(ArrowJSX);
-export const Background = component(BackgroundJSX);
+
+type HyperScriptBackgroundProps = WithBluefishProps<
+  Omit<BackgroundProps, "background"> & {
+    background: () => HyperScriptReturn;
+  }
+>;
+
+export const Background = component(BackgroundJSX) as unknown as HyperScriptComponent<HyperScriptBackgroundProps>;
 export const Blob = component(BlobJSX);
-export const Bluefish = component(BluefishJSX);
-export const Circle = component(CircleJSX);
+export const Circle = componentNoChildren(CircleJSX);
 export const StackV = component(StackVJSX);
 export const Distribute = component(DistributeJSX);
 export const Group = component(GroupJSX);
-export const Image = component(ImageJSX);
+export const Image = componentNoChildren(ImageJSX);
 export const Layout = component(LayoutJSX);
-export const Rect = component(RectJSX);
+export const Rect = componentNoChildren(RectJSX);
 export const Ref = component(RefJSX);
 export const StackH = component(StackHJSX);
 export const Text = component(TextJSX);
-export const Path = component(PathJSX);
+export const Path = componentNoChildren(PathJSX);

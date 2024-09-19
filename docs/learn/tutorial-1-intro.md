@@ -6,29 +6,45 @@ In this tutorial, you'll make this diagram of the four terrestrial planets:
 
 ::: sandbox
 
-```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+```tsx [active]
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Background padding={80} background={() => <Rect fill="#859fc9" />}>
-        <StackH spacing={50}>
-          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
-          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
-          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
-        </StackH>
-      </Background>
-      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
-        <StackV spacing={30}>
-          <Text>Mercury</Text>
-          <Ref select="mercury" />
-        </StackV>
-      </Background>
-    </Bluefish>
+function App() {
+  return Bluefish(
+    Background(
+      { padding: 80, background: () => Rect({ fill: "#859fc9" }) },
+      StackH(
+        { spacing: 50 },
+        Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" })
+      )
+    ),
+    Background(
+      {
+        background: () => Rect({ stroke: "black", "stroke-width": 3, fill: "none", rx: 10 }),
+      },
+      StackV({ spacing: 30 }, Text("Mercury"), Ref({ select: "mercury" }))
+    )
   );
-};
+}
+
+render(App, document.getElementById("app"));
 ```
 
 :::
@@ -44,6 +60,7 @@ CodeSandbox. If that doesn't work, simply open this tutorial in a new tab and wo
 
 ::: info
 You may see an error like
+
 > Cannot find module 'solid-js/jsx-runtime' or its corresponding type declarations.
 
 This is ok and won't affect your ability to follow the tutorial.
@@ -51,16 +68,28 @@ This is ok and won't affect your ability to follow the tutorial.
 
 ::: sandbox
 
-```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+```tsx [active]
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-    </Bluefish>
-  );
+function App() {
+  return Bluefish(Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }));
 }
+
+render(App, document.getElementById("app"));
 ```
 
 :::
@@ -73,15 +102,27 @@ where our spec lives. Let's walk through the file line by line.
 ### Import Bluefish
 
 ```tsx{1}
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-    </Bluefish>
-  );
+function App() {
+  return Bluefish(Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }));
 }
+
+render(App, document.getElementById("app"));
 ```
 
 We first import all the components we'll need from the Bluefish package, which is called `@bluefish-js/solid`.
@@ -89,15 +130,27 @@ We first import all the components we'll need from the Bluefish package, which i
 ### Export Default Function
 
 ```tsx{3-4,8-9}
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-    </Bluefish>
-  );
+function App() {
+  return Bluefish(Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }));
 }
+
+render(App, document.getElementById("app"));
 ```
 
 This defines a function called `App` that will return our diagram when it's called. The `export`
@@ -107,15 +160,27 @@ this is the main function we're exporting.
 ### The `Bluefish` element
 
 ```tsx{5,7}
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-    </Bluefish>
-  );
+function App() {
+  return Bluefish(Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }));
 }
+
+render(App, document.getElementById("app"));
 ```
 
 Bluefish uses _JSX notation_. JSX looks a lot like HTML syntax, but you can write it directly in
@@ -125,15 +190,27 @@ _child_, `Circle`. The element opens with the `<Bluefish>` tag and closes with t
 ### The `Circle` mark
 
 ```tsx{6}
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-    </Bluefish>
-  );
+function App() {
+  return Bluefish(Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }));
 }
+
+render(App, document.getElementById("app"));
 ```
 
 We've placed a `Circle` mark inside the `Bluefish` element. A mark draws a primitive object (like a
@@ -144,7 +221,7 @@ We give arguments the `Circle` element, called _props_. We surround a prop's val
 unless the value is a string.
 
 ::: info NOTE
-Marks in Bluefish are similar to SVG primitive, _not_ marks in charting libraries.
+Marks in Bluefish are similar to SVG primitives, _not_ marks in charting libraries.
 They only draw a single element.
 :::
 
@@ -154,18 +231,32 @@ Right now we just have one circle. To make more, we can just copy-paste the `Cir
 times with different sizes and fills:
 
 ```tsx
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-      <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" /> // [!code ++]
-      <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" /> // [!code ++]
-      <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" /> // [!code ++]
-    </Bluefish>
+function App() {
+  return Bluefish(
+    Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
+    Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }), // [!code ++]
+    Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }), // [!code ++]
+    Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" }) // [!code ++]
   );
 }
+
+render(App, document.getElementById("app"));
 ```
 
 But they're drawn on top of each other!
@@ -178,20 +269,34 @@ To fix this, we'll lay them out in a row using the `StackH` relation. A relation
 elements.
 
 ```tsx
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <StackH spacing={50}> // [!code ++]
-        <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-        <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
-        <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
-        <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
-      </StackH> // [!code ++]
-    </Bluefish>
+function App() {
+  return Bluefish(
+    StackH({ spacing: 50 }, // [!code ++]
+      Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
+      Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
+      Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
+      Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" })
+    ) // [!code ++]
   );
 }
+
+render(App, document.getElementById("app"));
 ```
 
 ![circle stack](/learn/assets/circle-stack.png)
@@ -225,6 +330,7 @@ export default function App() {
 ![circle stack with background](/learn/assets/circle-stack-with-background.png)
 
 Let's look closely at `Background`'s props:
+
 ```tsx
 <Background padding={80} background={() => <Rect fill="#859fc9" />}>
 ```
@@ -233,7 +339,7 @@ Let's look closely at `Background`'s props:
 
 We first specify a `padding` of 80px (actually distributed evenly between top and bottom and between
 left and right). Next we specify a mark for the background. In this case the background is a `Rect`
-mark. Notice that we have contained this mark in an *arrow function*: `() => ...`. We have to do
+mark. Notice that we have contained this mark in an _arrow function_: `() => ...`. We have to do
 this whenever we use a mark as a prop.
 
 ## Add a label
@@ -250,7 +356,20 @@ We've vertically stacked a piece of text above the circle that corresponds to Me
 add is a pretty direct translation of this description!
 
 ```tsx
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+} from "@bluefish-js/solid";
 
 export default function App() {
   return (
@@ -264,7 +383,9 @@ export default function App() {
           <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
         </StackH>
       </Background>
-      <StackV spacing={30}> // [!code ++]
+      <StackV spacing={30}>
+        {" "}
+        // [!code ++]
         <Text>Mercury</Text> // [!code ++]
         <Ref select="mercury" /> // [!code ++]
       </StackV> // [!code ++]
@@ -281,13 +402,13 @@ Let's walk through this carefully. First we give the Mercury circle a name so we
 ```
 
 Then we create a vertical stack:
+
 ```tsx
-<StackV spacing={30}>
-  ...
-</StackV>
+<StackV spacing={30}>...</StackV>
 ```
 
 And place a text mark above the Mercury circle:
+
 ```tsx
 <StackV spacing={30}>
   <Text>Mercury</Text>
@@ -303,7 +424,20 @@ Finally, we can place a `Background` relation behind the label just as we did wi
 behind the planets.
 
 ```tsx
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+} from "@bluefish-js/solid";
 
 export default function App() {
   return (
@@ -316,7 +450,9 @@ export default function App() {
           <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
         </StackH>
       </Background>
-      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}> // [!code ++]
+      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
+        {" "}
+        // [!code ++]
         <StackV spacing={30}>
           <Text>Mercury</Text>
           <Ref select="mercury" />
@@ -340,7 +476,20 @@ Here's what the finished code should look like:
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+} from "@bluefish-js/solid";
 
 export default function App() {
   return (
@@ -361,7 +510,7 @@ export default function App() {
       </Background>
     </Bluefish>
   );
-};
+}
 ```
 
 :::

@@ -1,23 +1,14 @@
-import {
-  Accessor,
-  Component,
-  createContext,
-  createSignal,
-  createUniqueId,
-  useContext,
-} from "solid-js";
+import { Accessor, Component, createContext, createSignal, createUniqueId, useContext } from "solid-js";
 import type { JSX } from "solid-js";
 import { Id, ScenegraphElement, resolveScenegraphElements } from "./scenegraph";
 import { ParentScopeIdContext, ScopeContext } from "./createName";
 import { Dynamic } from "solid-js/web";
 
 export type WithBluefishProps<T = object> = T & {
-  name: Id;
+  name?: Id;
 };
 
-export const IdContext = createContext<Accessor<Id | undefined>>(
-  () => undefined
-);
+export const IdContext = createContext<Accessor<Id | undefined>>(() => undefined);
 
 export function withBluefish<ComponentProps>(
   WrappedComponent: Component<WithBluefishProps<ComponentProps>>,
@@ -27,8 +18,7 @@ export function withBluefish<ComponentProps>(
     // scenegraph id
     const contextId = useContext(IdContext);
     const parentScopeId = useContext(ParentScopeIdContext);
-    const displayNamePrefix =
-      options?.displayName !== undefined ? `${options?.displayName}(` : "";
+    const displayNamePrefix = options?.displayName !== undefined ? `${options?.displayName}(` : "";
     const displayNameSuffix = options?.displayName !== undefined ? ")" : "";
     const genId = `${displayNamePrefix}${createUniqueId()}${displayNameSuffix}`;
     const genScopeId = `${displayNamePrefix}${createUniqueId()}${displayNameSuffix}`;
@@ -38,9 +28,7 @@ export function withBluefish<ComponentProps>(
 
     // component scope id
     const [scope, setScope] = useContext(ScopeContext);
-    const [layout, setLayout] = createSignal<(parentId: Id | null) => void>(
-      () => {}
-    );
+    const [layout, setLayout] = createSignal<(parentId: Id | null) => void>(() => {});
 
     // TODO: might have to initialize the scope in the store if the scope id was auto-generated
 
@@ -58,11 +46,7 @@ export function withBluefish<ComponentProps>(
         <IdContext.Provider value={id}>
           {(() => {
             const layoutNode = resolveScenegraphElements(
-              <Dynamic
-                component={WrappedComponent}
-                {...(props as WithBluefishProps<ComponentProps>)}
-                name={id()}
-              />
+              <Dynamic component={WrappedComponent} {...(props as WithBluefishProps<ComponentProps>)} name={id()} />
             );
 
             setLayout(() => layoutNode[0].layout);

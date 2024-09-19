@@ -3,7 +3,7 @@ import type { Slots, VNode } from "vue";
 import { renderToString } from "vue/server-renderer";
 import type { SandpackFiles } from "sandpack-vue3";
 
-const defaultFilePath = "/App.tsx";
+const defaultFilePath = "/index.ts";
 
 const getFileAttributes = (info: string) => {
   let path: string | undefined;

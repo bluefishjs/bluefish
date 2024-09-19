@@ -8,6 +8,7 @@ export default defineConfig({
   description: "A diagramming library for the web",
   // base: "/bluefish-docs/",
   themeConfig: {
+    externalLinkIcon: true,
     logo: "/bluefish-logo.png",
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -16,6 +17,7 @@ export default defineConfig({
       { text: "Learn", link: "/learn/tutorial-1-intro" },
       { text: "Examples", link: "/examples" },
       { text: "API Reference", link: "/api-reference" },
+      { text: "Playground", link: "https://playground.solidjs.com/anonymous/d465ad66-f9bc-4962-a413-d5a1f1ae6b14" },
     ],
 
     search: {

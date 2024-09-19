@@ -31,7 +31,7 @@ export const Sandbox = defineComponent({
           customSetup={{
             dependencies: {
               "solid-js": "latest",
-              "@bluefish-js/solid": "latest",
+              "bluefish-js": "latest",
             },
           }}
         >
