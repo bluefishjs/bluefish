@@ -126,9 +126,10 @@ withDefaults(defineProps<Props>(), {
 }
 
 .VPTeamMembersItem.medium .desc {
-  padding-top: 16px;
+  padding-top: 8px;
   max-width: 288px;
   font-size: 16px;
+  line-height: 1.2;
 }
 
 .VPTeamMembersItem.medium .links {

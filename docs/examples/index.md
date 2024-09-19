@@ -19,38 +19,38 @@ const members = [
   {
     avatar: "https://github.com/catherinemei.png",
     name: "DFSCQ File System",
-    title: "A diagram of a transaction in the DFSCQ file system",
+    desc: "A diagram of a transaction in the DFSCQ file system",
     inspiration: "DFSCQ",
   },
   {
     avatar: "https://github.com/gracefh.png",
     name: "Python Tutor",
-    title: "A visualization of Python code runtime state",
+    desc: "A visualization of Python code runtime state",
   },
   {
     avatar: "https://github.com/vezwork.png",
     name: "Baking Recipe",
-    title: "A tabular baking recipe diagram",
+    desc: "A tabular baking recipe diagram",
   },
   {
     avatar: "https://hci.csail.mit.edu/images/profile-pictures/faculty/daniel-jackson.jpg",
     name: "Pulleys",
-    title: "A pulley diagram inspired by Larkin & Simon",
+    desc: "A pulley diagram inspired by Larkin & Simon",
   },
   {
     avatar: "https://arvindsatya.com/imgs/arvindsatya-2023.jpg",
     name: "Quantum Circuit Equivalence",
-    title: "A diagram of quantum circuit equivalence",
+    desc: "A diagram of quantum circuit equivalence",
   },
   {
     avatar: "https://people.csail.mit.edu/dnj/",
     name: "Three-Point Set Topologies",
-    title: "Point-Set Topologies",
+    desc: "Point-Set Topologies",
   },
   {
     avatar: "https://people.csail.mit.edu/dnj/",
     name: "Ohm Parse Tree",
-    title: "A visualization of the Ohm parser's central data structure",
+    desc: "A visualization of the Ohm parser's central data structure",
   },
 ];
 </script>
