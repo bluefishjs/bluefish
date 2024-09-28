@@ -58,17 +58,11 @@ export const AlignComponent: Story = {
     return (
       <Bluefish>
         <StackH spacing={100}>
-          <Background>
+          <Background padding={5}>
             <Group>
               <Rect name="rect1" x={20} width={30} height={30} fill={"red"} />
               <Rect name="rect2" x={80} width={50} height={50} fill={"blue"} />
-              <Rect
-                name="rect3"
-                x={140}
-                width={80}
-                height={80}
-                fill={"green"}
-              />
+              <Rect name="rect3" x={140} width={80} height={80} fill={"green"} />
               <Align name="verticalAlign" alignment={props.alignment1}>
                 <Ref select="rect1" />
                 <Ref select="rect2" />
@@ -76,7 +70,7 @@ export const AlignComponent: Story = {
               </Align>
             </Group>
           </Background>
-          <Background>
+          <Background padding={5}>
             <Group>
               <Rect name="rect4" y={20} width={30} height={30} fill={"red"} />
               <Rect name="rect5" y={60} width={50} height={50} fill={"blue"} />
@@ -86,7 +80,7 @@ export const AlignComponent: Story = {
               </Align>
             </Group>
           </Background>
-          <Background>
+          <Background padding={5}>
             <Group>
               <Align name="otherAlign" alignment={props.alignment3}>
                 <Rect width={50} height={50} fill={"blue"} />

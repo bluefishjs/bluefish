@@ -8,7 +8,7 @@ export type NeighborhoodProps = ParentProps<{
 
 export const Neighborhood = withBluefish((props: NeighborhoodProps) => {
   return (
-    <Background name={props.name} padding={20}>
+    <Background name={props.name} padding={10}>
       {props.children}
     </Background>
   );
