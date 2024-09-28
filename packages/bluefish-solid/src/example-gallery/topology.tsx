@@ -83,7 +83,7 @@ const ThreePointTopology = withBluefish((props) => {
         {(neighbourhood, index) =>
           isAandCNeighbourhood(neighbourhood) ? null : (
             <EllipseBackground
-              padding={(neighbourhood.length * 17 - 12) / 2}
+              padding={neighbourhood.length * 17 - 12}
               opacity={props.overdraw ? 1 : TOPOLOGY_OPACITY}
               fill={props.overdraw ? "none" : TOPOLOGY_COLOR[index() % 6]}
             >
@@ -92,7 +92,7 @@ const ThreePointTopology = withBluefish((props) => {
           )
         }
       </For>
-      <EllipseBackground padding={18} overdraw={props.overdraw}>
+      <EllipseBackground padding={36} overdraw={props.overdraw}>
         <Ref select={stack} />
       </EllipseBackground>
     </Group>

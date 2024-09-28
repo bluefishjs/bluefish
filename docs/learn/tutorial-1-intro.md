@@ -26,7 +26,7 @@ import {
 function App() {
   return Bluefish(
     Background(
-      { padding: 80, background: () => Rect({ fill: "#859fc9" }) },
+      { padding: 40, background: () => Rect({ fill: "#859fc9" }) },
       StackH(
         { spacing: 50 },
         Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
@@ -329,7 +329,7 @@ import {
 function App() {
   return Bluefish(
     Background(
-      { padding: 80, background: () => Rect({ fill: "#859fc9" }) },
+      { padding: 40, background: () => Rect({ fill: "#859fc9" }) },
       StackH({ spacing: 50 }, [
         Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
         Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
@@ -348,13 +348,10 @@ render(App, document.getElementById("app"));
 Let's look closely at `Background`'s props:
 
 ```tsx
-Background({ padding: 80, background: () => Rect({ fill: "#859fc9" }) }, ...)
+Background({ padding: 40, background: () => Rect({ fill: "#859fc9" }) }, ...)
 ```
 
-**TODO: this padding is probably off by a factor of 2?????**
-
-We first specify a `padding` of 80px (actually distributed evenly between top and bottom and between
-left and right). Next we specify a mark for the background. In this case the background is a `Rect`
+We first specify a `padding` of 40px. Next we specify a mark for the background. In this case the background is a `Rect`
 mark. Notice that we have contained this mark in an _arrow function_: `() => ...`. We have to do
 this whenever we use a mark as a prop.
 

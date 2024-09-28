@@ -268,7 +268,7 @@ export const DFSCQLogFigure = () => {
                 <Blocks colors={Array(7).fill("gray")} width={10}></Blocks>
                 <Blocks colors={Array(3).fill("#4582DE")} width={10}></Blocks>
               </StackH>
-              <Background>
+              <Background padding={5}>
                 <StackH spacing={0} name="diskdataStack">
                   <For each={Array(5).fill(1)}>
                     {(o, i) => (

@@ -113,7 +113,7 @@ const ThreePointTopology = withBluefish(
 
 // Diagram recreated in Bluefish based upon the original diagram in
 // Figure 12.1 of "Topology 2nd Edition" by James Munkres
-const ThreePointTopologies = () => {
+export const ThreePointTopologies = () => {
   return (
     <StackH>
       <StackV>
