@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
+import dts from "vite-plugin-dts";
 
 export default defineConfig(({ command }) => ({
   publicDir: command === "serve" ? "public" : false,
@@ -17,4 +18,5 @@ export default defineConfig(({ command }) => ({
       fileName: "index",
     },
   },
+  plugins: [dts({ tsconfigPath: "./tsconfig.build.json" })],
 }));
