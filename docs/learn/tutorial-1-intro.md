@@ -1,7 +1,5 @@
 # Tutorial Part 1: The Basics
 
-(Credit to react.dev!)
-
 In this tutorial, you'll make this diagram of the four terrestrial planets:
 
 ::: sandbox
@@ -31,20 +29,25 @@ render(Diagram, document.getElementById("app"));
 :::
 
 This tutorial doesn't assume you know
-anything about Bluefish or UI frameworks. Along the way we'll encounter JSX syntax, marks,
+anything about Bluefish or UI frameworks. Along the way we'll encounter marks,
 relations, and declarative references.
 
 ## Tutorial setup
 
 Click "Open Sandbox" in the bottom right corner to open the editor in a new tab using the website
-CodeSandbox. If that doesn't work, simply open this tutorial in a new tab and work in this editor.
+CodeSandbox. If that doesn't work, you can also open this tutorial in a new tab and work in this editor directly.
 
 ::: info
 You may see an error like
 
-> Cannot find module 'solid-js/jsx-runtime' or its corresponding type declarations.
+> Argument of type 'HTMLElement | null' is not assignable to parameter of type 'MountableElement'.
+> Type 'null' is not assignable to type 'MountableElement'.typescript(2345)
 
-This is ok and won't affect your ability to follow the tutorial.
+This is expected and won't affect your ability to follow the tutorial. If you want to fix it,
+replace the last line of code with
+`render(Diagram, document.getElementById("app")!);`
+
+(Notice the `!` towards the end.)
 :::
 
 ::: sandbox
@@ -64,12 +67,12 @@ render(Diagram, document.getElementById("app"));
 
 ## A look at the starter code
 
-There are a bunch of files in the sandbox, but the one to pay attention to is `Diagram.tsx`. This is
+There are a bunch of files in the sandbox, but the one to pay attention to is `index.ts`. This is
 where our spec lives. Let's walk through the file line by line.
 
 ### Import Bluefish
 
-```tsx{1}
+```tsx{2}
 // prettier-ignore
 import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
@@ -80,11 +83,20 @@ function Diagram() {
 render(Diagram, document.getElementById("app"));
 ```
 
-We first import all the components we'll need from the Bluefish package, which is called `@bluefish-js/solid`.
+We first import all the components we'll need from the Bluefish package, which is called
+`bluefish-js`.
+
+::: info
+
+We use `// prettier-ignore` to tell the linter to ignore the next line of code. We're
+doing this to prevent the linter from complaining about the `import` statement being too long and
+reformatting it.
+
+:::
 
 ### Export Default Function
 
-```tsx{3-4,8-9}
+```tsx{4,6}
 // prettier-ignore
 import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
@@ -95,30 +107,11 @@ function Diagram() {
 render(Diagram, document.getElementById("app"));
 ```
 
-This defines a function called `Diagram` that will return our diagram when it's called. The `export`
-keyword makes this function accessible in other files. The `default` keyword tells other files that
-this is the main function we're exporting.
-
-### The `Bluefish` element
-
-```tsx{5,7}
-// prettier-ignore
-import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
-
-function Diagram() {
-  return Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" });
-}
-
-render(Diagram, document.getElementById("app"));
-```
-
-Bluefish uses _JSX notation_. JSX looks a lot like HTML syntax, but you can write it directly in
-JavaScript. A Bluefish diagram is always enclosed inside a `Bluefish` element. Bluefish has a single
-_child_, `Circle`. The element opens with the `<Bluefish>` tag and closes with the `</Bluefish>` tag.
+This defines a function called `Diagram` that will return our diagram when it's called.
 
 ### The `Circle` mark
 
-```tsx{6}
+```tsx{5}
 // prettier-ignore
 import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
@@ -129,34 +122,48 @@ function Diagram() {
 render(Diagram, document.getElementById("app"));
 ```
 
-We've placed a `Circle` mark inside the `Bluefish` element. A mark draws a primitive object (like a
-circle or a piece of text) on the screen. They don't have any children, so
-they use _self-closing_ tag like `<Circle ... />`.
+Right now our diagram consists of a single `Circle` mark. A mark draws a primitive object (like a
+circle or a piece of text) on the screen.
 
-We give arguments the `Circle` element, called _props_. We surround a prop's values in curly braces
-unless the value is a string.
+We give arguments to the `Circle` element, called _props_, as a JavaScript object.
 
 ::: info NOTE
 Marks in Bluefish are similar to SVG primitives, _not_ marks in charting libraries.
 They only draw a single element.
 :::
 
+### `render`
+
+```tsx{5}
+// prettier-ignore
+import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
+
+function Diagram() {
+  return Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" });
+}
+
+render(Diagram, document.getElementById("app"));
+```
+
+The `render` function takes two arguments: a function that returns our diagram, and an HTML element
+to render the diagram to. The `render` function inserts our diagram into the DOM element we pass in.
+
 ## Build the row of planets
 
 Right now we just have one circle. To make more, we can just copy-paste the `Circle` mark a few
-times with different sizes and fills:
+times with different sizes and fills, and put them in a `Group`:
 
 ```tsx
 // prettier-ignore
 import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
 function Diagram() {
-  return [
+  return /* [!code ++] */ Group([
     Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
     Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }), // [!code ++]
     Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }), // [!code ++]
     Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" }), // [!code ++]
-  ];
+  ]); // [!code ++]
 }
 
 render(Diagram, document.getElementById("app"));
@@ -166,23 +173,36 @@ But they're drawn on top of each other!
 
 ![overlapping circles](/learn/assets/overlaid-circles.png)
 
+That's because `Group` just renders all its children. It doesn't do any fancy layout. If a child's
+position or size fields aren't otherwise constrained, `Group` will default those fields to `0`.
+
+::: info NOTE
+
+When we pass multiple children to a relation, we pass them as an array.
+
+:::
+
 ### Create a row using the `StackH` relation
 
-To fix this, we'll lay them out in a row using the `StackH` relation. A relation visually arranges
-elements.
+To fix this, we can replace our `Group` with the `StackH` relation. This relation places its
+children in a horizontal row. A **relation** visually arranges
+its child elements.
 
 ```tsx
 // prettier-ignore
 import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
 function Diagram() {
-  return StackH(
+  return /* [!code --] */ Group([
+  return /* [!code ++] */ StackH(
     { spacing: 50 }, // [!code ++]
-    Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
-    Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
-    Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
-    Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" })
-  ); // [!code ++]
+    [
+      Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
+      Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
+      Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
+      Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" }),
+    ]
+  );
 }
 
 render(Diagram, document.getElementById("app"));
@@ -202,15 +222,15 @@ Next we'll put a background around the planets. To do so, we'll use the `Backgro
 import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
 function Diagram() {
-  return Background(
-      { padding: 80, fill: "#859fc9", stroke: "none" },
+  return /* [!code ++] */ Background(
+      { padding: 40, fill: "#859fc9", stroke: "none" }, // [!code ++]
       StackH({ spacing: 50 }, [
         Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
         Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
         Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
         Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" }),
       ]),
-    );
+    ); // [!code ++]
 }
 
 render(Diagram, document.getElementById("app"));
@@ -218,15 +238,7 @@ render(Diagram, document.getElementById("app"));
 
 ![circle stack with background](/learn/assets/circle-stack-with-background.png)
 
-Let's look closely at `Background`'s props:
-
-```tsx
-Background({ padding: 40, background: () => Rect({ fill: "#859fc9" }) }, ...)
-```
-
-We first specify a `padding` of 40px. Next we specify a mark for the background. In this case the background is a `Rect`
-mark. Notice that we have contained this mark in an _arrow function_: `() => ...`. We have to do
-this whenever we use a mark as a prop.
+We've given this `Background` relation 40px of `padding` on each side and specified `fill` and `stroke` colors.
 
 ## Add a label
 
@@ -238,8 +250,13 @@ We first want our diagram to look like this:
 
 ![circle stack with background and a label on mercury](/learn/assets/mercury-label.png)
 
-We've vertically stacked a piece of text above the circle that corresponds to Mercury. The code we
-add is a pretty direct translation of this description!
+Let's first describe our addition to the diagram in words. We've vertically stacked a piece of text
+above the Mercury circle. We can then annotate this with all the marks and relations we're using:
+
+We've **(i) vertically stacked** a piece of
+**(ii) text** above the **(iii) Mercury circle**.
+
+And now we can translate this description into Bluefish code!
 
 ```tsx
 // prettier-ignore
@@ -248,7 +265,7 @@ import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Dis
 function Diagram() {
   return [
     Background(
-      { padding: 80, background: () => Rect({ fill: "#859fc9" }) },
+      { padding: 40, background: () => Rect({ fill: "#859fc9" }) },
       StackH(
         { spacing: 50 },
         Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }), // [!code --]
@@ -268,7 +285,10 @@ function Diagram() {
 render(Diagram, document.getElementById("app"));
 ```
 
-Let's walk through this carefully. First we give the Mercury circle a name so we can refer to it:
+We've (i) added a `StackV` relation (similar to `StackH`) to vertically stack the text and circle. This relation
+contains (ii) a `Text` mark and (iii) a _`Ref` element_ that selects the Mercury circle.
+
+Let's walk through this carefully. First we give the Mercury circle a name so we can refer to it later:
 
 ```tsx
 Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }), // [!code --]
@@ -287,7 +307,14 @@ And place a text mark above the Mercury circle:
 StackV({ spacing: 30 }, [Text("Mercury"), Ref({ select: "mercury" })]);
 ```
 
-The `Ref` element lets us select an existing element by name.
+A `Ref`
+creates a **declarative reference**. This reference is a _pointer_ to an existing
+element in our diagram. A relation (e.g., `StackV`) can read and write the size and position of an
+element through a `Ref`.
+
+`Ref`'s are declarative, because they cannot override properties that have
+already been set. For example, notice that `StackV` does not break the Mercury circle's relationship
+to the other planets that `StackH` already defined.
 
 ### Put a `Background` behind the planet and the label
 
@@ -295,51 +322,36 @@ Finally, we can place a `Background` relation behind the label just as we did wi
 behind the planets.
 
 ```tsx
-import {
-  Bluefish,
-  Group,
-  StackH,
-  StackV,
-  Circle,
-  Text,
-  Ref,
-  Background,
-  Arrow,
-  Align,
-  Distribute,
-  Rect,
-} from "@bluefish-js/solid";
+// prettier-ignore
+import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
-export default function Diagram() {
-  return (
-    <Bluefish>
-      <Background padding={40} background={() => <Rect fill="#859fc9" />}>
-        <StackH spacing={50}>
-          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
-          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
-          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
-        </StackH>
-      </Background>
-      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
-        {" "}
-        // [!code ++]
-        <StackV spacing={30}>
-          <Text>Mercury</Text>
-          <Ref select="mercury" />
-        </StackV>
-      </Background> // [!code ++]
-    </Bluefish>
-  );
+function Diagram() {
+  return [
+    Background(
+      { padding: 40, fill: "#859fc9", stroke: "none" },
+      StackH({ spacing: 50 }, [
+        Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" }),
+      ])
+    ),
+    /* [!code ++] */ Background(
+      { rx: 10 }, // [!code ++]
+      StackV({ spacing: 30 }, [Text("Mercury"), Ref({ select: "mercury" })])
+    ), // [!code ++]
+  ];
 }
+
+render(Diagram, document.getElementById("app"));
 ```
 
 ![circle stack with background and a label on mercury with a border around the label and mercury](/learn/assets/bordered-mercury-label.png)
 
 ## Wrapping up
 
-Tada! We've completed our first Bluefish diagram. Along the way we encountered JSX notation, some
-Bluefish marks (`Circle`, `Rect`, and `Text`), some Bluefish relations (`StackH`, `StackV`, and
+Tada! We've completed our first Bluefish diagram. Along the way we encountered some
+Bluefish marks (`Circle` and `Text`), some Bluefish relations (`StackH`, `StackV`, and
 `Background`), and declarative references (`Ref`) for referring to existing elements.
 
 Here's what the finished code should look like:
@@ -370,7 +382,7 @@ render(Diagram, document.getElementById("app"));
 
 :::
 
-If you want to explore more, try playing around with `spacing` and `padding`, or switching `StackH`
+If you want to explore more, try playing around with `spacing` and `padding`, or swapping `StackH`
 and `StackV`.
 
 ## What's next?
