@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "publish": "turbo publish",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
