@@ -31,6 +31,7 @@ import {
   ArrowProps,
   BackgroundProps,
   WithBluefishProps,
+  Id,
 } from "bluefish-solid";
 
 export type ExpandableNode = Node & {
@@ -163,8 +164,9 @@ export const Align = component(AlignJSX);
 export const Arrow = component<ArrowProps>(ArrowJSX);
 
 type HyperScriptBackgroundProps = WithBluefishProps<
-  Omit<BackgroundProps, "background"> & {
+  Omit<BackgroundProps, "background" | "name"> & {
     background?: () => HyperScriptReturn;
+    name?: Id;
   }
 >;
 

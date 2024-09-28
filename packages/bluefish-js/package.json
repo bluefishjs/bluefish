@@ -1,6 +1,6 @@
 {
   "name": "bluefish-js",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "A JS diagramming library",
   "type": "module",
   "files": [
