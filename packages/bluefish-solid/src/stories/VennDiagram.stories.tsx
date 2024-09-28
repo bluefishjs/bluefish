@@ -18,7 +18,7 @@ type Story = StoryObj;
 // Adding props here to allow for additions later
 type VennDiagramProps = WithBluefishProps<{}>;
 
-export const VennDiagram = withBluefish((props: VennDiagramProps) => {
+const VennDiagram = withBluefish((props: VennDiagramProps) => {
   return (
     <Group
       rels={() => (
