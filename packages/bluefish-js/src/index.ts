@@ -149,14 +149,14 @@ export function withBluefish(WrappedComponent: Component) {
 
 export const Bluefish = component(BluefishJSX);
 
-// NB: I thought about folding Bluefish into the render function, but this prevents people from
-// wrapping Bluefish code in other Solid hyperscript components. We want to keep our options open
-// for that for the time-being.
-// export const render = (code: () => Child | Child[], element: MountableElement) => {
-//   return solidRender(() => Bluefish({}, code() as Child[]) as unknown as JSX.Element, element);
-// };
+// NB: I'm not sure if I want to combine Bluefish into the render function. It's more convenient for
+// the typical case, so I'll do it for now.
 
-export { render } from "solid-js/web";
+import { render as solidRender, MountableElement } from "solid-js/web";
+
+export const render = (code: () => Child | Child[], element: MountableElement) => {
+  return solidRender(() => Bluefish({}, code() as Child[]) as unknown as JSX.Element, element);
+};
 
 export const Align = component(AlignJSX);
 // NB: type annotation required b/c of transitive perfect-arrows dependency

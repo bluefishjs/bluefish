@@ -287,7 +287,8 @@ import {
 
 function App() {
   return Bluefish(
-    StackH({ spacing: 50 }, // [!code ++]
+    StackH(
+      { spacing: 50 }, // [!code ++]
       Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
       Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
       Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
@@ -309,22 +310,37 @@ centers them.
 Next we'll put a background around the planets. To do so, we'll use the `Background` relation.
 
 ```tsx{6,13}
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Background padding={80} background={() => <Rect fill="#859fc9" />}> // [!code ++]
-        <StackH spacing={50}>
-          <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
-          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
-          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
-        </StackH>
-      </Background> // [!code ++]
-    </Bluefish>
+function App() {
+  return Bluefish(
+    Background(
+      { padding: 80, background: () => Rect({ fill: "#859fc9" }) },
+      StackH({ spacing: 50 }, [
+        Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" }),
+      ]),
+    ),
   );
 }
+
+render(App, document.getElementById("app"));
 ```
 
 ![circle stack with background](/learn/assets/circle-stack-with-background.png)
@@ -332,7 +348,7 @@ export default function App() {
 Let's look closely at `Background`'s props:
 
 ```tsx
-<Background padding={80} background={() => <Rect fill="#859fc9" />}>
+Background({ padding: 80, background: () => Rect({ fill: "#859fc9" }) }, ...)
 ```
 
 **TODO: this padding is probably off by a factor of 2?????**
@@ -369,51 +385,49 @@ import {
   Align,
   Distribute,
   Rect,
-} from "@bluefish-js/solid";
+  render,
+} from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Background padding={80} background={() => <Rect fill="#859fc9" />}>
-        <StackH spacing={50}>
-          <Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" /> // [!code --]
-          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" /> // [!code ++]
-          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
-          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
-          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
-        </StackH>
-      </Background>
-      <StackV spacing={30}>
-        {" "}
-        // [!code ++]
-        <Text>Mercury</Text> // [!code ++]
-        <Ref select="mercury" /> // [!code ++]
-      </StackV> // [!code ++]
-    </Bluefish>
+function App() {
+  return Bluefish(
+    Background(
+      { padding: 80, background: () => Rect({ fill: "#859fc9" }) },
+      StackH(
+        { spacing: 50 },
+        Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }), // [!code --]
+        Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }), // [!code ++]
+        Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" })
+      )
+    ),
+    StackV({ spacing: 30 /* [!code ++] */ }, [
+      Text("Mercury"), // [!code ++]
+      Ref({ select: "mercury" }), // [!code ++]
+    ]) // [!code ++]
   );
 }
+
+render(App, document.getElementById("app"));
 ```
 
 Let's walk through this carefully. First we give the Mercury circle a name so we can refer to it:
 
 ```tsx
-<Circle r={15} fill="#EBE3CF" stroke-width={3} stroke="black" /> // [!code --]
-<Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" /> // [!code ++]
+Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }), // [!code --]
+Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }), // [!code ++]
 ```
 
 Then we create a vertical stack:
 
 ```tsx
-<StackV spacing={30}>...</StackV>
+StackV({ spacing: 30 }, ...)
 ```
 
 And place a text mark above the Mercury circle:
 
 ```tsx
-<StackV spacing={30}>
-  <Text>Mercury</Text>
-  <Ref select="mercury" />
-</StackV>
+StackV({ spacing: 30 }, [Text("Mercury"), Ref({ select: "mercury" })]);
 ```
 
 The `Ref` element lets us select an existing element by name.
