@@ -8,7 +8,7 @@ export type SpaceProps = ParentProps<{
 
 export const Space = withBluefish((props: SpaceProps) => {
   return (
-    <Background name={props.name} padding={50}>
+    <Background name={props.name} padding={25}>
       {props.children}
     </Background>
   );

@@ -25,23 +25,19 @@ const EllipseBackground = withBluefish(
   (
     props: ParentProps<{
       padding: number;
-    }>,
+    }>
   ) => (
     <Background
       padding={props.padding}
-      background={() => (
-        <Rect rx={60} fill="transparent" stroke="black" stroke-width={3} />
-      )}
+      background={() => <Rect rx={60} fill="transparent" stroke="black" stroke-width={3} />}
     >
       {props.children}
     </Background>
-  ),
+  )
 );
 
 const isAandCNeighbourhood = (neighbourhood: string[]) =>
-  neighbourhood.length === 2 &&
-  neighbourhood.includes("a") &&
-  neighbourhood.includes("c");
+  neighbourhood.length === 2 && neighbourhood.includes("a") && neighbourhood.includes("c");
 
 // note: I drww this path in Figma by hand, exported it as SVG, then
 // manually found the offsets of x: -7 and y: -10 to position it
@@ -65,7 +61,7 @@ const ThreePointTopology = withBluefish(
     props: WithBluefishProps<{
       topology: string[][];
       showLabels?: boolean;
-    }>,
+    }>
   ) => {
     const stack = createName("stack");
     const points: { [key: string]: string } = {
@@ -101,12 +97,8 @@ const ThreePointTopology = withBluefish(
             isAandCNeighbourhood(neighbourhood) ? (
               <Path {...handDrawnPathContainingAandC} />
             ) : (
-              <EllipseBackground
-                padding={magicEllipsePadding(neighbourhood.length)}
-              >
-                <For each={neighbourhood}>
-                  {(point) => <Ref select={points[point]} />}
-                </For>
+              <EllipseBackground padding={magicEllipsePadding(neighbourhood.length)}>
+                <For each={neighbourhood}>{(point) => <Ref select={points[point]} />}</For>
               </EllipseBackground>
             )
           }
@@ -116,7 +108,7 @@ const ThreePointTopology = withBluefish(
         </EllipseBackground>
       </Group>
     );
-  },
+  }
 );
 
 // Diagram recreated in Bluefish based upon the original diagram in
@@ -135,14 +127,9 @@ const ThreePointTopologies = () => {
         <ThreePointTopology topology={[["a", "b"], ["a"], ["b"]]} />
       </StackV>
       <StackV>
-        <ThreePointTopology
-          topology={[["a", "b"], ["b", "c"], ["b"]]}
-          showLabels
-        />
+        <ThreePointTopology topology={[["a", "b"], ["b", "c"], ["b"]]} showLabels />
         <ThreePointTopology topology={[["a", "b"], ["b", "c"], ["b"], ["c"]]} />
-        <ThreePointTopology
-          topology={[["a", "b"], ["a", "c"], ["b", "c"], ["b"]]}
-        />
+        <ThreePointTopology topology={[["a", "b"], ["a", "c"], ["b", "c"], ["b"]]} />
       </StackV>
     </StackH>
   );
@@ -154,10 +141,7 @@ export const ThreePointTopologiesExample: Story = {
     <Bluefish>
       <StackV>
         <ThreePointTopologies {...props} />
-        <Text>
-          original diagram source: Figure 12.1 of "Topology 2nd Edition" by
-          James Munkres
-        </Text>
+        <Text>original diagram source: Figure 12.1 of "Topology 2nd Edition" by James Munkres</Text>
       </StackV>
     </Bluefish>
   ),

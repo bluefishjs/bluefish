@@ -21,12 +21,7 @@ export default meta;
 type Story = StoryObj;
 
 const hours = [20, 21, 22, 23, 0, 1, 2];
-const displayedResolutions = [
-  { name: "Day" },
-  { name: "Week", selected: true },
-  { name: "Month" },
-  { name: "6M" },
-];
+const displayedResolutions = [{ name: "Day" }, { name: "Week", selected: true }, { name: "Month" }, { name: "6M" }];
 const dayToSleepBars = [
   { day: "Sun", sleep: 7, startTime: 22, selected: true },
   { day: "Mon", sleep: 6.5, startTime: 21 },
@@ -58,7 +53,7 @@ const ComposeText = withBluefish((props: ComposeTextProps) => {
       letterSpacing: "1px",
       fill: "black",
     },
-    props,
+    props
   );
   return (
     <Text
@@ -80,12 +75,7 @@ const ComposeText = withBluefish((props: ComposeTextProps) => {
 const SelectedResolution = withBluefish((props: { resolutionName: string }) => {
   return (
     <Group>
-      <Background
-        padding={15}
-        background={() => (
-          <Rect rx="10px" stroke="#EEDFAB" fill={"None"} stroke-width={2} />
-        )}
-      >
+      <Background padding={7.5} background={() => <Rect rx="10px" stroke="#EEDFAB" fill={"None"} stroke-width={2} />}>
         <ComposeText fontSize="20">{props.resolutionName}</ComposeText>
       </Background>
     </Group>
@@ -131,19 +121,9 @@ export const JetpackCompose: Story = {
             />
 
             {/* Hours */}
-            <Background
-              padding={20}
-              background={() => (
-                <Rect fill="url(#hoursBarGradient)" rx="15px" />
-              )}
-              name={"hours"}
-            >
+            <Background padding={10} background={() => <Rect fill="url(#hoursBarGradient)" rx="15px" />} name={"hours"}>
               <StackH spacing={60}>
-                <For each={hours}>
-                  {(hour, ind) => (
-                    <ComposeText name={`hour-${hour}`}>{hour}</ComposeText>
-                  )}
-                </For>
+                <For each={hours}>{(hour, ind) => <ComposeText name={`hour-${hour}`}>{hour}</ComposeText>}</For>
               </StackH>
             </Background>
 
@@ -164,11 +144,7 @@ export const JetpackCompose: Story = {
 
             <Align alignment="left" name="days">
               <For each={dayToSleepBars}>
-                {(dayToSleepBar, ind) => (
-                  <ComposeText name={`day-${ind()}`}>
-                    {dayToSleepBar.day}
-                  </ComposeText>
-                )}
+                {(dayToSleepBar, ind) => <ComposeText name={`day-${ind()}`}>{dayToSleepBar.day}</ComposeText>}
               </For>
             </Align>
 

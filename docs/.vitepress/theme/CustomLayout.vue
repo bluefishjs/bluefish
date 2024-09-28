@@ -15,7 +15,7 @@ export default function App() {
     <Bluefish>
       {/* Bluefish is a diagramming library for the web */}
       {/* You can specify UI-like components such as Background and StackH */}
-      <Background padding={20}>
+      <Background padding={10}>
         <StackH spacing={50}>
           <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
           <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />

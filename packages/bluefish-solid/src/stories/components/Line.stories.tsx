@@ -4,7 +4,7 @@ import { Bluefish } from "../../bluefish";
 import { Rect } from "../../rect";
 import { Ref } from "../../ref";
 /**
- * Bluefish's `Line` relation creates a line between two components. The first child component of the `Line` is the **source**, 
+ * Bluefish's `Line` relation creates a line between two components. The first child component of the `Line` is the **source**,
  * which dictates the start point of the line. The second child component of the `Line` is the **target**, which dictates the end point of the line.
  */
 const meta: Meta<typeof Line> = {
@@ -69,22 +69,8 @@ export const LineComponent: Story = {
   render: (props) => {
     return (
       <Bluefish padding={30}>
-        <Rect
-          x={50}
-          y={30}
-          width={20}
-          height={20}
-          fill={"steelblue"}
-          name="start"
-        />
-        <Rect
-          x={200}
-          y={40}
-          width={50}
-          height={50}
-          fill={"steelblue"}
-          name="end"
-        />
+        <Rect x={50} y={30} width={20} height={20} fill={"steelblue"} name="start" />
+        <Rect x={200} y={40} width={50} height={50} fill={"steelblue"} name="end" />
         <Line name="line" {...props}>
           <Ref select="start" />
           <Ref select="end" />

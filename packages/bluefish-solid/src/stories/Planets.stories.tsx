@@ -23,34 +23,10 @@ export const PlanetsAlignDistribute: Story = {
   render: () => {
     return (
       <Bluefish id="bluefish-planets" padding={20}>
-        <Circle
-          name="mercury"
-          r={15}
-          fill={"#EBE3CF"}
-          stroke-width={3}
-          stroke={"black"}
-        />
-        <Circle
-          name="venus"
-          r={36}
-          fill={"#DC933C"}
-          stroke-width={3}
-          stroke={"black"}
-        />
-        <Circle
-          name="earth"
-          r={38}
-          fill={"#179DD7"}
-          stroke-width={3}
-          stroke={"black"}
-        />
-        <Circle
-          name="mars"
-          r={21}
-          fill={"#F1CF8E"}
-          stroke-width={3}
-          stroke={"black"}
-        />
+        <Circle name="mercury" r={15} fill={"#EBE3CF"} stroke-width={3} stroke={"black"} />
+        <Circle name="venus" r={36} fill={"#DC933C"} stroke-width={3} stroke={"black"} />
+        <Circle name="earth" r={38} fill={"#179DD7"} stroke-width={3} stroke={"black"} />
+        <Circle name="mars" r={21} fill={"#F1CF8E"} stroke-width={3} stroke={"black"} />
         <Align alignment="centerY">
           <Ref select="mercury" />
           <Ref select="venus" />
@@ -94,34 +70,10 @@ export const PlanetsRowCol: Story = {
     return (
       <Bluefish id="bluefish-planets" padding={20}>
         <StackH spacing={50}>
-          <Circle
-            name="mercury"
-            r={15}
-            fill={"#EBE3CF"}
-            stroke-width={3}
-            stroke={"black"}
-          />
-          <Circle
-            name="venus"
-            r={36}
-            fill={"#DC933C"}
-            stroke-width={3}
-            stroke={"black"}
-          />
-          <Circle
-            name="earth"
-            r={38}
-            fill={"#179DD7"}
-            stroke-width={3}
-            stroke={"black"}
-          />
-          <Circle
-            name="mars"
-            r={21}
-            fill={"#F1CF8E"}
-            stroke-width={3}
-            stroke={"black"}
-          />
+          <Circle name="mercury" r={15} fill={"#EBE3CF"} stroke-width={3} stroke={"black"} />
+          <Circle name="venus" r={36} fill={"#DC933C"} stroke-width={3} stroke={"black"} />
+          <Circle name="earth" r={38} fill={"#179DD7"} stroke-width={3} stroke={"black"} />
+          <Circle name="mars" r={21} fill={"#F1CF8E"} stroke-width={3} stroke={"black"} />
         </StackH>
         <StackV spacing={60}>
           <Text name="label" vertical-anchor="start" width={500}>
@@ -148,36 +100,12 @@ export const PlanetsTutorial: Story = {
   render: () => {
     return (
       <Bluefish padding={20}>
-        <Background name="planets" padding={20}>
+        <Background name="planets" padding={10}>
           <StackH spacing={50}>
-            <Circle
-              name="mercury"
-              r={15}
-              fill={"#EBE3CF"}
-              stroke-width={3}
-              stroke={"black"}
-            />
-            <Circle
-              name="venus"
-              r={36}
-              fill={"#DC933C"}
-              stroke-width={3}
-              stroke={"black"}
-            />
-            <Circle
-              name="earth"
-              r={38}
-              fill={"#179DD7"}
-              stroke-width={3}
-              stroke={"black"}
-            />
-            <Circle
-              name="mars"
-              r={21}
-              fill={"#F1CF8E"}
-              stroke-width={3}
-              stroke={"black"}
-            />
+            <Circle name="mercury" r={15} fill={"#EBE3CF"} stroke-width={3} stroke={"black"} />
+            <Circle name="venus" r={36} fill={"#DC933C"} stroke-width={3} stroke={"black"} />
+            <Circle name="earth" r={38} fill={"#179DD7"} stroke-width={3} stroke={"black"} />
+            <Circle name="mars" r={21} fill={"#F1CF8E"} stroke-width={3} stroke={"black"} />
           </StackH>
         </Background>
         <Align alignment="centerX">
@@ -219,36 +147,12 @@ export const PlanetsRels: Story = {
             </>
           )}
         >
-          <Background name="planets" padding={20}>
+          <Background name="planets" padding={10}>
             <StackH spacing={50}>
-              <Circle
-                name="mercury"
-                r={15}
-                fill={"#EBE3CF"}
-                stroke-width={3}
-                stroke={"black"}
-              />
-              <Circle
-                name="venus"
-                r={36}
-                fill={"#DC933C"}
-                stroke-width={3}
-                stroke={"black"}
-              />
-              <Circle
-                name="earth"
-                r={38}
-                fill={"#179DD7"}
-                stroke-width={3}
-                stroke={"black"}
-              />
-              <Circle
-                name="mars"
-                r={21}
-                fill={"#F1CF8E"}
-                stroke-width={3}
-                stroke={"black"}
-              />
+              <Circle name="mercury" r={15} fill={"#EBE3CF"} stroke-width={3} stroke={"black"} />
+              <Circle name="venus" r={36} fill={"#DC933C"} stroke-width={3} stroke={"black"} />
+              <Circle name="earth" r={38} fill={"#179DD7"} stroke-width={3} stroke={"black"} />
+              <Circle name="mars" r={21} fill={"#F1CF8E"} stroke-width={3} stroke={"black"} />
             </StackH>
           </Background>
           <Text name="label">Mercury</Text>

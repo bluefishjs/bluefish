@@ -23,17 +23,11 @@ const VennDiagram = withBluefish((props: VennDiagramProps) => {
     <Group
       rels={() => (
         <>
-          <Background
-            padding={20}
-            background={() => <Circle r={55} fill="none" stroke="black" />}
-          >
+          <Background padding={10} background={() => <Circle r={55} fill="none" stroke="black" />}>
             <Ref select="objOne" />
             <Ref select="objTwo" />
           </Background>
-          <Background
-            padding={20}
-            background={() => <Circle r={55} fill="none" stroke="black" />}
-          >
+          <Background padding={10} background={() => <Circle r={55} fill="none" stroke="black" />}>
             <Ref select="objTwo" />
             <Ref select="objThree" />
           </Background>

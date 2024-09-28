@@ -30,22 +30,13 @@ const dims = {
   width: 200,
   height: 100,
 };
-const myPath = new Path.Rectangle(
-  new Point(dims.x, dims.y),
-  new Size(dims.width, dims.height),
-);
+const myPath = new Path.Rectangle(new Point(dims.x, dims.y), new Size(dims.width, dims.height));
 // const myPath = new Path();
 // myPath.add(new Point(50, 75));
 // myPath.add(new Point(50, 25));
 // myPath.add(new Point(150, 25));
 // myPath.add(new Point(150, 75));
-myPath.insert(
-  4,
-  new Point(
-    dims.x + dims.width / 2,
-    dims.y + dims.height - (dims.height * 5) / 50,
-  ),
-);
+myPath.insert(4, new Point(dims.x + dims.width / 2, dims.y + dims.height - (dims.height * 5) / 50));
 
 const dims2 = {
   x: 50,
@@ -53,21 +44,9 @@ const dims2 = {
   width: 100,
   height: 50,
 };
-const myPath2 = new Path.Rectangle(
-  new Point(dims2.x, dims2.y),
-  new Size(dims2.width, dims2.height),
-);
-myPath2.insert(
-  2,
-  new Point(dims2.x + dims2.width / 2, dims2.y + (dims2.height * 5) / 50),
-);
-myPath2.insert(
-  5,
-  new Point(
-    dims2.x + dims2.width / 2,
-    dims2.y + dims2.height - (dims2.height * 5) / 50,
-  ),
-);
+const myPath2 = new Path.Rectangle(new Point(dims2.x, dims2.y), new Size(dims2.width, dims2.height));
+myPath2.insert(2, new Point(dims2.x + dims2.width / 2, dims2.y + (dims2.height * 5) / 50));
+myPath2.insert(5, new Point(dims2.x + dims2.width / 2, dims2.y + dims2.height - (dims2.height * 5) / 50));
 
 export const Math3ma: Story = {
   name: "Math3ma",
@@ -78,28 +57,12 @@ export const Math3ma: Story = {
           name="background"
           x={10}
           y={10}
-          padding={20}
-          background={() => (
-            <Blob
-              name="blob"
-              path={myPath}
-              stroke="black"
-              stroke-width={3}
-              fill="lightgreen"
-            />
-          )}
+          padding={10}
+          background={() => <Blob name="blob" path={myPath} stroke="black" stroke-width={3} fill="lightgreen" />}
         >
           <StackH spacing={50}>
             <Background
-              background={() => (
-                <Blob
-                  name="blob2"
-                  path={myPath2}
-                  stroke="black"
-                  stroke-width={3}
-                  fill={"palegreen"}
-                />
-              )}
+              background={() => <Blob name="blob2" path={myPath2} stroke="black" stroke-width={3} fill={"palegreen"} />}
             >
               <Text vertical-anchor="start">Borel sets</Text>
             </Background>
