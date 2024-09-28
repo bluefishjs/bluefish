@@ -15,6 +15,7 @@ export type BackgroundProps = ParentProps<
     width?: number;
     height?: number;
     padding?: number;
+    background?: () => JSX.Element;
   } & JSX.RectSVGAttributes<SVGRectElement>
 >;
 
@@ -134,7 +135,9 @@ export const Background = withBluefish(
 
     return (
       <Layout name={props.name} layout={layout} paint={paint}>
-        <Rect {...rectProps} />
+        <Show when={props.background !== undefined} fallback={<Rect {...rectProps} />}>
+          {props.background!()}
+        </Show>
         {props.children}
       </Layout>
     );
