@@ -97,13 +97,13 @@ const ThreePointTopology = withBluefish(
             isAandCNeighbourhood(neighbourhood) ? (
               <Path {...handDrawnPathContainingAandC} />
             ) : (
-              <EllipseBackground padding={magicEllipsePadding(neighbourhood.length) / 2}>
+              <EllipseBackground padding={magicEllipsePadding(neighbourhood.length)}>
                 <For each={neighbourhood}>{(point) => <Ref select={points[point]} />}</For>
               </EllipseBackground>
             )
           }
         </For>
-        <EllipseBackground padding={18}>
+        <EllipseBackground padding={36}>
           <Ref select={stack} />
         </EllipseBackground>
       </Group>
