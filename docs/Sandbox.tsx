@@ -29,10 +29,7 @@ export const Sandbox = defineComponent({
           files={files.value}
           template="vanilla-ts"
           customSetup={{
-            dependencies: {
-              "solid-js": "latest",
-              "bluefish-js": "latest",
-            },
+            dependencies: { "bluefish-js": "latest" },
           }}
         >
           <div style={{ border: "solid cornflowerblue 2px", borderRadius: "10px", padding: "10px" }}>

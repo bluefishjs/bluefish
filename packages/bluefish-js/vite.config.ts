@@ -1,9 +1,11 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  publicDir: command === "serve" ? "public" : false,
   server: {
     port: 3000,
+    open: "/public/index.html",
   },
   build: {
     emptyOutDir: false,
@@ -15,4 +17,4 @@ export default defineConfig({
       fileName: "index",
     },
   },
-});
+}));
