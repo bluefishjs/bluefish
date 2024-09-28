@@ -1,6 +1,6 @@
 {
   "name": "bluefish-solid",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "A SolidJS diagramming library",
   "type": "module",
   "files": [
@@ -19,6 +19,7 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
+    "publish": "pnpm publish",
     "tsc": "npx tsc --skipLibCheck -p ./tsconfig.build.json",
     "serve": "vite preview",
     "storybook": "storybook dev -p 6006",

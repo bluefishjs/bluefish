@@ -1,6 +1,6 @@
 {
   "name": "bluefish-js",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "A JS diagramming library",
   "type": "module",
   "files": [
@@ -18,7 +18,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "publish": "pnpm publish"
   },
   "license": "MIT",
   "devDependencies": {
