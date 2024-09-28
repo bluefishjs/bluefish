@@ -7,12 +7,25 @@ modify the label in the last tutorial until we've gone from this:
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+} from "@bluefish-js/solid";
 
 export default function App() {
   return (
     <Bluefish>
-      <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+      <Background padding={40} background={() => <Rect fill="#859fc9" />}>
         <StackH spacing={50}>
           <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
           <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
@@ -28,7 +41,7 @@ export default function App() {
       </Background>
     </Bluefish>
   );
-};
+}
 ```
 
 :::
@@ -38,12 +51,25 @@ to this:
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+} from "@bluefish-js/solid";
 
 export default function App() {
   return (
     <Bluefish>
-      <Background name="planets" padding={80} background={() => <Rect fill="#859fc9" />}>
+      <Background name="planets" padding={40} background={() => <Rect fill="#859fc9" />}>
         <StackH spacing={50}>
           <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
           <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
@@ -65,7 +91,7 @@ export default function App() {
       </Arrow>
     </Bluefish>
   );
-};
+}
 ```
 
 :::
@@ -80,14 +106,14 @@ simplifying reversing the order of `StackV`'s children:
 
 ```tsx ./App.tsx [active]
 // ...
-      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
-        <StackV spacing={30}>
-          <Text>Mercury</Text> // [!code --]
-          <Ref select="mercury" /> // [!code --]
-          <Ref select="mercury" /> // [!code ++]
-          <Text>Mercury</Text> // [!code ++]
-        </StackV>
-      </Background>
+<Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
+  <StackV spacing={30}>
+    <Text>Mercury</Text> // [!code --]
+    <Ref select="mercury" /> // [!code --]
+    <Ref select="mercury" /> // [!code ++]
+    <Text>Mercury</Text> // [!code ++]
+  </StackV>
+</Background>
 // ...
 ```
 
@@ -146,13 +172,13 @@ and horizontal `Align`:
 </Align> // [!code ++]
 ```
 
-This refactor doesn't change the diagram at all, but it *does* let us retarget the `Distribute` so
+This refactor doesn't change the diagram at all, but it _does_ let us retarget the `Distribute` so
 we n offset it from the `Background` instead of the Mercury `Circle`. To do this, we'll first label
 the planets `Background`:
 
 ```tsx
-<Background padding={80} background={() => <Rect fill="#859fc9" />}> // [!code --]
-<Background name="planets" padding={80} background={() => <Rect fill="#859fc9" />}> // [!code ++]
+<Background padding={40} background={() => <Rect fill="#859fc9" />}> // [!code --]
+<Background name="planets" padding={40} background={() => <Rect fill="#859fc9" />}> // [!code ++]
 ```
 
 Then we'll change the selection in the `Distribute`:
@@ -176,12 +202,25 @@ and selecting them with `Ref`. Your final code should look like this:
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+} from "@bluefish-js/solid";
 
 export default function App() {
   return (
     <Bluefish>
-      <Background name="planets" padding={80} background={() => <Rect fill="#859fc9" />}>
+      <Background name="planets" padding={40} background={() => <Rect fill="#859fc9" />}>
         <StackH spacing={50}>
           <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
           <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
@@ -203,7 +242,7 @@ export default function App() {
       </Arrow>
     </Bluefish>
   );
-};
+}
 ```
 
 :::

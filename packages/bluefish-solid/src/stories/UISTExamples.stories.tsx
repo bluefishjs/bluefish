@@ -33,25 +33,15 @@ export const PlanetsDiagram: Story = {
       <>
         {/* original */}
         <Bluefish>
-          <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+          <Background padding={40} background={() => <Rect fill="#859fc9" />}>
             <StackH spacing={50}>
-              <Circle
-                name="mercury"
-                r={15}
-                fill="#EBE3CF"
-                stroke-width={3}
-                stroke="black"
-              />
+              <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
               <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
               <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
               <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
             </StackH>
           </Background>
-          <Background
-            background={() => (
-              <Rect stroke="black" stroke-width={3} fill="none" rx={10} />
-            )}
-          >
+          <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
             <StackV spacing={30}>
               <Text name="label">Mercury</Text>
               <Ref select="mercury" />
@@ -61,25 +51,15 @@ export const PlanetsDiagram: Story = {
 
         {/* change 1 */}
         <Bluefish>
-          <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+          <Background padding={40} background={() => <Rect fill="#859fc9" />}>
             <StackH spacing={50}>
-              <Circle
-                name="mercury"
-                r={15}
-                fill="#EBE3CF"
-                stroke-width={3}
-                stroke="black"
-              />
+              <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
               <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
               <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
               <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
             </StackH>
           </Background>
-          <Background
-            background={() => (
-              <Rect stroke="black" stroke-width={3} fill="none" rx={10} />
-            )}
-          >
+          <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
             <StackV spacing={30}>
               <Ref select="mercury" />
               <Text name="label">Mercury</Text>
@@ -89,15 +69,9 @@ export const PlanetsDiagram: Story = {
 
         {/* change 2 */}
         <Bluefish>
-          <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+          <Background padding={40} background={() => <Rect fill="#859fc9" />}>
             <StackH spacing={50}>
-              <Circle
-                name="mercury"
-                r={15}
-                fill="#EBE3CF"
-                stroke-width={3}
-                stroke="black"
-              />
+              <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
               <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
               <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
               <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
@@ -107,26 +81,16 @@ export const PlanetsDiagram: Story = {
             <Ref select="mercury" />
             <Text name="label">Mercury</Text>
           </StackV>
-          <Background
-            background={() => (
-              <Rect stroke="black" stroke-width={3} fill="none" rx={10} />
-            )}
-          >
+          <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
             <Ref select="stack" />
           </Background>
         </Bluefish>
 
         {/* change 3 */}
         <Bluefish>
-          <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+          <Background padding={40} background={() => <Rect fill="#859fc9" />}>
             <StackH spacing={50}>
-              <Circle
-                name="mercury"
-                r={15}
-                fill="#EBE3CF"
-                stroke-width={3}
-                stroke="black"
-              />
+              <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
               <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
               <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
               <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
@@ -136,11 +100,7 @@ export const PlanetsDiagram: Story = {
             <Ref select="mercury" />
             <Text name="label">Mercury</Text>
           </StackV>
-          <Background
-            background={() => (
-              <Rect stroke="black" stroke-width={3} fill="none" rx={10} />
-            )}
-          >
+          <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
             <Ref select="mercury" />
             <Ref select="label" />
           </Background>
@@ -148,15 +108,9 @@ export const PlanetsDiagram: Story = {
 
         {/* change 4 */}
         <Bluefish>
-          <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+          <Background padding={40} background={() => <Rect fill="#859fc9" />}>
             <StackH spacing={50}>
-              <Circle
-                name="mercury"
-                r={15}
-                fill="#EBE3CF"
-                stroke-width={3}
-                stroke="black"
-              />
+              <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
               <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
               <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
               <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
@@ -174,15 +128,9 @@ export const PlanetsDiagram: Story = {
 
         {/* change 5 */}
         <Bluefish>
-          <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+          <Background padding={40} background={() => <Rect fill="#859fc9" />}>
             <StackH spacing={50}>
-              <Circle
-                name="mercury"
-                r={15}
-                fill="#EBE3CF"
-                stroke-width={3}
-                stroke="black"
-              />
+              <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
               <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
               <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
               <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
@@ -204,19 +152,9 @@ export const PlanetsDiagram: Story = {
 
         {/* change 6 */}
         <Bluefish>
-          <Background
-            padding={80}
-            name="planets"
-            background={() => <Rect fill="#859fc9" />}
-          >
+          <Background padding={40} name="planets" background={() => <Rect fill="#859fc9" />}>
             <StackH spacing={50}>
-              <Circle
-                name="mercury"
-                r={15}
-                fill="#EBE3CF"
-                stroke-width={3}
-                stroke="black"
-              />
+              <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
               <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
               <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
               <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
@@ -247,9 +185,7 @@ export const InsertionSortDiagram: Story = {
   },
   render: (args) => {
     try {
-      const convertedArray = JSON.parse(args.unsortedArrayString).map(
-        (val: string) => +val
-      );
+      const convertedArray = JSON.parse(args.unsortedArrayString).map((val: string) => +val);
       if (convertedArray.filter((val) => isNaN(val)).length > 0) {
         throw new Error("Non-numeric value in array");
       }

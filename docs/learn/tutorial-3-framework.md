@@ -8,7 +8,22 @@ diagram with Bluefish.
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, withBluefish, createName } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  withBluefish,
+  createName,
+} from "@bluefish-js/solid";
 import { For, createSignal } from "solid-js";
 
 const planets = [
@@ -19,11 +34,11 @@ const planets = [
 ];
 
 const Planet = withBluefish((props) => {
-  return <Rect width={props.radius*2} height={props.radius*2} fill={props.color} />
+  return <Rect width={props.radius * 2} height={props.radius * 2} fill={props.color} />;
 });
 
 const PlanetLabel = withBluefish((props) => {
-  const label = createName('label');
+  const label = createName("label");
 
   return (
     <Group>
@@ -45,26 +60,24 @@ const PlanetLabel = withBluefish((props) => {
 
 export default function App() {
   const [spacing, setSpacing] = createSignal(50);
-  
+
   return (
-   <>
+    <>
       <input type="range" min={0} max={100} value={spacing()} onInput={(e) => setSpacing(Number(e.target.value))} />
       <br />
       <Bluefish>
-        <Background name="planets" padding={80} background={() => <Rect fill="#1E1B4B" />}>
-        <StackH spacing={spacing()}>
-          <For each={planets}>
-            {(planet) => <Planet name={planet.name} radius={planet.radius} color={planet.color} />}
-          </For>
-        </StackH>
-      </Background>
-      <For each={planets}>
-        {(planet) => <PlanetLabel planetName={planet.name} />}
-      </For>
+        <Background name="planets" padding={40} background={() => <Rect fill="#1E1B4B" />}>
+          <StackH spacing={spacing()}>
+            <For each={planets}>
+              {(planet) => <Planet name={planet.name} radius={planet.radius} color={planet.color} />}
+            </For>
+          </StackH>
+        </Background>
+        <For each={planets}>{(planet) => <PlanetLabel planetName={planet.name} />}</For>
       </Bluefish>
     </>
   );
-};
+}
 ```
 
 :::
@@ -76,12 +89,25 @@ Let's start with our code from the previous tutorial:
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+} from "@bluefish-js/solid";
 
 export default function App() {
   return (
     <Bluefish>
-      <Background name="planets" padding={80} background={() => <Rect fill="#859fc9" />}>
+      <Background name="planets" padding={40} background={() => <Rect fill="#859fc9" />}>
         <StackH spacing={50}>
           <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
           <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
@@ -103,7 +129,7 @@ export default function App() {
       </Arrow>
     </Bluefish>
   );
-};
+}
 ```
 
 :::
@@ -114,16 +140,30 @@ individually. To make this change easier to make, we can make a custom `Planet` 
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, withBluefish } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  withBluefish,
+} from "@bluefish-js/solid";
 
 const Planet = withBluefish((props) => {
-  return <Circle r={props.radius} fill={props.color} stroke-width={3} stroke="black" />
+  return <Circle r={props.radius} fill={props.color} stroke-width={3} stroke="black" />;
 });
 
 export default function App() {
   return (
     <Bluefish>
-      <Background name="planets" padding={80} background={() => <Rect fill="#859fc9" />}>
+      <Background name="planets" padding={40} background={() => <Rect fill="#859fc9" />}>
         <StackH spacing={50}>
           <Planet name="mercury" radius={15} color="#EBE3CF" />
           <Planet radius={36} color="#DC933C" />
@@ -145,7 +185,7 @@ export default function App() {
       </Arrow>
     </Bluefish>
   );
-};
+}
 ```
 
 :::
@@ -158,7 +198,7 @@ Let's break down the code for the `Planet` mark:
 
 ```tsx
 const Planet = withBluefish((props) => {
-  return <Circle r={props.radius} fill={props.color} stroke-width={3} stroke="black" />
+  return <Circle r={props.radius} fill={props.color} stroke-width={3} stroke="black" />;
 });
 ```
 
@@ -185,7 +225,7 @@ replace the body of the `Planet` mark with a `Rect`:
 
 ```tsx
 const Planet = withBluefish((props) => {
-  return <Rect width={props.radius*2} height={props.radius*2} fill={props.color} />
+  return <Rect width={props.radius * 2} height={props.radius * 2} fill={props.color} />;
 });
 ```
 
@@ -202,14 +242,29 @@ Now we'll remove the arrow and refactor the label into a custom relation:
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, withBluefish, createName } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  withBluefish,
+  createName,
+} from "@bluefish-js/solid";
 
 const Planet = withBluefish((props) => {
-  return <Rect width={props.radius*2} height={props.radius*2} fill={props.color} />
+  return <Rect width={props.radius * 2} height={props.radius * 2} fill={props.color} />;
 });
 
 const PlanetLabel = withBluefish((props) => {
-  const label = createName('label');
+  const label = createName("label");
 
   return (
     <Group>
@@ -232,7 +287,7 @@ const PlanetLabel = withBluefish((props) => {
 export default function App() {
   return (
     <Bluefish>
-      <Background name="planets" padding={80} background={() => <Rect fill="#1E1B4B" />}>
+      <Background name="planets" padding={40} background={() => <Rect fill="#1E1B4B" />}>
         <StackH spacing={50}>
           <Planet name="Mercury" radius={15} color="#EBE3CF" />
           <Planet radius={36} color="#DC933C" />
@@ -243,7 +298,7 @@ export default function App() {
       <PlanetLabel planetName="Mercury" />
     </Bluefish>
   );
-};
+}
 ```
 
 :::
@@ -252,7 +307,7 @@ Let's look at the `PlanetLabel` relation:
 
 ```tsx
 const PlanetLabel = withBluefish((props) => {
-  const label = createName('label');
+  const label = createName("label");
 
   return (
     <Group>
@@ -276,7 +331,7 @@ const PlanetLabel = withBluefish((props) => {
 :::
 
 There are a couple things to notice. First, instead of using a raw string for the label name, we're
-creating a name using `createName`. This *scopes* the name to the `PlanetLabel`, so we don't
+creating a name using `createName`. This _scopes_ the name to the `PlanetLabel`, so we don't
 have to worry about naming conflicts with other elements. If we had two instances of `PlanetLabel`
 and used a raw string, we'd have to worry about naming conflicts.
 
@@ -299,7 +354,22 @@ const planets = [
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, withBluefish, createName } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  withBluefish,
+  createName,
+} from "@bluefish-js/solid";
 import { For } from "solid-js";
 
 const planets = [
@@ -310,11 +380,11 @@ const planets = [
 ];
 
 const Planet = withBluefish((props) => {
-  return <Rect width={props.radius*2} height={props.radius*2} fill={props.color} />
+  return <Rect width={props.radius * 2} height={props.radius * 2} fill={props.color} />;
 });
 
 const PlanetLabel = withBluefish((props) => {
-  const label = createName('label');
+  const label = createName("label");
 
   return (
     <Group>
@@ -337,19 +407,17 @@ const PlanetLabel = withBluefish((props) => {
 export default function App() {
   return (
     <Bluefish>
-        <Background name="planets" padding={80} background={() => <Rect fill="#1E1B4B" />}>
+      <Background name="planets" padding={40} background={() => <Rect fill="#1E1B4B" />}>
         <StackH spacing={50}>
           <For each={planets}>
             {(planet) => <Planet name={planet.name} radius={planet.radius} color={planet.color} />}
           </For>
         </StackH>
       </Background>
-      <For each={planets}>
-        {(planet) => <PlanetLabel planetName={planet.name} />}
-      </For>
+      <For each={planets}>{(planet) => <PlanetLabel planetName={planet.name} />}</For>
     </Bluefish>
   );
-};
+}
 ```
 
 :::
@@ -359,15 +427,11 @@ renders a component for each item in the array. We use `For` twice, once for the
 once for the planet label relations.
 
 ```tsx
-<For each={planets}>
-  {(planet) => <Planet name={planet.name} radius={planet.radius} color={planet.color} />}
-</For>
+<For each={planets}>{(planet) => <Planet name={planet.name} radius={planet.radius} color={planet.color} />}</For>
 ```
 
 ```tsx
-<For each={planets}>
-  {(planet) => <PlanetLabel planetName={planet.name} />}
-</For>
+<For each={planets}>{(planet) => <PlanetLabel planetName={planet.name} />}</For>
 ```
 
 `For` takes an array as input to its `each` props and takes a function from a datum to a component
@@ -390,7 +454,22 @@ slider that changes the spacing between planets.
 ::: sandbox
 
 ```tsx ./App.tsx [active]
-import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, withBluefish, createName } from "@bluefish-js/solid";
+import {
+  Bluefish,
+  Group,
+  StackH,
+  StackV,
+  Circle,
+  Text,
+  Ref,
+  Background,
+  Arrow,
+  Align,
+  Distribute,
+  Rect,
+  withBluefish,
+  createName,
+} from "@bluefish-js/solid";
 import { For, createSignal } from "solid-js";
 
 const planets = [
@@ -401,11 +480,11 @@ const planets = [
 ];
 
 const Planet = withBluefish((props) => {
-  return <Rect width={props.radius*2} height={props.radius*2} fill={props.color} />
+  return <Rect width={props.radius * 2} height={props.radius * 2} fill={props.color} />;
 });
 
 const PlanetLabel = withBluefish((props) => {
-  const label = createName('label');
+  const label = createName("label");
 
   return (
     <Group>
@@ -427,31 +506,30 @@ const PlanetLabel = withBluefish((props) => {
 
 export default function App() {
   const [spacing, setSpacing] = createSignal(50);
-  
+
   return (
-   <>
+    <>
       <input type="range" min={0} max={100} value={spacing()} onInput={(e) => setSpacing(Number(e.target.value))} />
       <br />
       <Bluefish>
-        <Background name="planets" padding={80} background={() => <Rect fill="#1E1B4B" />}>
-        <StackH spacing={spacing()}>
-          <For each={planets}>
-            {(planet) => <Planet name={planet.name} radius={planet.radius} color={planet.color} />}
-          </For>
-        </StackH>
-      </Background>
-      <For each={planets}>
-        {(planet) => <PlanetLabel planetName={planet.name} />}
-      </For>
+        <Background name="planets" padding={40} background={() => <Rect fill="#1E1B4B" />}>
+          <StackH spacing={spacing()}>
+            <For each={planets}>
+              {(planet) => <Planet name={planet.name} radius={planet.radius} color={planet.color} />}
+            </For>
+          </StackH>
+        </Background>
+        <For each={planets}>{(planet) => <PlanetLabel planetName={planet.name} />}</For>
       </Bluefish>
     </>
   );
-};
+}
 ```
 
 :::
 
 First we create a signal with `createSignal`.
+
 ```tsx
 const [spacing, setSpacing] = createSignal(50);
 ```
@@ -459,6 +537,7 @@ const [spacing, setSpacing] = createSignal(50);
 We give it an initial value of `50`, and it returns a getter and a setter.
 
 Next we make a slider to control the signal:
+
 ```tsx
 <input type="range" min={0} max={100} value={spacing()} onInput={(e) => setSpacing(Number(e.target.value))} />
 ```
@@ -470,6 +549,7 @@ The setter is a function that takes a new value and updates the signal.
 We use the `onInput` event listener to update the signal when the slider is moved.
 
 Finally, we use the signal in the `StackH` component to set the spacing between planets:
+
 ```tsx
 <StackH spacing={spacing()}>
 ```

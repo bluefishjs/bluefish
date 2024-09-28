@@ -456,7 +456,7 @@ import {
 export default function App() {
   return (
     <Bluefish>
-      <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+      <Background padding={40} background={() => <Rect fill="#859fc9" />}>
         <StackH spacing={50}>
           <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
           <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
@@ -508,7 +508,7 @@ import {
 export default function App() {
   return (
     <Bluefish>
-      <Background padding={80} background={() => <Rect fill="#859fc9" />}>
+      <Background padding={40} background={() => <Rect fill="#859fc9" />}>
         <StackH spacing={50}>
           <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
           <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />

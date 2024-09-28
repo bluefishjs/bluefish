@@ -18,30 +18,18 @@ import LayoutFunction from "./layoutfunction";
 
 const BoxedAlign = withBluefish((props) => (
   <Align alignment={props.alignment}>
-    <Rect
-      height={props.height ?? 0}
-      width={props.width ?? 0}
-      fill="transparent"
-    ></Rect>
+    <Rect height={props.height ?? 0} width={props.width ?? 0} fill="transparent"></Rect>
     {props.children}
   </Align>
 ));
 
 const Block = withBluefish((props) => (
-  <Rect
-    height={40}
-    width={props.width ?? 18}
-    stroke="black"
-    stroke-width={3}
-    fill={props.color}
-  />
+  <Rect height={40} width={props.width ?? 18} stroke="black" stroke-width={3} fill={props.color} />
 ));
 
 const Blocks = withBluefish((props) => (
   <StackH spacing={0}>
-    <For each={props.colors}>
-      {(color) => <Block color={color} width={props.width} />}
-    </For>
+    <For each={props.colors}>{(color) => <Block color={color} width={props.width} />}</For>
   </StackH>
 ));
 
@@ -87,7 +75,7 @@ const TitledBackground = withBluefish((props) => (
     <Text font-family="serif" font-weight={300} font-size="20" x={10} y={4}>
       {props.title}
     </Text>
-    <Background padding={30}>
+    <Background padding={15}>
       <Align alignment="centerLeft">
         <Rect height={0} width={680} fill="transparent"></Rect>
         {props.children}
@@ -134,13 +122,7 @@ const DashedFunnel = withBluefish((props) => {
 });
 
 const ActionText = withBluefish((props) => (
-  <Text
-    font-family="monospace"
-    font-weight={500}
-    font-size="20"
-    fill="#4582DE"
-    y={-3}
-  >
+  <Text font-family="monospace" font-weight={500} font-size="20" fill="#4582DE" y={-3}>
     {props.text}
   </Text>
 ));
@@ -159,10 +141,7 @@ export const DFSCQLogFigure = () => {
                 activeTxn:
               </Text>
             </BoxedAlign>
-            <Blocks
-              colors={["#4582DE", "#4582DE", "#4582DE"]}
-              name="activeTxnBlock"
-            />
+            <Blocks colors={["#4582DE", "#4582DE", "#4582DE"]} name="activeTxnBlock" />
           </StackH>
         </TitledBackground>
 
@@ -189,10 +168,7 @@ export const DFSCQLogFigure = () => {
               <BigComma />
             </StackH>
             <StackH spacing={0}>
-              <Blocks
-                colors={Array(3).fill("#4582DE")}
-                name="committedTxnsBlock"
-              />
+              <Blocks colors={Array(3).fill("#4582DE")} name="committedTxnsBlock" />
               <BigComma />
             </StackH>
             <BigRightBracket name="bigrightbracket" />
@@ -203,28 +179,15 @@ export const DFSCQLogFigure = () => {
 
         <TitledBackground title="DiskLog">
           <StackH>
-            <Rect
-              height={0}
-              width={LEFT_COLUMN_WIDTH}
-              fill="transparent"
-              name="disklogleft"
-            ></Rect>
+            <Rect height={0} width={LEFT_COLUMN_WIDTH} fill="transparent" name="disklogleft"></Rect>
 
             <Group>
               <StackH spacing={0} name="mem">
                 <Block width={80} name="rect1" />
                 <Block width={80} color="LightGray" name="rect2" />
                 <Block width={80} color="LightGray" name="rect3" />
-                <Blocks
-                  colors={Array(7).fill("gray")}
-                  name="blocks1"
-                  width={10}
-                ></Blocks>
-                <Blocks
-                  colors={Array(3).fill("#4582DE")}
-                  name="blocks2"
-                  width={10}
-                ></Blocks>
+                <Blocks colors={Array(7).fill("gray")} name="blocks1" width={10}></Blocks>
+                <Blocks colors={Array(3).fill("#4582DE")} name="blocks2" width={10}></Blocks>
                 <Block width={100} color="white" name="rect4" />
               </StackH>
               <Rect height={3} name="line"></Rect>
@@ -272,12 +235,7 @@ export const DFSCQLogFigure = () => {
               <StackV spacing={30}>
                 <Ref select="rect4" />
                 <StackV spacing={0}>
-                  <Text
-                    font-family="serif"
-                    font-weight={300}
-                    font-size={18}
-                    x={6}
-                  >
+                  <Text font-family="serif" font-weight={300} font-size={18} x={6}>
                     Available log
                   </Text>
                   <Text font-family="serif" font-weight={300} font-size={18}>
@@ -291,9 +249,7 @@ export const DFSCQLogFigure = () => {
                 <Ref select="line" />
               </Distribute>
 
-              <LayoutFunction
-                f={({ left, width, right }) => ({ left, width, right })}
-              >
+              <LayoutFunction f={({ left, width, right }) => ({ left, width, right })}>
                 <Ref select="mem" />
                 <Ref select="line" />
               </LayoutFunction>
@@ -305,12 +261,7 @@ export const DFSCQLogFigure = () => {
 
         <TitledBackground title="Applier">
           <StackH>
-            <Rect
-              height={0}
-              width={LEFT_COLUMN_WIDTH}
-              fill="transparent"
-              name="applierleft"
-            ></Rect>
+            <Rect height={0} width={LEFT_COLUMN_WIDTH} fill="transparent" name="applierleft"></Rect>
             <StackV spacing={50}>
               <StackH spacing={0} name="diskdata">
                 <Block width={50} color="LightGray" />
@@ -321,12 +272,7 @@ export const DFSCQLogFigure = () => {
                 <StackH spacing={0} name="diskdataStack">
                   <For each={Array(5).fill(1)}>
                     {(o, i) => (
-                      <Rect
-                        height={40}
-                        width={DISK_DATA_WIDTH / 5}
-                        fill="white"
-                        name={`diskdata${i() + 1}`}
-                      />
+                      <Rect height={40} width={DISK_DATA_WIDTH / 5} fill="white" name={`diskdata${i() + 1}`} />
                     )}
                   </For>
                 </StackH>
@@ -336,12 +282,7 @@ export const DFSCQLogFigure = () => {
         </TitledBackground>
       </StackV>
 
-      <Text
-        font-family="monospace"
-        font-weight={300}
-        name="disk_log"
-        font-size="18"
-      >
+      <Text font-family="monospace" font-weight={300} name="disk_log" font-size="18">
         disk log:
       </Text>
       <Align alignment="centerY">
@@ -353,12 +294,7 @@ export const DFSCQLogFigure = () => {
         <Ref select="disk_log" />
       </Align>
 
-      <Text
-        font-family="monospace"
-        font-weight={300}
-        name="disk_data"
-        font-size="18"
-      >
+      <Text font-family="monospace" font-weight={300} name="disk_data" font-size="18">
         disk data:
       </Text>
       <Align alignment="centerY">
@@ -385,12 +321,7 @@ export const DFSCQLogFigure = () => {
       />
 
       <StackV spacing={50}>
-        <Rect
-          width={80}
-          height={1}
-          fill="transparent"
-          name="diskdataplaceholder"
-        />
+        <Rect width={80} height={1} fill="transparent" name="diskdataplaceholder" />
         <Ref select="diskdataStack" />
       </StackV>
       <Arrow stretch={0} bow={0}>

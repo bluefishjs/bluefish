@@ -1,4 +1,3 @@
-
 import { Show, For } from "solid-js";
 import Background from "../background.jsx";
 import Bluefish from "../bluefish.jsx";
@@ -31,13 +30,7 @@ const EllipseBackground = withBluefish((props) => {
     <Background
       padding={props.padding}
       background={() => (
-        <Rect
-          rx="60"
-          fill={props.fill ?? "none"}
-          stroke="black"
-          stroke-width="3"
-          opacity={props.opacity ?? 1}
-        ></Rect>
+        <Rect rx="60" fill={props.fill ?? "none"} stroke="black" stroke-width="3" opacity={props.opacity ?? 1}></Rect>
       )}
     >
       {props.children}
@@ -45,9 +38,7 @@ const EllipseBackground = withBluefish((props) => {
   );
 });
 const isAandCNeighbourhood = (neighbourhood) =>
-  neighbourhood.length === 2 &&
-  neighbourhood.includes("a") &&
-  neighbourhood.includes("c");
+  neighbourhood.length === 2 && neighbourhood.includes("a") && neighbourhood.includes("c");
 
 const ThreePointTopology = withBluefish((props) => {
   const stack = createName("stack");
@@ -92,18 +83,16 @@ const ThreePointTopology = withBluefish((props) => {
         {(neighbourhood, index) =>
           isAandCNeighbourhood(neighbourhood) ? null : (
             <EllipseBackground
-              padding={neighbourhood.length * 17 - 12}
+              padding={(neighbourhood.length * 17 - 12) / 2}
               opacity={props.overdraw ? 1 : TOPOLOGY_OPACITY}
               fill={props.overdraw ? "none" : TOPOLOGY_COLOR[index() % 6]}
             >
-              <For each={neighbourhood}>
-                {(point) => <Ref select={points[point]} />}
-              </For>
+              <For each={neighbourhood}>{(point) => <Ref select={points[point]} />}</For>
             </EllipseBackground>
           )
         }
       </For>
-      <EllipseBackground padding={36} overdraw={props.overdraw}>
+      <EllipseBackground padding={18} overdraw={props.overdraw}>
         <Ref select={stack} />
       </EllipseBackground>
     </Group>
@@ -125,16 +114,9 @@ export const Topology = () => {
           <ThreePointTopology topology={[["a", "b"], ["a"], ["b"]]} />
         </StackV>
         <StackV>
-          <ThreePointTopology
-            topology={[["a", "b"], ["b", "c"], ["b"]]}
-            showLabels
-          />
-          <ThreePointTopology
-            topology={[["a", "b"], ["b", "c"], ["b"], ["c"]]}
-          />
-          <ThreePointTopology
-            topology={[["a", "b"], ["b", "c"], ["b"], ["a", "c"]]}
-          />
+          <ThreePointTopology topology={[["a", "b"], ["b", "c"], ["b"]]} showLabels />
+          <ThreePointTopology topology={[["a", "b"], ["b", "c"], ["b"], ["c"]]} />
+          <ThreePointTopology topology={[["a", "b"], ["b", "c"], ["b"], ["a", "c"]]} />
         </StackV>
       </StackH>
       <StackH>
@@ -144,28 +126,14 @@ export const Topology = () => {
           <ThreePointTopology topology={[["a", "b"]]} overdraw />
         </StackV>
         <StackV>
-          <ThreePointTopology
-            topology={[["a", "b"], ["a"]]}
-            showLabels
-            overdraw
-          />
+          <ThreePointTopology topology={[["a", "b"], ["a"]]} showLabels overdraw />
           <ThreePointTopology topology={[["a", "b"], ["c"]]} overdraw />
           <ThreePointTopology topology={[["a", "b"], ["a"], ["b"]]} overdraw />
         </StackV>
         <StackV>
-          <ThreePointTopology
-            topology={[["a", "b"], ["b", "c"], ["b"]]}
-            showLabels
-            overdraw
-          />
-          <ThreePointTopology
-            topology={[["a", "b"], ["b", "c"], ["b"], ["c"]]}
-            overdraw
-          />
-          <ThreePointTopology
-            topology={[["a", "b"], ["a", "c"], ["b", "c"], ["b"]]}
-            overdraw
-          />
+          <ThreePointTopology topology={[["a", "b"], ["b", "c"], ["b"]]} showLabels overdraw />
+          <ThreePointTopology topology={[["a", "b"], ["b", "c"], ["b"], ["c"]]} overdraw />
+          <ThreePointTopology topology={[["a", "b"], ["a", "c"], ["b", "c"], ["b"]]} overdraw />
         </StackV>
       </StackH>
     </Bluefish>

@@ -8,7 +8,7 @@ export type ImageProps = ParentProps<{
 
 export const Image = withBluefish((props: ImageProps) => {
   return (
-    <Background name={props.name} padding={20}>
+    <Background name={props.name} padding={10}>
       {props.children}
     </Background>
   );

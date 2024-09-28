@@ -26,7 +26,7 @@ export const Background = withBluefish(
         padding: 10,
         stroke: "black",
         fill: "none",
-        strokeWidth: 3,
+        "stroke-width": 3,
       },
       props
     );

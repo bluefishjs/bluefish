@@ -52,36 +52,12 @@ export const App: Story = {
         <div>Current planet: {planet()}</div>
         <div>
           <Bluefish>
-            <Background padding={20}>
+            <Background padding={10}>
               <StackH spacing={50}>
-                <Circle
-                  name="mercury"
-                  r={15}
-                  fill="#EBE3CF"
-                  stroke-width={3}
-                  stroke="black"
-                />
-                <Circle
-                  name="venus"
-                  r={36}
-                  fill="#DC933C"
-                  stroke-width={3}
-                  stroke="black"
-                />
-                <Circle
-                  name="earth"
-                  r={38}
-                  fill="#179DD7"
-                  stroke-width={3}
-                  stroke="black"
-                />
-                <Circle
-                  name="mars"
-                  r={21}
-                  fill="#F1CF8E"
-                  stroke-width={3}
-                  stroke="black"
-                />
+                <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
+                <Circle name="venus" r={36} fill="#DC933C" stroke-width={3} stroke="black" />
+                <Circle name="earth" r={38} fill="#179DD7" stroke-width={3} stroke="black" />
+                <Circle name="mars" r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
               </StackH>
             </Background>
             <Align alignment="centerX">

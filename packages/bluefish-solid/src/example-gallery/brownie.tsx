@@ -22,40 +22,23 @@ const Pad = withBluefish(
       fill?: string;
     }>
   ) => (
-    <Background
-      padding={props.padding}
-      background={() => <Rect fill={props.fill || "transparent"} />}
-    >
+    <Background padding={props.padding} background={() => <Rect fill={props.fill || "transparent"} />}>
       {props.children}
     </Background>
   )
 );
 
 const CellBorder = withBluefish(
-  (props: {
-    name?: Id;
-    strokeWidth?: number;
-    horizontal: Selection;
-    vertical: Selection;
-  }) => {
+  (props: { name?: Id; strokeWidth?: number; horizontal: Selection; vertical: Selection }) => {
     const rect = createName("rect");
     return (
       <Group>
-        <Rect
-          name={rect}
-          fill="transparent"
-          stroke="#40A03F"
-          stroke-width={props.strokeWidth || 1}
-        />
-        <LayoutFunction
-          f={({ left, width, right }) => ({ left, width, right })}
-        >
+        <Rect name={rect} fill="transparent" stroke="#40A03F" stroke-width={props.strokeWidth || 1} />
+        <LayoutFunction f={({ left, width, right }) => ({ left, width, right })}>
           <Ref select={props.horizontal} />
           <Ref select={rect} />
         </LayoutFunction>
-        <LayoutFunction
-          f={({ top, height, bottom }) => ({ top, height, bottom })}
-        >
+        <LayoutFunction f={({ top, height, bottom }) => ({ top, height, bottom })}>
           <Ref select={props.vertical} />
           <Ref select={rect} />
         </LayoutFunction>
@@ -67,60 +50,51 @@ const CellBorder = withBluefish(
 export const Brownies = () => {
   return (
     <Bluefish>
-      <Background
-        padding={100}
-        background={() => <Rect fill="#7CD4AC" opacity={0.3} />}
-        x={0}
-        y={0}
-      >
+      <Background padding={50} background={() => <Rect fill="#7CD4AC" opacity={0.3} />} x={0} y={0}>
         <Background
           padding={0}
           name="recipeTable"
-          background={() => (
-            <Rect stroke="#40A03F" fill="#FFFFFF" stroke-width={3} />
-          )}
+          background={() => <Rect stroke="#40A03F" fill="#FFFFFF" stroke-width={3} />}
         >
-          <Pad padding={10} name="title">
-            <Text>
-              Preheat oven to 325°F (160°C) and butter a 9x13-in. baking pan
-            </Text>
+          <Pad padding={5} name="title">
+            <Text>Preheat oven to 325°F (160°C) and butter a 9x13-in. baking pan</Text>
           </Pad>
-          <Pad padding={10} name="col0-row0">
+          <Pad padding={5} name="col0-row0">
             <Text>6 oz. (170 g) 70% cacao chocolate</Text>
           </Pad>
-          <Pad padding={10} name="col0-row1">
+          <Pad padding={5} name="col0-row1">
             <Text>6 oz. (170 g) butter</Text>
           </Pad>
-          <Pad padding={10} name="col0-row2">
+          <Pad padding={5} name="col0-row2">
             <Text>1-1/2 cup (300 g) granulated sugar </Text>
           </Pad>
-          <Pad padding={10} name="col0-row3">
+          <Pad padding={5} name="col0-row3">
             <StackV>
               <Text>3 large eggs</Text>
             </StackV>
           </Pad>
-          <Pad padding={10} name="col0-row4">
+          <Pad padding={5} name="col0-row4">
             <Text>1 tsp. (5 mL) vanilla extract</Text>
           </Pad>
-          <Pad padding={10} name="col0-row5">
+          <Pad padding={5} name="col0-row5">
             <Text>1 cup (125 g) all-purpose flour</Text>
           </Pad>
-          <Pad padding={10} name="col1-row0_1">
+          <Pad padding={5} name="col1-row0_1">
             <Text>melt in double boiler</Text>
           </Pad>
-          <Pad padding={10} name="col1_2-row0_2">
+          <Pad padding={5} name="col1_2-row0_2">
             <Text>stir in</Text>
           </Pad>
-          <Pad padding={10} name="col1_2-row3_4">
+          <Pad padding={5} name="col1_2-row3_4">
             <Text>lightly beat</Text>
           </Pad>
-          <Pad padding={10} name="col3-row0_5">
+          <Pad padding={5} name="col3-row0_5">
             <Text>stir in</Text>
           </Pad>
-          <Pad padding={10} name="col4-row0_5">
+          <Pad padding={5} name="col4-row0_5">
             <Text>stir in</Text>
           </Pad>
-          <Pad padding={10} name="col5-row0_5">
+          <Pad padding={5} name="col5-row0_5">
             <Text>bake 325°F (160°C) for 35 min.</Text>
           </Pad>
           <StackV alignment="left" spacing={0}>

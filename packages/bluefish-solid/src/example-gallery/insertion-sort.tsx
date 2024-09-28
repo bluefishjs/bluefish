@@ -101,7 +101,7 @@ const ArrayOutline = withBluefish((props: any) => (
 
 const DashedBorder = withBluefish((props: any) => (
   <Background
-    padding={8}
+    padding={4}
     background={() => <Rect fill="none" stroke="teal" stroke-width={4} rx={12} stroke-dasharray="12" />}
   >
     {props.children}
