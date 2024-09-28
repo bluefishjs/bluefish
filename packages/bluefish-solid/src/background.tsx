@@ -23,7 +23,7 @@ export const Background = withBluefish(
   (props: BackgroundProps) => {
     props = mergeProps(
       {
-        padding: 10,
+        padding: 5,
         stroke: "black",
         fill: "none",
         "stroke-width": 3,
