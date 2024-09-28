@@ -164,7 +164,7 @@ export const Arrow = component<ArrowProps>(ArrowJSX);
 
 type HyperScriptBackgroundProps = WithBluefishProps<
   Omit<BackgroundProps, "background"> & {
-    background: () => HyperScriptReturn;
+    background?: () => HyperScriptReturn;
   }
 >;
 

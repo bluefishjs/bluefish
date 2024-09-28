@@ -26,7 +26,7 @@ import {
 function App() {
   return Bluefish(
     Background(
-      { padding: 40, background: () => Rect({ fill: "#859fc9" }) },
+      { padding: 80, fill: "#859fc9", stroke: "none" },
       StackH(
         { spacing: 50 },
         Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
@@ -329,7 +329,7 @@ import {
 function App() {
   return Bluefish(
     Background(
-      { padding: 40, background: () => Rect({ fill: "#859fc9" }) },
+      { padding: 80, fill: "#859fc9", stroke: "none" },
       StackH({ spacing: 50 }, [
         Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
         Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
