@@ -159,9 +159,11 @@ export const render = (code: () => Child | Child[], element: MountableElement) =
   return solidRender(() => Bluefish({}, code() as Child[]) as unknown as JSX.Element, element);
 };
 
+export { createName } from "bluefish-solid";
+
 export const Align = component(AlignJSX);
 // NB: type annotation required b/c of transitive perfect-arrows dependency
-export const Arrow = component<ArrowProps>(ArrowJSX);
+export const Arrow = component<Omit<ArrowProps, "name"> & { name?: Id }>(ArrowJSX);
 
 type HyperScriptBackgroundProps = WithBluefishProps<
   Omit<BackgroundProps, "background" | "name"> & {
