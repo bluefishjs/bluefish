@@ -77,7 +77,7 @@ export const Background = withBluefish(
 
         const widths = rest.map((childNode) => childNode.bbox.width);
 
-        const width = maybeSub(right, left) ?? (widths.length === 0 ? 0 : maybeMax(widths) ?? 0);
+        const width = maybeSub(right, left + props.padding!) ?? (widths.length === 0 ? 0 : maybeMax(widths) ?? 0);
 
         backgroundChild.bbox.width = width + 2 * props.padding!;
       }
@@ -98,7 +98,7 @@ export const Background = withBluefish(
 
         const heights = rest.map((childNode) => childNode.bbox.height);
 
-        const height = maybeSub(bottom, top) ?? (heights.length === 0 ? 0 : maybeMax(heights) ?? 0);
+        const height = maybeSub(bottom, top + props.padding!) ?? (heights.length === 0 ? 0 : maybeMax(heights) ?? 0);
 
         backgroundChild.bbox.height = height + 2 * props.padding!;
       }
