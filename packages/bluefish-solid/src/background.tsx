@@ -2,27 +2,35 @@ import _ from "lodash";
 import Layout from "./layout";
 import { BBox, ChildNode, Id, Transform } from "./scenegraph";
 import { JSX } from "solid-js/jsx-runtime";
-import { ParentProps, Show, mergeProps } from "solid-js";
+import { ParentProps, Show, mergeProps, splitProps } from "solid-js";
 import { maybeAdd, maybeMax, maybeMin, maybeSub } from "./util/maybe";
 import withBluefish from "./withBluefish";
 import Rect from "./rect";
 
-export type BackgroundProps = ParentProps<{
-  name: Id;
-  x?: number;
-  y?: number;
-  background?: () => JSX.Element;
-  padding?: number;
-}>;
+export type BackgroundProps = ParentProps<
+  {
+    name: Id;
+    x?: number;
+    y?: number;
+    width?: number;
+    height?: number;
+    padding?: number;
+  } & JSX.RectSVGAttributes<SVGRectElement>
+>;
 
 export const Background = withBluefish(
   (props: BackgroundProps) => {
     props = mergeProps(
       {
         padding: 10,
+        stroke: "black",
+        fill: "none",
+        strokeWidth: 3,
       },
       props
     );
+
+    const [_, rectProps] = splitProps(props, ["padding"]);
 
     const layout = (childIds: ChildNode[]) => {
       // debugger;
@@ -39,9 +47,7 @@ export const Background = withBluefish(
       if (!backgroundChild.owned.left) {
         // infer x from rest
 
-        const lefts = rest
-          .filter((childNode) => childNode.owned.left)
-          .map((childNode) => childNode.bbox.left);
+        const lefts = rest.filter((childNode) => childNode.owned.left).map((childNode) => childNode.bbox.left);
 
         const x = lefts.length === 0 ? 0 : maybeMin(lefts) ?? 0;
         left = x - props.padding!;
@@ -51,9 +57,7 @@ export const Background = withBluefish(
       }
       if (!backgroundChild.owned.top) {
         // infer y from rest
-        const tops = rest
-          .filter((childNode) => childNode.owned.top)
-          .map((childNode) => childNode.bbox.top);
+        const tops = rest.filter((childNode) => childNode.owned.top).map((childNode) => childNode.bbox.top);
 
         const y = tops.length === 0 ? 0 : maybeMin(tops) ?? 0;
         top = y - props.padding!;
@@ -66,52 +70,42 @@ export const Background = withBluefish(
         // infer width from rest
         const rights = rest
           .filter((childNode) => childNode.owned.left && childNode.owned.width)
-          .map((childNode) =>
-            maybeAdd(childNode.bbox.left, childNode.bbox.width)
-          );
+          .map((childNode) => maybeAdd(childNode.bbox.left, childNode.bbox.width));
 
         const right = rights.length === 0 ? undefined : maybeMax(rights);
 
         const widths = rest.map((childNode) => childNode.bbox.width);
 
-        const width =
-          maybeSub(right, left) ??
-          (widths.length === 0 ? 0 : maybeMax(widths) ?? 0);
+        const width = maybeSub(right, left) ?? (widths.length === 0 ? 0 : maybeMax(widths) ?? 0);
 
-        backgroundChild.bbox.width = width + props.padding!;
+        backgroundChild.bbox.width = width + 2 * props.padding!;
       }
 
       // center all children horizontally in the background
       for (const childId of rest) {
         if (childId.owned.left) continue;
-        childId.bbox.left =
-          left + (backgroundChild.bbox.width! - childId.bbox.width!) / 2;
+        childId.bbox.left = left + (backgroundChild.bbox.width! - childId.bbox.width!) / 2;
       }
 
       if (!backgroundChild.owned.height) {
         // infer height from rest
         const bottoms = rest
           .filter((childNode) => childNode.owned.top && childNode.owned.height)
-          .map((childNode) =>
-            maybeAdd(childNode.bbox.top, childNode.bbox.height)
-          );
+          .map((childNode) => maybeAdd(childNode.bbox.top, childNode.bbox.height));
 
         const bottom = bottoms.length === 0 ? undefined : maybeMax(bottoms);
 
         const heights = rest.map((childNode) => childNode.bbox.height);
 
-        const height =
-          maybeSub(bottom, top) ??
-          (heights.length === 0 ? 0 : maybeMax(heights) ?? 0);
+        const height = maybeSub(bottom, top) ?? (heights.length === 0 ? 0 : maybeMax(heights) ?? 0);
 
-        backgroundChild.bbox.height = height + props.padding!;
+        backgroundChild.bbox.height = height + 2 * props.padding!;
       }
 
       // center all children vertically in the background
       for (const childId of rest) {
         if (childId.owned.top) continue;
-        childId.bbox.top =
-          top + (backgroundChild.bbox.height! - childId.bbox.height!) / 2;
+        childId.bbox.top = top + (backgroundChild.bbox.height! - childId.bbox.height!) / 2;
       }
 
       return {
@@ -130,17 +124,9 @@ export const Background = withBluefish(
       };
     };
 
-    const paint = (paintProps: {
-      bbox: BBox;
-      transform: Transform;
-      children: JSX.Element;
-    }) => {
+    const paint = (paintProps: { bbox: BBox; transform: Transform; children: JSX.Element }) => {
       return (
-        <g
-          transform={`translate(${paintProps.transform.translate.x ?? 0}, ${
-            paintProps.transform.translate.y ?? 0
-          })`}
-        >
+        <g transform={`translate(${paintProps.transform.translate.x ?? 0}, ${paintProps.transform.translate.y ?? 0})`}>
           {paintProps.children}
         </g>
       );
@@ -148,12 +134,7 @@ export const Background = withBluefish(
 
     return (
       <Layout name={props.name} layout={layout} paint={paint}>
-        <Show
-          when={props.background}
-          fallback={<Rect stroke="black" fill="none" stroke-width="3" />}
-        >
-          {props.background!()}
-        </Show>
+        <Rect {...rectProps} />
         {props.children}
       </Layout>
     );
