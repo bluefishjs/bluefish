@@ -17,7 +17,7 @@ export default defineConfig({
       { text: "Learn", link: "/learn/tutorial-1-intro" },
       { text: "Examples", link: "/examples" },
       { text: "API Reference", link: "/api-reference" },
-      { text: "Playground", link: "https://playground.solidjs.com/anonymous/d465ad66-f9bc-4962-a413-d5a1f1ae6b14" },
+      { text: "Playground", link: "https://playground.solidjs.com/anonymous/ed046d3a-261f-4902-842c-b22220f25c1e" },
     ],
 
     search: {
