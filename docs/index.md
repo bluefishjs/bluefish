@@ -17,9 +17,9 @@ hero:
     - theme: alt
       text: What is Bluefish?
       link: /learn/what-is-bluefish
-    - theme: alt
-      text: Examples
-      link: /examples/index.md
+    # - theme: alt
+    #   text: Examples
+    #   link: /examples/index.md
 features:
   - title: "Compose with Relations"
     details: Build complex diagrams from simpler building blocks like alignment, spacing, and arrows

@@ -49,7 +49,7 @@ function App() {
     Bluefish(
       /* Bluefish is a diagramming library for the web */
       /* You can specify UI-like components such as Background and StackH */
-      Background({ padding: 20 },
+      Background({ padding: 10 },
         StackH({ spacing: 50 },
           Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
           Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
@@ -114,11 +114,11 @@ const activeTab = ref("vanillaTsCode");
       ></iframe>
     </template> -->
     <!-- </template> -->
-    <template #home-hero-before>
+    <!-- <template #home-hero-before>
       <div class="construction">
         <h1><strong>Warning: This website is under construction! Many pages are incomplete.</strong></h1>
       </div>
-    </template>
+    </template> -->
     <template #home-features-before>
       <div class="two-column-layout">
         <div class="column tab-group">

@@ -390,5 +390,5 @@ and `StackV`.
 When you're ready, there are few paths forward from here:
 
 - Learn more about relations in [part 2](/learn/tutorial-2-relations.md) of this tutorial.
-- Explore our [examples](/examples/).
-<!-- - Read the Bluefish [API reference](/api-reference/). -->
+  <!-- - Explore our [examples](/examples/). -->
+  <!-- - Read the Bluefish [API reference](/api-reference/). -->
