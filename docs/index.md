@@ -29,7 +29,9 @@ features:
     details: Bluefish provides graph and arrow layouts out of the box, with the ability to add your own
 ---
 
-[![Bluefish diagrams](/docs-teaser.png)](/examples/index.md)
+<!-- [![Bluefish diagrams](/docs-teaser.png)](/examples/index.md) -->
+
+![Bluefish diagrams](/docs-teaser.png)
 
 <!-- <br />
 
