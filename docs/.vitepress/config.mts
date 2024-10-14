@@ -32,8 +32,8 @@ export default defineConfig({
           text: "Tutorial",
           items: [
             { text: "1. The Basics", link: "/learn/tutorial-1-intro" },
-            { text: "2. The Power of Relations", link: "/learn/tutorial-2-relations" },
-            { text: "3. Bluefish and Solid", link: "/learn/tutorial-3-framework" },
+            // { text: "2. The Power of Relations", link: "/learn/tutorial-2-relations" },
+            // { text: "3. Data-Driven Diagrams", link: "/learn/tutorial-3-framework" },
           ],
         },
       ],

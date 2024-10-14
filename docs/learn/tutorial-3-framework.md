@@ -1,4 +1,4 @@
-# Tutorial Part 3: Bluefish and Solid
+# Tutorial Part 3: Data-Driven Diagrams
 
 Bluefish is a library in SolidJS, a UI framework. That means we can take advantage of SolidJS's
 features to make our diagrams, too. In this tutorial, we'll see how to make custom marks and

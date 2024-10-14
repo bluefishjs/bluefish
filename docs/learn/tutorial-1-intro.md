@@ -265,7 +265,7 @@ import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Dis
 function Diagram() {
   return [
     Background(
-      { padding: 40, background: () => Rect({ fill: "#859fc9" }) },
+      { padding: 40, fill: "#859fc9", stroke: "none" },
       StackH(
         { spacing: 50 },
         Circle({ r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }), // [!code --]
@@ -385,10 +385,10 @@ render(Diagram, document.getElementById("app"));
 If you want to explore more, try playing around with `spacing` and `padding`, or swapping `StackH`
 and `StackV`.
 
-## What's next?
+<!-- ## What's next?
 
 When you're ready, there are few paths forward from here:
 
-- Learn more about relations in [part 2](/learn/tutorial-2-relations.md) of this tutorial.
+- Learn more about relations in [part 2](/learn/tutorial-2-relations.md) of this tutorial. -->
   <!-- - Explore our [examples](/examples/). -->
   <!-- - Read the Bluefish [API reference](/api-reference/). -->

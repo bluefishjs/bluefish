@@ -6,42 +6,27 @@ modify the label in the last tutorial until we've gone from this:
 
 ::: sandbox
 
-```tsx ./App.tsx [active]
-import {
-  Bluefish,
-  Group,
-  StackH,
-  StackV,
-  Circle,
-  Text,
-  Ref,
-  Background,
-  Arrow,
-  Align,
-  Distribute,
-  Rect,
-} from "@bluefish-js/solid";
+```tsx [active]
+// prettier-ignore
+import { Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Background padding={40} background={() => <Rect fill="#859fc9" />}>
-        <StackH spacing={50}>
-          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
-          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
-          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
-        </StackH>
-      </Background>
-      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
-        <StackV spacing={30}>
-          <Text>Mercury</Text>
-          <Ref select="mercury" />
-        </StackV>
-      </Background>
-    </Bluefish>
-  );
+function Diagram() {
+  return [
+    Background({ padding: 40, fill: "#859fc9", stroke: "none" }, [
+      StackH({ spacing: 50 }, [
+        Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" }),
+      ]),
+    ]),
+    Background({ stroke: "black", "stroke-width": 3, fill: "none", rx: 10 }, [
+      StackV({ spacing: 30 }, [Text("Mercury"), Ref({ select: "mercury" })]),
+    ]),
+  ];
 }
+
+render(Diagram, document.getElementById("app"));
 ```
 
 :::
@@ -50,48 +35,30 @@ to this:
 
 ::: sandbox
 
-```tsx ./App.tsx [active]
-import {
-  Bluefish,
-  Group,
-  StackH,
-  StackV,
-  Circle,
-  Text,
-  Ref,
-  Background,
-  Arrow,
-  Align,
-  Distribute,
-  Rect,
-} from "@bluefish-js/solid";
+```tsx [active]
+// prettier-ignore
+import { Bluefish, Group, StackH, StackV, Circle, Text, Ref, Background, Arrow, Align, Distribute, Rect, render } from "bluefish-js";
 
-export default function App() {
-  return (
-    <Bluefish>
-      <Background name="planets" padding={40} background={() => <Rect fill="#859fc9" />}>
-        <StackH spacing={50}>
-          <Circle name="mercury" r={15} fill="#EBE3CF" stroke-width={3} stroke="black" />
-          <Circle r={36} fill="#DC933C" stroke-width={3} stroke="black" />
-          <Circle r={38} fill="#179DD7" stroke-width={3} stroke="black" />
-          <Circle r={21} fill="#F1CF8E" stroke-width={3} stroke="black" />
-        </StackH>
-      </Background>
-      <Distribute direction="vertical" spacing={30}>
-        <Ref select="planets" />
-        <Text name="label">Mercury</Text>
-      </Distribute>
-      <Align alignment="centerX">
-        <Ref select="mercury" />
-        <Ref select="label" />
-      </Align>
-      <Arrow>
-        <Ref select="label" />
-        <Ref select="mercury" />
-      </Arrow>
-    </Bluefish>
-  );
+function Diagram() {
+  return [
+    Background({ name: "planets", padding: 40, fill: "#859fc9", stroke: "none" }, [
+      StackH({ spacing: 50 }, [
+        Circle({ name: "mercury", r: 15, fill: "#EBE3CF", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 36, fill: "#DC933C", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 38, fill: "#179DD7", "stroke-width": 3, stroke: "black" }),
+        Circle({ r: 21, fill: "#F1CF8E", "stroke-width": 3, stroke: "black" }),
+      ]),
+      Distribute({ direction: "vertical", spacing: 30 }, [
+        Ref({ select: "planets" }),
+        Text({ name: "label" }, "Mercury"),
+      ]),
+      Align({ alignment: "centerX" }, [Ref({ select: "mercury" }), Ref({ select: "label" })]),
+      Arrow([Ref({ select: "label" }), Ref({ select: "mercury" })]),
+    ]),
+  ];
 }
+
+render(Diagram, document.getElementById("app"));
 ```
 
 :::
