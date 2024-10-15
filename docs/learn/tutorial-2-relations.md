@@ -69,18 +69,18 @@ We'll also gain some more experience using `name` and `Ref`.
 ## Flip label direction
 
 One thing we can do without changing our spec very much is move the label below the planet by
-simplifying reversing the order of `StackV`'s children:
+simply reversing the order of `StackV`'s children:
 
-```tsx ./App.tsx [active]
+```tsx
 // ...
-<Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}>
-  <StackV spacing={30}>
-    <Text>Mercury</Text> // [!code --]
-    <Ref select="mercury" /> // [!code --]
-    <Ref select="mercury" /> // [!code ++]
-    <Text>Mercury</Text> // [!code ++]
-  </StackV>
-</Background>
+Background({ padding: 40, fill: "#859fc9", stroke: "none" }, [
+  StackV({ spacing: 30 }, [
+    Text("Mercury"), // [!code --]
+    Ref({ select: "mercury" }), // [!code --]
+    Ref({ select: "mercury" }), // [!code ++]
+    Text("Mercury"), // [!code ++]
+  ]),
+]);
 // ...
 ```
 
@@ -88,33 +88,43 @@ simplifying reversing the order of `StackV`'s children:
 
 ## Change `Background` to `Arrow`
 
-We can also change how we connect the label to the planet. Instead of using a `Background`, we can
-use an `Arrow` relation instead:
+We can also change how we connect the label to the planet.
+
+First, we'll _denest_ the `Background` relation from the `StackV`.
 
 ```tsx
 // ...
-      <Background background={() => <Rect stroke="black" stroke-width={3} fill="none" rx={10} />}> // [!code --]
-        <StackV spacing={30}>
-          <Ref select="mercury" />
-          <Text>Mercury</Text> // [!code --]
-          <Text name="label">Mercury</Text> // [!code ++]
-        </StackV>
-        <Arrow> // [!code ++]
-          <Ref select="label"> // [!code ++]
-          <Ref select="mercury" /> // [!code ++]
-        </Arrow> // [!code ++]
-      </Background> // [!code --]
+Background({ padding: 40, fill: "#859fc9", stroke: "none" }, [ // [!code --]
+StackV({ spacing: 30 }, [
+  Ref({ select: "mercury" }),
+  Text("Mercury"), // [!code --]
+  Text({ name: "label" }, "Mercury"), // [!code ++]
+]),
+Background({ padding: 40, fill: "#859fc9", stroke: "none" }, [ // [!code ++]
+  Ref({ select: "label" }), // [!code ++]
+  Ref({ select: "mercury" }), // [!code ++]
+]) // [!code ++]
+// ...
+```
+
+Notice that this doesn't change our diagram! It just changes our spec so that we can make other
+kinds of edits.
+
+Now, instead of using a `Background`, we can
+use an `Arrow` relation:
+
+```tsx
+// ...
+StackV({ spacing: 30 }, [Ref({ select: "mercury" }), Text({ name: "label" }, "Mercury")]),
+  Background({ padding: 40, fill: "#859fc9", stroke: "none" }, [ // [!code --]
+  Arrow([ // [!code ++]
+    Ref({ select: "label" }),
+    Ref({ select: "mercury" }),
+  ]);
 // ...
 ```
 
 ![label arrow](/learn/assets/label-arrow.png)
-
-We named the Mercury label, deleted the `Background`, and added an `Arrow` relation whose children
-point at `StackV`'s children.
-
-::: info CHALLENGE
-Can figure out how to get back to the previous version of the diagram with `Background` by only changing two lines of code?
-:::
 
 ## Distribute the label from the planets
 
@@ -127,16 +137,10 @@ To do this, we first have to split `StackV` into its two constituent parts: vert
 and horizontal `Align`:
 
 ```tsx
-<StackV spacing={30}> // [!code --]
-<Distribute direction="vertical" spacing={30}> // [!code ++]
-  <Ref select="mercury" />
-  <Text name="label">Mercury</Text>
-</StackV> // [!code --]
-</Distribute> // [!code ++]
-<Align alignment="centerX"> // [!code ++]
-  <Ref select="mercury" /> // [!code ++]
-  <Ref select="label" /> // [!code ++]
-</Align> // [!code ++]
+StackV({ spacing: 30 }, // [!code --]
+Distribution({ direction: "vertical", spacing: 30 }, // [!code ++]
+ [Ref({ select: "mercury" }), Text({ name: "label"}, "Mercury")]),
+Align({ alignment: "centerX" }, [ Ref({ select: "mercury"}), Ref({ select: "label"})]) // [!code ++]
 ```
 
 This refactor doesn't change the diagram at all, but it _does_ let us retarget the `Distribute` so
@@ -144,18 +148,18 @@ we n offset it from the `Background` instead of the Mercury `Circle`. To do this
 the planets `Background`:
 
 ```tsx
-<Background padding={40} background={() => <Rect fill="#859fc9" />}> // [!code --]
-<Background name="planets" padding={40} background={() => <Rect fill="#859fc9" />}> // [!code ++]
+Background({ padding: 40, fill: "#859fc9", stroke: "none" }, // [!code --]
+Background({ name: "planets", padding: 40, fill: "#859fc9", stroke: "none" }, // [!code ++]
 ```
 
 Then we'll change the selection in the `Distribute`:
 
 ```tsx
-<Distribute direction="vertical" spacing={30}>
-  <Ref select="mercury" /> // [!code --]
-  <Ref select="planets" /> // [!code ++]
-  <Text name="label">Mercury</Text>
-</Distribute>
+Distribution({ direction: "vertical", spacing: 30 }, [
+  Ref({ select: "mercury" }), // [!code --]
+  Ref({ select: "planets" }), // [!code ++]
+  Text({ name: "label" }, "Mercury"),
+]);
 ```
 
 ![mercury label outside background](/learn/assets/mercury-label-outside-background.png)
