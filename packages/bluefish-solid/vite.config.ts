@@ -1,15 +1,11 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import solidPlugin from "vite-plugin-solid";
-import devtools from "solid-devtools/vite";
 import dts from "vite-plugin-dts";
 
 export default defineConfig(({ command }) => ({
   publicDir: command === "serve" ? "public" : false,
   plugins: [
-    devtools({
-      autoname: true,
-    }),
     solidPlugin(),
     dts({ tsconfigPath: "./tsconfig.build.json" }),
   ],
