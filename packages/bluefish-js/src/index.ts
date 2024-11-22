@@ -22,6 +22,8 @@ import {
   Group as GroupJSX,
   Image as ImageJSX,
   Layout as LayoutJSX,
+  LayoutFunction as LayoutFunctionJSX,
+  Line as LineJSX,
   Rect as RectJSX,
   Ref as RefJSX,
   StackH as StackHJSX,
@@ -190,6 +192,8 @@ export const Distribute = component(DistributeJSX);
 export const Group = component(GroupJSX);
 export const Image = componentNoChildren(ImageJSX);
 export const Layout = component(LayoutJSX);
+export const LayoutFunction = component(LayoutFunctionJSX);
+export const Line = component(LineJSX);
 export const Rect = componentNoChildren(RectJSX);
 export const Ref = componentNoChildren(RefJSX);
 export const StackH = component(StackHJSX);

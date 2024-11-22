@@ -12,7 +12,7 @@ import { Ref } from "../ref";
 import { Id } from "../scenegraph";
 import { Text } from "../text";
 import { Selection } from "../ref";
-import { LayoutFunction } from "./layoutfunction";
+import { LayoutFunction } from "../layoutFunction";
 
 const Pad = withBluefish(
   (

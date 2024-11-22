@@ -31,6 +31,12 @@ export type { ImageProps } from "./image";
 export { Layout } from "./layout";
 export type { LayoutProps } from "./layout";
 
+export { LayoutFunction } from "./layoutFunction";
+export type { LayoutFunctionProps } from "./layoutFunction";
+
+export { Line } from "./line";
+export type { LineProps } from "./line";
+
 export { Rect } from "./rect";
 export type { RectProps } from "./rect";
 

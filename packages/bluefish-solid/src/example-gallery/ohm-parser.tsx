@@ -11,7 +11,7 @@ import withBluefish from "../withBluefish";
 import Text from "../text";
 import Align from "../align";
 import * as ohm from "ohm-js";
-import LayoutFunction from "./layoutfunction";
+import LayoutFunction from "../layoutFunction";
 
 const myGrammar = ohm.grammar(String.raw`
   Arithmetic {
@@ -90,12 +90,7 @@ const Label = withBluefish((props) => {
         </Show>
       </Group>
 
-      <Rect
-        height={LABEL_HEIGHT}
-        name={rect}
-        fill={LABEL_COLOR_MAP[props.textOnLabel]}
-        opacity={0.5}
-      ></Rect>
+      <Rect height={LABEL_HEIGHT} name={rect} fill={LABEL_COLOR_MAP[props.textOnLabel]} opacity={0.5}></Rect>
 
       <Distribute direction="vertical" spacing={4}>
         <Ref select={props.below} />
@@ -111,14 +106,8 @@ const Label = withBluefish((props) => {
       </Align>
 
       <Show when={props.underlined}>
-        <Rect
-          height={LABEL_UNDERLINE_HEIGHT}
-          name={underline}
-          fill={LABEL_UNDERLINE_COLOR}
-        ></Rect>
-        <LayoutFunction
-          f={({ left, width, right }) => ({ left, width, right })}
-        >
+        <Rect height={LABEL_UNDERLINE_HEIGHT} name={underline} fill={LABEL_UNDERLINE_COLOR}></Rect>
+        <LayoutFunction f={({ left, width, right }) => ({ left, width, right })}>
           <Ref select={g} />
           <Ref select={underline} />
         </LayoutFunction>
@@ -196,21 +185,13 @@ const RenderText = withBluefish((props) => {
       </SetHorizontalLayout> */}
       {/* <LayoutFunction f={({ left, width, right }) => ({ left, width, right })}> */}
       <Ref select={charsStackName} />
-        <Ref select={lineName} />
+      <Ref select={lineName} />
       {/* </LayoutFunction> */}
     </Group>
   );
 });
 const RenderNode = withBluefish((props) => {
-  const {
-    charNames,
-    offset,
-    matchLength,
-    text,
-    parentName,
-    ruleName,
-    underlined,
-  } = props;
+  const { charNames, offset, matchLength, text, parentName, ruleName, underlined } = props;
   const myName = createName("myName");
 
   // console.log(ruleName, text);
@@ -242,9 +223,7 @@ const RenderTrace = withBluefish((props) => {
   const traceName = createName("traceName");
 
   if ("children" in trace) {
-    const children = trace.children.filter(
-      (childTrace) => childTrace.ctorName !== "_iter"
-    );
+    const children = trace.children.filter((childTrace) => childTrace.ctorName !== "_iter");
     return (
       <Group>
         <RenderNode
@@ -294,30 +273,22 @@ type OhmParserProps = {
 //  - format RenderText chars differently if they are a symbol or char
 //  - OR (prob better): set with of chars based on the tree node's contents width
 
-export const OhmParser = withBluefish(
-  ({ expression, debug }: OhmParserProps) => {
-    // const text = "3+(4*5)";
-    const text = expression;
-    const charAndNames = text.split("").map((char) => [char, createName(char)]);
-    const charNames = charAndNames.map(([c, n]) => n);
-    const endName = createName("end");
+export const OhmParser = withBluefish(({ expression, debug }: OhmParserProps) => {
+  // const text = "3+(4*5)";
+  const text = expression;
+  const charAndNames = text.split("").map((char) => [char, createName(char)]);
+  const charNames = charAndNames.map(([c, n]) => n);
+  const endName = createName("end");
 
-    const traces = myGrammar.trace(text).bindings;
-    // console.log(1, traces);
-    return (
-      <Group x={0} y={0}>
-        <RenderText name="top" charAndNames={charAndNames} endName={endName} />
-        <RenderTrace
-          trace={traces[0]}
-          offset={0}
-          text={text}
-          charNames={charNames}
-          parentName="top"
-        />
-        <Label from={endName} below="top" textOnLabel="end">
-          <LabelText text="end" />
-        </Label>
-      </Group>
-    );
-  }
-);
+  const traces = myGrammar.trace(text).bindings;
+  // console.log(1, traces);
+  return (
+    <Group x={0} y={0}>
+      <RenderText name="top" charAndNames={charAndNames} endName={endName} />
+      <RenderTrace trace={traces[0]} offset={0} text={text} charNames={charNames} parentName="top" />
+      <Label from={endName} below="top" textOnLabel="end">
+        <LabelText text="end" />
+      </Label>
+    </Group>
+  );
+});

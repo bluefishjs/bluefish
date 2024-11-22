@@ -14,7 +14,7 @@ import { StackV } from "../stackv";
 import Text from "../text";
 import Align from "../align";
 import withBluefish from "../withBluefish";
-import LayoutFunction from "./layoutfunction";
+import LayoutFunction from "../layoutFunction";
 
 const BoxedAlign = withBluefish((props) => (
   <Align alignment={props.alignment}>

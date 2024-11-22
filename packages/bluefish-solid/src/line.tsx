@@ -2,26 +2,19 @@ import { ParentProps, Show, mergeProps } from "solid-js";
 import Layout from "./layout";
 import withBluefish from "./withBluefish";
 import _ from "lodash";
+import { ChildNode } from "./scenegraph";
+const clamp = (num: number, min: number, max: number) => Math.min(Math.max(num, min), max);
+const lerp = (num: number, min: number, max: number) => min + (max - min) * num;
 
-const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-const lerp = (num, min, max) => min + (max - min) * num;
+const maybeLerp = (c: number, a: number, b: number) =>
+  a !== undefined && b !== undefined && c !== undefined ? lerp(c, a, b) : undefined;
+const maybeClamp = (c: number, a: number, b: number) =>
+  a !== undefined && b !== undefined && c !== undefined ? clamp(c, a, b) : undefined;
+const maybeSub = (a: number, b: number) => (a !== undefined && b !== undefined ? a - b : undefined);
+const maybeMin = (a: number, b: number) => (a !== undefined && b !== undefined ? Math.min(a, b) : undefined);
+const maybeMax = (a: number, b: number) => (a !== undefined && b !== undefined ? Math.max(a, b) : undefined);
 
-const maybeLerp = (c, a, b) =>
-  a !== undefined && b !== undefined && c !== undefined
-    ? lerp(c, a, b)
-    : undefined;
-const maybeClamp = (c, a, b) =>
-  a !== undefined && b !== undefined && c !== undefined
-    ? clamp(c, a, b)
-    : undefined;
-const maybeSub = (a, b) =>
-  a !== undefined && b !== undefined ? a - b : undefined;
-const maybeMin = (a, b) =>
-  a !== undefined && b !== undefined ? Math.min(a, b) : undefined;
-const maybeMax = (a, b) =>
-  a !== undefined && b !== undefined ? Math.max(a, b) : undefined;
-
-type LineProps = ParentProps<{
+export type LineProps = ParentProps<{
   "stroke-width"?: number;
   "stroke-dasharray"?: string;
   stroke?: string;
@@ -41,7 +34,7 @@ export const Line = withBluefish(
     );
     // const { children, id } = props;
 
-    const layout = (childIds) => {
+    const layout = (childIds: ChildNode[]) => {
       childIds = Array.from(childIds);
 
       const fromBBox = childIds[0].bbox;
@@ -85,26 +78,10 @@ export const Line = withBluefish(
         // produces a line from the boundary of one box to the other, biased
         // towards the center of each box's x and y axis.
         customData = {
-          fromX: maybeClamp(
-            maybeClamp(data.fromX, toBBox.left, toBBox.right),
-            fromBBox.left,
-            fromBBox.right
-          ),
-          fromY: maybeClamp(
-            maybeClamp(data.fromY, toBBox.top, toBBox.bottom),
-            fromBBox.top,
-            fromBBox.bottom
-          ),
-          toX: maybeClamp(
-            maybeClamp(data.toX, fromBBox.left, fromBBox.right),
-            toBBox.left,
-            toBBox.right
-          ),
-          toY: maybeClamp(
-            maybeClamp(data.toY, fromBBox.top, fromBBox.bottom),
-            toBBox.top,
-            toBBox.bottom
-          ),
+          fromX: maybeClamp(maybeClamp(data.fromX, toBBox.left, toBBox.right), fromBBox.left, fromBBox.right),
+          fromY: maybeClamp(maybeClamp(data.fromY, toBBox.top, toBBox.bottom), fromBBox.top, fromBBox.bottom),
+          toX: maybeClamp(maybeClamp(data.toX, fromBBox.left, fromBBox.right), toBBox.left, toBBox.right),
+          toY: maybeClamp(maybeClamp(data.toY, fromBBox.top, fromBBox.bottom), toBBox.top, toBBox.bottom),
         };
       }
 
@@ -138,14 +115,9 @@ export const Line = withBluefish(
           */
     const paint = (paintProps) => {
       return (
-        <Show
-          when={paintProps.customData}
-          fallback={<g>{paintProps.children}</g>}
-        >
+        <Show when={paintProps.customData} fallback={<g>{paintProps.children}</g>}>
           <g
-            transform={`translate(${paintProps.transform.translate.x ?? 0}, ${
-              paintProps.transform.translate.y ?? 0
-            })`}
+            transform={`translate(${paintProps.transform.translate.x ?? 0}, ${paintProps.transform.translate.y ?? 0})`}
           >
             <line
               x1={paintProps.customData.fromX}
