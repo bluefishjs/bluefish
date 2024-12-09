@@ -57,6 +57,8 @@ const members = [
 
 Take a look at our examples! They're all based on real diagrams.
 
+- [Quantum Circuit Equivalence](https://playground.solidjs.com/anonymous/57f3baf1-6af4-4126-9159-d050b88523c3)
+
 <!-- <Examples size="medium" :members="members" /> -->
 
 <!-- - [Insertion Sort](TODO)
