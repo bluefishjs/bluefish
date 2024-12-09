@@ -57,6 +57,8 @@ const members = [
 
 Take a look at our examples! They're all based on real diagrams.
 
+- [Baking Recipe](https://playground.solidjs.com/anonymous/8f733a7c-2ed8-4f5f-b98e-f17eb2cf2b13)
+- [Pulleys](https://playground.solidjs.com/anonymous/9bdf7c8f-260c-4e6d-bc96-67383a5c6647)
 - [Quantum Circuit Equivalence](https://playground.solidjs.com/anonymous/57f3baf1-6af4-4126-9159-d050b88523c3)
 
 <!-- <Examples size="medium" :members="members" /> -->
