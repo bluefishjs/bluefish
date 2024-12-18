@@ -15,7 +15,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Get Started", link: "/learn/get-started" },
       { text: "Learn", link: "/learn/tutorial-1-intro" },
-      // { text: "Examples", link: "/examples" },
+      { text: "Examples", link: "/examples" },
       // { text: "API Reference", link: "/api-reference" },
       { text: "Playground", link: "https://playground.solidjs.com/anonymous/ed046d3a-261f-4902-842c-b22220f25c1e" },
     ],
