@@ -197,6 +197,7 @@ const activeTab = ref("vanillaTsCode");
 .tab-buttons button {
   padding: 5px 10px;
   border: 1px solid #ccc;
+  color: #000000;
   background-color: #f0f0f0;
   cursor: pointer;
 }
