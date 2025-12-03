@@ -1,18 +1,15 @@
-import { JSX, ParentProps } from "solid-js";
-import { BBox, ChildNode, Id, Transform, useScenegraph } from "./scenegraph";
+import { JSX, ParentProps, splitProps } from "solid-js";
+import { BBox, ChildNode, Id, Transform } from "./scenegraph";
 import Layout from "./layout";
 import {
   maxOfMaybes,
   maybeAdd,
-  maybeMax,
-  maybeMin,
   maybeSub,
   minOfMaybes,
 } from "./util/maybe";
-import { startsWith } from "lodash";
 import withBluefish from "./withBluefish";
 
-export type GroupProps = ParentProps<{
+export type GroupProps = Omit<JSX.CircleSVGAttributes<SVGGElement>, "transform"> & ParentProps<{
   name: Id;
   x?: number;
   y?: number;
@@ -79,8 +76,11 @@ export const Group = withBluefish(
       transform: Transform;
       children: JSX.Element;
     }) => {
+      const [_, rest] = splitProps(props, ["name", "x", "y", "rels"]);
+
       return (
         <g
+          {...rest}
           transform={`translate(${paintProps.transform.translate.x ?? 0}, ${
             paintProps.transform.translate.y ?? 0
           })`}
