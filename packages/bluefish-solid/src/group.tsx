@@ -9,7 +9,7 @@ import {
 } from "./util/maybe";
 import withBluefish from "./withBluefish";
 
-export type GroupProps = Omit<JSX.CircleSVGAttributes<SVGGElement>, "transform"> & ParentProps<{
+export type GroupProps = Omit<JSX.GroupSVGAttributes<SVGGElement>, "transform"> & ParentProps<{
   name: Id;
   x?: number;
   y?: number;
