@@ -7,7 +7,11 @@ export default defineConfig(({ command }) => ({
   publicDir: command === "serve" ? "public" : false,
   plugins: [
     solidPlugin(),
-    dts({ tsconfigPath: "./tsconfig.build.json" }),
+    dts({
+      tsconfigPath: "./tsconfig.build.json",
+      skipDiagnostics: true,
+      exclude: ["src/example-gallery/**", "src/stories/**", "src/performance-testing/**"],
+    }),
   ],
   server: {
     port: 3000,

@@ -1,4 +1,13 @@
 {
   "extends": "./tsconfig",
-  "exclude": ["node_modules", "dist", "examples", "experiments", "public", "src/stories", "vite.config.ts"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "examples",
+    "experiments",
+    "public",
+    "src/stories",
+    "src/example-gallery",
+    "vite.config.ts"
+  ]
 }
