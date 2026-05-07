@@ -51,7 +51,9 @@ export function withBluefish<ComponentProps>(
 
             setLayout(() => layoutNode[0].layout);
 
-            return layoutNode[0].jsx;
+            return props.name !== undefined
+              ? <g data-bluefish-id={props.name}>{layoutNode[0].jsx}</g>
+              : layoutNode[0].jsx;
           })()}
         </IdContext.Provider>
       </ParentScopeIdContext.Provider>
