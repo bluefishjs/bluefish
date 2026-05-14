@@ -1,11 +1,12 @@
 import { Accessor, Component, createContext, createSignal, createUniqueId, useContext } from "solid-js";
 import type { JSX } from "solid-js";
-import { Id, ScenegraphElement, resolveScenegraphElements } from "./scenegraph";
+import { Id, ScenegraphElement, UNSAFE_useScenegraph, resolveScenegraphElements } from "./scenegraph";
 import { ParentScopeIdContext, ScopeContext } from "./createName";
 import { Dynamic } from "solid-js/web";
 
 export type WithBluefishProps<T = object> = T & {
   name?: Id;
+  zOrder?: number;
 };
 
 export const IdContext = createContext<Accessor<Id | undefined>>(() => undefined);
@@ -14,7 +15,7 @@ export function withBluefish<ComponentProps>(
   WrappedComponent: Component<WithBluefishProps<ComponentProps>>,
   options?: { displayName?: string }
 ) {
-  return (props: Omit<ComponentProps, "name"> & { name?: Id }) => {
+  return (props: Omit<ComponentProps, "name"> & { name?: Id; zOrder?: number }) => {
     // scenegraph id
     const contextId = useContext(IdContext);
     const parentScopeId = useContext(ParentScopeIdContext);
@@ -29,6 +30,7 @@ export function withBluefish<ComponentProps>(
     // component scope id
     const [scope, setScope] = useContext(ScopeContext);
     const [layout, setLayout] = createSignal<(parentId: Id | null) => void>(() => {});
+    const { scenegraph } = UNSAFE_useScenegraph();
 
     // TODO: might have to initialize the scope in the store if the scope id was auto-generated
 
@@ -61,7 +63,15 @@ export function withBluefish<ComponentProps>(
 
     return {
       jsx,
-      layout: (parentId) => layout()(parentId),
+      layout: (parentId) => {
+        layout()(parentId);
+        if (props.zOrder !== undefined) {
+          const node = scenegraph[id()];
+          if (node?.type === "node") {
+            node.zOrder = props.zOrder;
+          }
+        }
+      },
     } satisfies ScenegraphElement as unknown as JSX.Element;
   };
 }
