@@ -111,6 +111,7 @@ export type Scenegraph = {
 // Instead of returning a normal JSX.Element from our components, we return a ScenegraphElement.
 // This allows us to pass information up the JSX tree.
 export type ScenegraphElement = {
+  id?: Id;
   jsx: JSX.Element;
   layout: (parentId: Id | null) => void;
 };

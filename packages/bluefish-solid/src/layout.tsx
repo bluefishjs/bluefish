@@ -3,6 +3,7 @@ import {
   For,
   JSX,
   ParentProps,
+  createMemo,
   createRenderEffect,
   createSignal,
   on,
@@ -68,19 +69,18 @@ export const Layout = (props: LayoutProps) => {
           });
         });
 
-        const sortedForRender = () => {
+        const sortedForRender = createMemo(() => {
           layoutUID();
           const node = scenegraph[props.name];
           if (!node || node.type !== "node") return childNodes.map((child, index) => ({ child, zOrder: 0, index }));
-          const childIds = node.children ?? [];
           const paired = childNodes.map((child, index) => {
-            const childSgNode = scenegraph[childIds[index]];
+            const childSgNode = child.id ? scenegraph[child.id] : undefined;
             const z = childSgNode?.type === "node" ? (childSgNode.zOrder ?? 0) : 0;
             return { child, zOrder: z, index };
           });
           paired.sort((a, b) => a.zOrder - b.zOrder || a.index - b.index);
           return paired;
-        };
+        });
 
         return (
           <Dynamic component={props.paint} {...scenegraphInfo}>

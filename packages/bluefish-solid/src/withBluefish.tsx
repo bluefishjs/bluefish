@@ -62,6 +62,7 @@ export function withBluefish<ComponentProps>(
     );
 
     return {
+      id: id(),
       jsx,
       layout: (parentId) => {
         layout()(parentId);
