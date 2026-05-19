@@ -58,6 +58,7 @@ export type ChildNode = {
   name: Id;
   bbox: BBox;
   owned: { [key in Dim]: boolean };
+  zOrder: number;
 };
 
 export type ScenegraphNode =
@@ -70,6 +71,7 @@ export type ScenegraphNode =
       children: Id[];
       parent: Id | null;
       customData?: any;
+      zOrder: number;
       layout: () => void;
     }
   | {
@@ -109,6 +111,7 @@ export type Scenegraph = {
 // Instead of returning a normal JSX.Element from our components, we return a ScenegraphElement.
 // This allows us to pass information up the JSX tree.
 export type ScenegraphElement = {
+  id?: Id;
   jsx: JSX.Element;
   layout: (parentId: Id | null) => void;
 };
@@ -157,6 +160,7 @@ export const createScenegraph = (): ScenegraphContextType => {
       children: [],
       parent: parentId,
       customData: { customData: {} },
+      zOrder: 0,
       layout: () => {},
     };
 
@@ -759,6 +763,16 @@ the align node.
 
           setBBox(owner, childId, { height });
         },
+      },
+      get zOrder() {
+        const node = scenegraph[childId];
+        return node?.type === "node" ? node.zOrder : 0;
+      },
+      set zOrder(value: number) {
+        const node = scenegraph[childId];
+        if (node?.type === "node") {
+          node.zOrder = value;
+        }
       },
       owned: {
         get left() {

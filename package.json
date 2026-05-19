@@ -15,5 +15,14 @@
   "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
+  },
+  "pnpm": {
+    "overrides": {
+      "storybook-solidjs-vite>@storybook/builder-vite": "8.6.18",
+      "storybook-solidjs-vite>storybook-solidjs": "1.0.0-beta.6"
+    },
+    "patchedDependencies": {
+      "storybook-solidjs@1.0.0-beta.6": "patches/storybook-solidjs@1.0.0-beta.6.patch"
+    }
   }
 }
