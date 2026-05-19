@@ -15,5 +15,10 @@
   "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
+  },
+  "pnpm": {
+    "overrides": {
+      "storybook-solidjs-vite>@storybook/builder-vite": "8.6.18"
+    }
   }
 }
