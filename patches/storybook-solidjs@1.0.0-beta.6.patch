@@ -1,0 +1,14 @@
+diff --git a/package.json b/package.json
+index 9a0e5ba55563afb6c4d41d1d4adfeb9e5029ac31..78e8c6120629bf7f17b2832a17e25151c9606884 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,5 @@
+ {
+   "name": "storybook-solidjs",
+-  "type": "module",
+   "version": "1.0.0-beta.6",
+   "description": "Storybook SolidJS renderer",
+   "keywords": [
+diff --git a/src/typings.d.ts b/src/typings.d.ts
+deleted file mode 100644
+index 8c32ddcdb9e11a72f43a1e6d7ef8aa9a9ddd45ff..0000000000000000000000000000000000000000
